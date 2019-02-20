@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Aurelia Core Team",
+  "classifications": [ "Web", "MVC", "Spa" ],
+  "name": "Aurelia SPA",
+  "identity": "Aurelia.DotNet.CSharp",
+  "groupIdentity": "Aurelia.DotNet",
+  "shortName": "aurelia", // You can create the project using this short name instead of the one above.
+  "tags": {
+    "language": "C#", // Specify that this template is in C#.
+    "type": "project"
+  },
+  "sourceName": "Aurelia.DotNet.Spa", // Will replace the string 'Aurelia.DotNet.Spa' with the value provided via -n.
+  "preferNameDirectory": true,
+  "description": "Generates a SPA App with .NET Core backend and Aurelia front end"
+}

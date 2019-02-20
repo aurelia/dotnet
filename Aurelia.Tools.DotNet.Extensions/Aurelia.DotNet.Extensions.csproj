@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Product>Aurelia DotNet Host CLI</Product>
+    <Description>This is a spa template that utilizes the Aurelia CLI and webpack</Description>
+    <Company>Aurelia</Company>
+    <Authors>Aurelia Core Team</Authors>
+    <PackageIconUrl>https://aurelia.io/media/aurelia-favicon.ico</PackageIconUrl>
+    <PackageTags>Aurelia, SPA, .NET CORE, MVC</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
+  </ItemGroup>
+
+</Project>
