@@ -1,5 +1,5 @@
 {
-  "name": "ClientApp",
+  "name": "Aurelia.DotNet.Spa",
   "type": "project:application",
   "bundler": {
     "id": "webpack",
