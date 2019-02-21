@@ -19,4 +19,6 @@ Official .NET tooling for Aurelia.
 - dotnet new aurelia-secure - Add token based authentication and dashboard to manage. **All built with Aurelia**
 - dotnet new aurelia-ssr - Generate a dotnet template that will use the embedded node process to render the Aurelia application
 
+## Scaffolding
+- Reverse engineer API endpoints and generate corresponding aurelia views based on the models
 
