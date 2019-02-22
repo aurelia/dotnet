@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Computable Property Generator</Title>
+      <Shortcut>au-computable</Shortcut>
+      <Description>Generate Bindable Property For Custom Element</Description>
+      <Author>Aurelia</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>elementName</ID>
+          <ToolTip>Enter the name of the the custom element to be represented in HTML (this can be removed, but the element will default to snake case class CustomElement = custom-element in html </ToolTip>
+          <Default>'custom-element'</Default>
+        </Literal>
+        <Literal>
+          <ID>className</ID>
+          <ToolTip>Enter the name of the class for the custom element</ToolTip>
+          <Default>CustomElement</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="TypeScript">
+        <![CDATA[   
+
+  import {customElement, bindable} from 'aurelia-framework';
+  
+  @customElement('$elementName$')
+  export class $className$ {
+    // @bindable to = 'This is a bindable property that can be referenced by using the element <$name$ to.bind="'asdfasdfasdf'" /> ';
+  } 
+  
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

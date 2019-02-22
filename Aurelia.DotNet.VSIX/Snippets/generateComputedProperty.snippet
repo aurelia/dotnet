@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets
+    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Computable Property Generator</Title>
+      <Shortcut>au-computable</Shortcut>
+      <Description>Generate Bindable Property For Custom Element</Description>
+      <Author>Aurelia</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>properties</ID>
+          <ToolTip>Enter the name of the properties you wish to compute from surrounded by ''</ToolTip>
+          <Default>''</Default>
+        </Literal>
+        <Literal>
+          <ID>name</ID>
+          <ToolTip>Enter the name of the property</ToolTip>
+          <Default>string</Default>
+        </Literal>
+        <Literal>
+          <ID>returnVal</ID>
+          <ToolTip>Enter the return value of the computed property</ToolTip>
+          <Default>null</Default>
+        </Literal>
+
+      </Declarations>
+      <Code Language="TypeScript">
+        <![CDATA[
+        @computedFrom($properties$)
+        get $name$() {
+          return $returnVal$;
+        }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

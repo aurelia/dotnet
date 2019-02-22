@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Typescript Attribute</Name>
+    <TemplateGroupID>AspNetCore</TemplateGroupID>
+    <Description>Creates an Aurelia Attribute Class that can be used to provide functionality eg. color.bind='blue', <![CDATA[<button waves/>]]> -> produce animation on click</Description>
+    <Icon>aurelia.ico</Icon>
+    <TemplateID>{e56a8401-9e0a-4d8d-96f5-10878eee4e5e}</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    <DefaultName>attribute.ts</DefaultName>    
+  </TemplateData>
+  <TemplateContent>
+    <ProjectItem SubType="" TargetFileName="$fileinputname$.ts" ReplaceParameters="true">attribute.ts</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Aurelia.DotNet.VSIX, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=ddef5cf05d4d3fec</Assembly>
+    <FullClassName>Aurelia.DotNet.VSIX.ItemWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

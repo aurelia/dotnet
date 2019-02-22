@@ -1,0 +1,111 @@
+﻿<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Aurelia - .Net Core 2</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Aurelia - .Net Core</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <CreateInPlace>true</CreateInPlace>
+    <Icon>__TemplateIcon.png</Icon>
+    <PreviewImage>__PreviewImage.png</PreviewImage>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="project.csproj" File="project.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
+      </Folder>
+      <Folder Name="wwwroot" TargetFolderName="wwwroot">
+        <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+      </Folder>
+      <Folder Name="aurelia_project" TargetFolderName="aurelia_project">
+        <Folder Name="environments" TargetFolderName="environments">
+          <ProjectItem ReplaceParameters="true" TargetFileName="dev.ts">dev.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="prod.ts">prod.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="stage.ts">stage.ts</ProjectItem>
+        </Folder>
+        <Folder Name="generators" TargetFolderName="generators">
+          <ProjectItem ReplaceParameters="true" TargetFileName="attribute.json">attribute.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="attribute.ts">attribute.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="binding-behavior.json">binding-behavior.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="binding-behavior.ts">binding-behavior.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="component.json">component.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="component.ts">component.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="element.json">element.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="element.ts">element.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="generator.json">generator.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="generator.ts">generator.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="task.json">task.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="task.ts">task.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="value-converter.json">value-converter.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="value-converter.ts">value-converter.ts</ProjectItem>
+        </Folder>
+        <Folder Name="tasks" TargetFolderName="tasks">
+          <ProjectItem ReplaceParameters="true" TargetFileName="build.json">build.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="build.ts">build.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="environment.ts">environment.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="run.json">run.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="run.ts">run.ts</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="aurelia.json">aurelia.json</ProjectItem>
+      </Folder>
+      <Folder Name="Controllers" TargetFolderName="Controllers">
+        <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
+      </Folder>
+      <Folder Name="custom_typings" TargetFolderName="custom_typings">
+        <ProjectItem ReplaceParameters="true" TargetFileName="fetch.d.ts">fetch.d.ts</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="system.d.ts">system.d.ts</ProjectItem>
+      </Folder>
+      <Folder Name="Models" TargetFolderName="Models">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ErrorViewModel.cs">ErrorViewModel.cs</ProjectItem>
+      </Folder>
+      <Folder Name="src" TargetFolderName="src">
+        <Folder Name="resources" TargetFolderName="resources">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.ts">index.ts</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="app.html">app.html</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="app.ts">app.ts</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="environment.ts">environment.ts</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="main.ts">main.ts</ProjectItem>
+      </Folder>
+      <Folder Name="static" TargetFolderName="static">
+        <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+      </Folder>
+      <Folder Name="Views" TargetFolderName="Views">
+        <Folder Name="Home" TargetFolderName="Home">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+        </Folder>
+        <Folder Name="Shared" TargetFolderName="Shared">
+          <ProjectItem ReplaceParameters="true" TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="false" TargetFileName=".editorconfig">.editorconfig</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName=".gitignore">.gitignore</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.Development.json">appsettings.Development.json</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="index.ejs">index.ejs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="webpack.config.js">webpack.config.js</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="webpack.netcore.config.js">webpack.netcore.config.js</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Aurelia.DotNet.VSIX, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=ddef5cf05d4d3fec</Assembly>
+    <FullClassName>Aurelia.DotNet.VSIX.ProjectWizard</FullClassName>
+  </WizardExtension>
+
+  
+
+</VSTemplate>

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj" />
+    <ProjectReference Include="..\Aurelia.DotNet.Models\Aurelia.DotNet.Models.csproj" />
+  </ItemGroup>
+
+</Project>

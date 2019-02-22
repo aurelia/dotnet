@@ -20,11 +20,24 @@
     <PackageTags>Aurelia, SPA, .NET CORE, MVC</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Brandon\Documents\GitHub\aurelia\dotnet\Aurelia.DotNet.SecureSpa\Aurelia.DotNet.SecureSpa.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ApiExplorer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="OpenIddict" Version="2.0.0" />
+    <PackageReference Include="OpenIddict.Abstractions" Version="2.0.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="OpenIddict.Validation" Version="2.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +53,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj" />
+    <ProjectReference Include="..\Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj" />
+    <ProjectReference Include="..\Aurelia.DotNet.Logic\Aurelia.DotNet.Logic.csproj" />
+    <ProjectReference Include="..\Aurelia.DotNet.Models\Aurelia.DotNet.Models.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
