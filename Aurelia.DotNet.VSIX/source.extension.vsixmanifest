@@ -21,5 +21,6 @@
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Aurelia.DotNet.Template" d:TargetPath="|Aurelia.DotNet.Template;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Aurelia.Dotnet.Wizard" Path="|Aurelia.Dotnet.Wizard|" AssemblyName="|Aurelia.Dotnet.Wizard;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Aurelia.DotNet.ItemTemplates" d:TargetPath="|Aurelia.DotNet.ItemTemplates;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Snippets\snippets.pkgdef" />
     </Assets>
 </PackageManifest>

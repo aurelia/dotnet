@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>Computable Property Generator</Title>
-      <Shortcut>au-computable</Shortcut>
+      <Title>Custom Element Generator</Title>
+      <Shortcut>au-element</Shortcut>
       <Description>Generate Bindable Property For Custom Element</Description>
       <Author>Aurelia</Author>
       <SnippetTypes>
@@ -25,9 +25,7 @@
         </Literal>
       </Declarations>
       <Code Language="TypeScript">
-        <![CDATA[   
-
-  import {customElement, bindable} from 'aurelia-framework';
+        <![CDATA[import {customElement, bindable} from 'aurelia-framework';
   
   @customElement('$elementName$')
   export class $className$ {

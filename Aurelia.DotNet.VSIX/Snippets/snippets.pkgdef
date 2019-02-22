@@ -1,2 +1,5 @@
 ﻿[$RootKey$\Languages\CodeExpansions\TypeScript\Paths]
-"Aurelia-Snippts"="$PackageFolder$"
+"Aurelia-Snippets"="$PackageFolder$\Aurelia"
+
+[$RootKey$\Languages\CodeExpansions\JavaScript\Paths]
+"Aurelia-Snippets"="$PackageFolder$\Aurelia"

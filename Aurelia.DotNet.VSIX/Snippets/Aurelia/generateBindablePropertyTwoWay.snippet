@@ -3,9 +3,9 @@
     xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>Bindable Property Generator</Title>
-      <Shortcut>au-bindable-one</Shortcut>
-      <Description>Generate One Way Property For Custom Element</Description>
+      <Title>Two Way Bindable Property Generator</Title>
+      <Shortcut>au-two-way</Shortcut>
+      <Description>Generate Two Way Property For Custom Element</Description>
       <Author>Aurelia</Author>
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -25,7 +25,7 @@
         </Literal>
       </Declarations>
       <Code Language="TypeScript">
-        <![CDATA[     @bindable({ defaultBindingMode: bindingMode.oneWay }) public $Name$:$Type$; ]]>
+        <![CDATA[@bindable({ defaultBindingMode: bindingMode.twoWay }) public $Name$:$Type$; ]]>
       </Code>
     </Snippet>
   </CodeSnippet>
