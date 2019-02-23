@@ -55,7 +55,7 @@
     <Compile Include="ItemWizard.cs" />
     <Compile Include="ProjectWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Aurelia.Tools.DotNet.VSIXPackage.cs" />
+    <Compile Include="Aurelia.DotNet.VSIXPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk">
@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
@@ -99,6 +100,12 @@
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.0.1230" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj">
+      <Project>{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}</Project>
+      <Name>Aurelia.DotNet.Extensions</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
     <ProjectReference Include="..\Aurelia.DotNet.ItemTemplates\Aurelia.DotNet.ItemTemplates.csproj">
       <Project>{FB3E01ED-5F59-428A-BD49-059140EC12BB}</Project>
       <Name>Aurelia.DotNet.ItemTemplates</Name>

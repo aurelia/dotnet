@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet.Extensions.Models
 {
     public partial class AureliaCli
     {

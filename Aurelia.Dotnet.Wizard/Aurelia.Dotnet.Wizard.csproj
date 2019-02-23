@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{16B94BF4-1F00-4C4C-BDA9-9D074A532D83}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>Aurelia.Dotnet.Wizard</RootNamespace>
     <AssemblyName>Aurelia.Dotnet.Wizard</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -44,10 +44,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Shell.15.0, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,19 +61,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="ItemWizardForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemWizardForm.Designer.cs">
-      <DependentUpon>ItemWizardForm.cs</DependentUpon>
+    <Compile Include="Item\ItemWizard.xaml.cs">
+      <DependentUpon>ItemWizard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectWizardForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Item\ItemWizardViewModel.cs" />
+    <Compile Include="Project\ProjectWizard.xaml.cs">
+      <DependentUpon>ProjectWizard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProjectWizardForm.Designer.cs">
-      <DependentUpon>ProjectWizardForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Project\ProjectWizardViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,12 +85,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="ItemWizardForm.resx">
-      <DependentUpon>ItemWizardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectWizardForm.resx">
-      <DependentUpon>ProjectWizardForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -104,6 +100,26 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="aurelia.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Item\ItemWizard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Project\ProjectWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj">
+      <Project>{4924b8eb-29a0-4723-8bb9-0c3ab2e3d075}</Project>
+      <Name>Aurelia.DotNet.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

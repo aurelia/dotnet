@@ -26,8 +26,8 @@ namespace Aurelia.DotNet.VSIX
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            var form = new ProjectWizardForm();
-            form.ShowDialog();
+            var wiz = new Dotnet.Wizard.ProjectWizard();
+            wiz.ShowDialog();
         }
 
         public bool ShouldAddProjectItem(string filePath)

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Aurelia.DotNet.Template")]
+[assembly: AssemblyTitle("ProjectTemplate2")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brandon Seydel")]
-[assembly: AssemblyProduct("Aurelia.DotNet.Template")]
-[assembly: AssemblyCopyright("Copyright © Aurelia 2019")]
+[assembly: AssemblyProduct("ProjectTemplate2")]
+[assembly: AssemblyCopyright("Copyright © Brandon Seydel 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("14bbfae6-e3b1-49e9-bcca-1d8a9cf60329")]
+[assembly: Guid("6cb8ad69-2bc6-41d6-b8e1-c45f5fad4eeb")]
 
 // Version information for an assembly consists of the following four values:
 //

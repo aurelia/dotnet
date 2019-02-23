@@ -26,8 +26,8 @@ namespace Aurelia.DotNet.VSIX
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            //var form = new ItemWizardForm();
-            //form.ShowDialog();
+            var wiz = new Dotnet.Wizard.ItemWizard();
+            wiz.ShowDialog();
             string pascal = replacementsDictionary["$safeitemname$"].ToPascalCase();
             replacementsDictionary["$pascalName$"] = pascal;
             replacementsDictionary["$camelName$"] = pascal.LowerCaseFirstLetter();

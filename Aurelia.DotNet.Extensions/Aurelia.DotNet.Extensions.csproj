@@ -9,6 +9,8 @@
     <Authors>Aurelia Core Team</Authors>
     <PackageIconUrl>https://aurelia.io/media/aurelia-favicon.ico</PackageIconUrl>
     <PackageTags>Aurelia, SPA, .NET CORE, MVC</PackageTags>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
