@@ -64,6 +64,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters.cs" />
     <Compile Include="Item\ItemWizard.xaml.cs">
       <DependentUpon>ItemWizard.xaml</DependentUpon>
     </Compile>
@@ -120,6 +121,9 @@
       <Project>{4924b8eb-29a0-4723-8bb9-0c3ab2e3d075}</Project>
       <Name>Aurelia.DotNet.Extensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="aurelia-logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

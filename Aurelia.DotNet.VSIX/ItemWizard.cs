@@ -4,7 +4,7 @@ using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Aurelia.DotNet.VSIX
-{    
+{
 
     public class ItemWizard : IWizard
     {
@@ -18,6 +18,11 @@ namespace Aurelia.DotNet.VSIX
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)
         {
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
+            if (projectItem.Kind.ToLower() != "folder") { return; }
+            if (projectItem.Name != "ClientApp") { return; }
+            //Client folder was generated lets generate aurelia now
+            
         }
 
         public void RunFinished()

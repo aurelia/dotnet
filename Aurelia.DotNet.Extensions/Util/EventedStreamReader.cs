@@ -11,7 +11,7 @@ namespace Microsoft.AspNetCore.NodeServices.Util
     /// Wraps a <see cref="StreamReader"/> to expose an evented API, issuing notifications
     /// when the stream emits partial lines, completed lines, or finally closes.
     /// </summary>
-    internal class EventedStreamReader
+    public class EventedStreamReader
     {
         public delegate void OnReceivedChunkHandler(ArraySegment<char> chunk);
         public delegate void OnReceivedLineHandler(string line);

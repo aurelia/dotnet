@@ -67,11 +67,11 @@
             </Style>
             <Style x:Key="Custom" BasedOn="{StaticResource Default}" TargetType="TextBox">
                 <Setter Property="IsEnabled" Value="{Binding ElementName=useCustomNames, Path=IsChecked}"/>
-                <!--<Style.Triggers>
+                <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.SystemButtonTextBrushKey}}"/>
                     </Trigger>
-                </Style.Triggers>-->
+                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -121,7 +121,6 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
-
         </TreeView>
 
         <!--<CheckBox Grid.Column="1" Grid.Row="0" IsChecked="True" x:Name="createCompFolder"

@@ -5,23 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:local="clr-namespace:Aurelia.Dotnet.Wizard"
-        xmlns:ext="clr-namespace:Aurelia.DotNet.Extensions;assembly=Aurelia.DotNet.Extensions"
-        mc:Ignorable="d" Title="Aurelia"
+        xmlns:ext="clr-namespace:Aurelia.DotNet.Extensions.Models;assembly=Aurelia.DotNet.Extensions"
+        xmlns:app="clr-namespace:Aurelia.DotNet.Wizard"
+        Background="{DynamicResource {x:Static vs:EnvironmentColors.PanelGradientBrushKey}}"
+        Foreground="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}"
+        d:DataContext="{d:DesignInstance app:ProjectWizardViewModel, IsDesignTimeCreatable=True}"
+        mc:Ignorable="d" Title="Aurelia Project Scaffolder"
         WindowStartupLocation="CenterOwner" FontSize="14" Icon="../aurelia.ico"
                 WindowStyle="None"
         AllowsTransparency="True"
-
-        MinWidth="750" MinHeight="650" SizeToContent="WidthAndHeight"
+        MinWidth="750" MinHeight="500" SizeToContent="WidthAndHeight"
         >
     <Window.Resources>
         <!--Stlye stuff like visual studio-->
         <ResourceDictionary>
-            <ObjectDataProvider x:Key="StylesheetLanguages" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="ext:Models.StylesheetLanguage"/>
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
+            <Style TargetType="Window">
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelBorderBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelBorderBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
             <Style TargetType="CheckBox">
                 <Setter Property="VerticalAlignment" Value="Bottom"/>
                 <Setter Property="Margin" Value="10,5,10,3"/>
@@ -42,19 +47,24 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            <Style TargetType="ComboBox">
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vs:EnvironmentColors.ComboBoxBorderBrushKey}}"/>
+
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Margin" Value="10,0,10,5"/>
-                <Setter Property="Padding" Value="3,1,0,1"/>
+                <Setter Property="Padding" Value="5,5,0,5"/>
             </Style>
-            <Style x:Key="Default" TargetType="TextBox">
+
+            <Style TargetType="TextBox">
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Margin" Value="10,0,10,5"/>
                 <EventSetter Event="GotFocus" Handler="SelectAllOnFocus"/>
                 <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.SearchBoxBackgroundBrushKey}}"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.SystemButtonTextBrushKey}}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}"/>
+                <Setter Property="Padding" Value="5,5,0,5"/>
+                <EventSetter Event="GotFocus" Handler="SelectAllOnFocus"/>
                 <Style.Triggers>
                     <Trigger Property="Grid.Column" Value="1">
                         <Setter Property="Margin" Value="20,0,10,5"/>
@@ -64,95 +74,102 @@
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="10"/>
                 <Setter Property="MinWidth" Value="100"/>
-            </Style>
-            <Style x:Key="Custom" BasedOn="{StaticResource Default}" TargetType="TextBox">
-                <Setter Property="IsEnabled" Value="{Binding ElementName=useCustomNames, Path=IsChecked}"/>
-                <!--<Style.Triggers>
+                <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.ToolWindowButtonInactiveBorderBrushKey}}" />
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.ButtonTextBrushKey}}" />
+                <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.SystemButtonTextBrushKey}}"/>
+                        <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.StartPageButtonMouseOverBackgroundBrushKey}}"/>
                     </Trigger>
-                </Style.Triggers>-->
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}" />
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    
-    
-    <Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=compName}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1.2*"/>
-        </Grid.ColumnDefinitions>
-
-        <Label Grid.Column="0" Grid.Row="0">Component name:</Label>
-        <TextBox Grid.Column="0" Grid.Row="1" x:Name="compName" Style="{StaticResource Default}" />
-
-        <Label Grid.Column="0" Grid.Row="2">Class name:</Label>
-        <TextBox Grid.Column="0" Grid.Row="3" x:Name="compClassName" Style="{StaticResource Custom}"/>
-
-        <Label Grid.Column="0" Grid.Row="4">Selector prefix:</Label>
-        <TextBox Grid.Column="0" Grid.Row="5" x:Name="compSelectorPrefix" Style="{StaticResource Default}" >app</TextBox>
-
-        <Label Grid.Column="0" Grid.Row="6">Selector:</Label>
-        <TextBox Grid.Column="0" Grid.Row="7" x:Name="compSelector" Style="{StaticResource Custom}"/>
-
-        <Label Grid.Column="0" Grid.Row="8">Stylesheet language:</Label>
-        <ComboBox Grid.Column="0" Grid.Row="9" x:Name="compStyleLanguage" ItemsSource="{Binding Source={StaticResource StylesheetLanguages}}"/>
-
-        <CheckBox Grid.Column="1" Grid.Row="0" IsChecked="{Binding GenerateRoutes}" >Generate Routes</CheckBox>
-        <TreeView IsEnabled="{Binding GenerateRoutes}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="9" ItemsSource="{Binding Routes}" x:Name="routeTreeView">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate  x:Key="ChildRouteTemplate" ItemsSource="{Binding ChildRoutes}">
-                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Foreground="Red"/>
-                </HierarchicalDataTemplate>
-                <HierarchicalDataTemplate x:Key="RouteTemplate" ItemsSource="{Binding ChildRoutes}" ItemTemplate="{StaticResource ChildRouteTemplate}">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-            </TreeView.Resources>
-
-        </TreeView>
-
-        <!--<CheckBox Grid.Column="1" Grid.Row="0" IsChecked="True" x:Name="createCompFolder"
-                  ToolTip="Create separate folder for component files">Folder name:</CheckBox>
-        <TextBox Grid.Column="1" Grid.Row="1" x:Name="compFolderName" Style="{StaticResource Custom}"/>
-
-        <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="True" x:Name="createCompTemplateFile"
-                  ToolTip="Create component template file">Template file name:</CheckBox>
-        <TextBox Grid.Column="1" Grid.Row="3" x:Name="compTemplateFileName" Style="{StaticResource Custom}"/>
-
-        <CheckBox Grid.Column="1" Grid.Row="4" IsChecked="True" x:Name="createCompClassFile"
-                  ToolTip="Create component class file">Class file name:</CheckBox>
-        <TextBox Grid.Column="1" Grid.Row="5" x:Name="compClassFileName" Style="{StaticResource Custom}"/>
+    <DockPanel LastChildFill="True">
+        <Border BorderThickness="0" Background="Transparent" DockPanel.Dock="Top" Height="25" x:Name="titlebar">
+            <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor,AncestorType=Window},FallbackValue=Title}" 
+                       Margin="10,0,0,0"
+                       VerticalAlignment="Center">
+            </TextBlock>
+        </Border>
+        <Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=compName}">
+            <Grid.Resources>
+                <app:EnumValuesConverter x:Key="EnumValueConverter" />
+                <app:EnumToStringValueConverter x:Key="EnumStringConverter" />
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1.2*"/>
+            </Grid.ColumnDefinitions>
 
 
-        <CheckBox Grid.Column="1" Grid.Row="6" IsChecked="True" x:Name="createCompTestFile"
-                  ToolTip="Create compoent spec file">Tests file name:</CheckBox>
-        <TextBox Grid.Column="1" Grid.Row="7" x:Name="compTestFileName" Style="{StaticResource Custom}"/>
 
-        <CheckBox Grid.Column="1" Grid.Row="8" IsChecked="True" x:Name="createCompStyleFile"
-                  ToolTip="Create component stylesheet file">Styles file name:</CheckBox>
-        <TextBox Grid.Column="1" Grid.Row="9" x:Name="compStyleFileName" Style="{StaticResource Custom}"/>
+            <!--Possible wizard goes rt here-->
+            <Image HorizontalAlignment="Left" Width="350" Grid.ColumnSpan="2" x:Name="imgAurelia" ></Image>
 
-        <CheckBox Grid.Column="0" Grid.Row="10" x:Name="useCustomNames" Margin="10,5,10,12"
-                  ToolTip="Enable editing all values">Use custom names</CheckBox>-->
-        <StackPanel Grid.Column="1" Grid.Row="10" Orientation="Horizontal" 
+            <StackPanel Grid.Row="1">
+                <Label>Transpiler</Label>
+                <ComboBox x:Name="cmbTranspiler" Text="Transpiler" ItemsSource="{Binding Source={x:Type ext:Transpiler}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding Transpiler}">
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <Label>Http Protocol</Label>
+                <ComboBox x:Name="cmbHttp" Text="Http Protocol" ItemsSource="{Binding Source={x:Type ext:HttpProtocol}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding HttpProtocol}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+                <Label>Loader/Bundler</Label>
+                <ComboBox x:Name="cmbLoader" Text="Loader/Bundler" ItemsSource="{Binding Source={x:Type ext:LoaderBundle}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding LoaderBundle}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="4">
+                <Label>Style Sheet Langauge</Label>
+                <ComboBox Text="Style Sheet Langauge" ItemsSource="{Binding Source={x:Type ext:StylesheetLanguage}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding StylesheetLanguage}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="5">
+                <Label>Port</Label>
+                <TextBox x:Name="txtPort" PreviewTextInput="TxtPort_PreviewTextInput" Text="{Binding Port}" />
+            </StackPanel>
+
+            <!--Custom route generation goes here-->
+            <CheckBox Margin="0,0,0,10"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" IsChecked="{Binding GenerateRoutes}" >Generate Routes
+            </CheckBox>
+            <TreeView Margin="0,0,0,5" IsEnabled="{Binding GenerateRoutes}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" ItemsSource="{Binding Routes}" x:Name="routeTreeView">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate  x:Key="ChildRouteTemplate" ItemsSource="{Binding ChildRoutes}">
+                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Foreground="Red"/>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate x:Key="RouteTemplate" ItemsSource="{Binding ChildRoutes}" ItemTemplate="{StaticResource ChildRouteTemplate}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+
+            </TreeView> 
+
+            <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal" 
                     HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0">
-            <Button x:Name="addButton" Click="SaveChanges" IsDefault="True">Add</Button>
-            <Button IsCancel="True">Cancel</Button>
-        </StackPanel>
-    </Grid>
+                <Button x:Name="addButton" Click="SaveChanges" IsDefault="True">Create</Button>
+                <Button Click="CancelChanges" IsCancel="True">Cancel</Button>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
 </Window>

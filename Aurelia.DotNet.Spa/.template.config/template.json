@@ -12,5 +12,5 @@
   },
   "sourceName": "Aurelia.DotNet.Spa", // Will replace the string 'Aurelia.DotNet.Spa' with the value provided via -n.
   "preferNameDirectory": true,
-  "description": "Generates a SPA App with .NET Core backend and Aurelia front end"
+  "description": "Generates a SPA App with .NET Core backend and Aurelia front end"  
 }

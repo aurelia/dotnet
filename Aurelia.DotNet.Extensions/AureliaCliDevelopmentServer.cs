@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Aurelia.DotNet.Extensions.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.NodeServices;
 using Microsoft.AspNetCore.NodeServices.Util;
 using Microsoft.AspNetCore.SpaServices;

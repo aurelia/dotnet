@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet.Extensions.Models;
 
 // This is under the NodeServices namespace because post 2.1 it will be moved to that package
 namespace Microsoft.AspNetCore.NodeServices
@@ -17,7 +18,7 @@ namespace Microsoft.AspNetCore.NodeServices
     /// Executes the <c>script</c> entries defined in a <c>package.json</c> file,
     /// capturing any output written to stdio.
     /// </summary>
-    internal class ScriptRunner
+    public class ScriptRunner
     {
         public EventedStreamReader StdOut { get; }
         public EventedStreamReader StdErr { get; }
