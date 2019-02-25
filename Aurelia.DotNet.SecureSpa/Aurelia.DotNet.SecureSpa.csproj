@@ -48,10 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include=".template.config\template.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj" />
     <ProjectReference Include="..\Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj" />
     <ProjectReference Include="..\Aurelia.DotNet.Logic\Aurelia.DotNet.Logic.csproj" />
