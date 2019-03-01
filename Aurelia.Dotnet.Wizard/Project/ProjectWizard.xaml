@@ -7,14 +7,13 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:ext="clr-namespace:Aurelia.DotNet.Extensions.Models;assembly=Aurelia.DotNet.Extensions"
         xmlns:app="clr-namespace:Aurelia.DotNet.Wizard"
-        Background="{DynamicResource {x:Static vs:EnvironmentColors.PanelGradientBrushKey}}"
-        Foreground="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}"
+
         d:DataContext="{d:DesignInstance app:ProjectWizardViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d" Title="Aurelia Project Scaffolder"
         WindowStartupLocation="CenterOwner" FontSize="14" Icon="../aurelia.ico"
                 WindowStyle="None"
         AllowsTransparency="True"
-        MinWidth="750" MinHeight="500" SizeToContent="WidthAndHeight"
+        MinWidth="900" MinHeight="500" SizeToContent="WidthAndHeight"
         >
     <Window.Resources>
         <!--Stlye stuff like visual studio-->
@@ -102,15 +101,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
 
@@ -123,49 +119,60 @@
                 <ComboBox x:Name="cmbTranspiler" Text="Transpiler" ItemsSource="{Binding Source={x:Type ext:Transpiler}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding Transpiler}">
                 </ComboBox>
-            </StackPanel>
-
-            <StackPanel Grid.Row="2">
                 <Label>Http Protocol</Label>
                 <ComboBox x:Name="cmbHttp" Text="Http Protocol" ItemsSource="{Binding Source={x:Type ext:HttpProtocol}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding HttpProtocol}">
                 </ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="3">
                 <Label>Loader/Bundler</Label>
                 <ComboBox x:Name="cmbLoader" Text="Loader/Bundler" ItemsSource="{Binding Source={x:Type ext:LoaderBundle}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding LoaderBundle}">
                 </ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="4">
                 <Label>Style Sheet Langauge</Label>
                 <ComboBox Text="Style Sheet Langauge" ItemsSource="{Binding Source={x:Type ext:StylesheetLanguage}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding StylesheetLanguage}">
                 </ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="5">
                 <Label>Port</Label>
                 <TextBox x:Name="txtPort" PreviewTextInput="TxtPort_PreviewTextInput" Text="{Binding Port}" />
             </StackPanel>
 
-            <!--Custom route generation goes here-->
-            <CheckBox Margin="0,0,0,10"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" IsChecked="{Binding GenerateRoutes}" >Generate Routes
-            </CheckBox>
-            <TreeView Margin="0,0,0,5" IsEnabled="{Binding GenerateRoutes}" Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" ItemsSource="{Binding Routes}" x:Name="routeTreeView">
-                <TreeView.Resources>
-                    <HierarchicalDataTemplate  x:Key="ChildRouteTemplate" ItemsSource="{Binding ChildRoutes}">
-                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Foreground="Red"/>
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate x:Key="RouteTemplate" ItemsSource="{Binding ChildRoutes}" ItemTemplate="{StaticResource ChildRouteTemplate}">
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                </TreeView.Resources>
+            <Grid HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Custom route generation goes here-->
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="0,10,0,5" HorizontalAlignment="Left" IsChecked="{Binding GenerateRoutes}" >Generate Routes
+                    </CheckBox>
+                    <Button Margin="10,0,0,0" Height="25" VerticalAlignment="Center" ToolTip="Add Route" MinWidth="20" Click="AddRootRoute" >+</Button>
 
-            </TreeView> 
+                </StackPanel>
+                <TreeView SelectedItemChanged="RouteTreeView_SelectedItemChanged" Grid.Row="1" VerticalAlignment="Stretch" Margin="0,0,0,5" IsEnabled="{Binding GenerateRoutes}" ItemsSource="{Binding Path=Routes}" x:Name="routeTreeView">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="IsExpanded" Value="True" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate  DataType="{x:Type ext:Route}" ItemsSource="{Binding Path=ChildRoutes}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                                <Button Margin="5,0,0,0" MinWidth="20" ToolTip="Add Child Route" Click="AddRoute" >+</Button>
+                                <Button Margin="5,0,0,0" MinWidth="20" ToolTip="Remove Route" Click="RemoveRoute" >-</Button>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </Grid>
 
-            <StackPanel Grid.Column="1" Grid.Row="6" Orientation="Horizontal" 
+            <StackPanel IsEnabled="{Binding GenerateRoutes}"  DataContext="{Binding Path=CurrentRoute}" Grid.Column="2" Grid.Row="1">
+                <Label>Title</Label>
+                <TextBox Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <CheckBox IsChecked="{Binding Path=CanNavigate}">Can Navigate?</CheckBox>
+                <CheckBox IsChecked="{Binding Path=DetailRoute}">Include Id on Route?</CheckBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="6" Orientation="Horizontal" 
                     HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0">
                 <Button x:Name="addButton" Click="SaveChanges" IsDefault="True">Create</Button>
                 <Button Click="CancelChanges" IsCancel="True">Cancel</Button>
