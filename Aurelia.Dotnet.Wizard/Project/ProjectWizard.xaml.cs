@@ -1,20 +1,11 @@
 ﻿using Aurelia.DotNet.Extensions.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Aurelia.Dotnet.Wizard
 {
@@ -23,8 +14,8 @@ namespace Aurelia.Dotnet.Wizard
     /// </summary>
     public partial class ProjectWizard : Window
     {
-        public event EventHandler<ProjectWizardViewModel> ChangesSaved;
 
+        public event EventHandler<ProjectWizardViewModel> ChangesSaved;
         public ProjectWizardViewModel ViewModel { get => (ProjectWizardViewModel)this.DataContext; set => this.DataContext = value; }
         public ProjectWizard()
         {
@@ -36,23 +27,6 @@ namespace Aurelia.Dotnet.Wizard
             this.imgAurelia.Source = logo;
             this.MouseDown += ProjectWizard_MouseDown;
             this.DataContext = new ProjectWizardViewModel();
-            this.ViewModel.Routes.Add(new DotNet.Extensions.Models.Route
-            {
-                ModuleName = "asdfasdf",
-                Name = "adfsafsd",
-                Title = "asdfasdf",
-                CanNavigate = true,
-                ChildRoutes = new ObservableCollection<Route>
-                {
-                    new Route
-                    {
-                        ModuleName = "asdfasdf",
-                        Name = "adfsafsd",
-                        Title = "asdfasdf",
-                        CanNavigate = true,
-                    }
-                }
-            });
         }
 
         private void ProjectWizard_MouseDown(object sender, MouseButtonEventArgs e)
@@ -82,6 +56,46 @@ namespace Aurelia.Dotnet.Wizard
 
         private void TxtPort_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+
+        }
+
+        private void AddRoute(object sender, RoutedEventArgs e)
+        {
+            var parentRoute = ((ContentPresenter)((Button)(sender)).TemplatedParent).Content as Route;
+            parentRoute.ChildRoutes.Add(new Route
+            {
+                Title = $"{parentRoute.Title}Child{parentRoute.ChildRoutes.Count() + 1}",
+                CanNavigate = parentRoute.CanNavigate
+            });
+        }
+
+        private void RouteTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            this.ViewModel.CurrentRoute = (Route)e.NewValue;
+        }
+
+        private void RemoveRoute(object sender, RoutedEventArgs e)
+        {
+            var route = ((ContentPresenter)((Button)(sender)).TemplatedParent).Content as Route;
+            RemoveRoute(route, this.ViewModel.Routes);
+        }
+
+        private void RemoveRoute(Route route, ICollection<Route> routes)
+        {
+            var result = routes.Remove(route);
+            if (!result)
+            {
+                routes.ToList().ForEach(y => RemoveRoute(route, y.ChildRoutes));
+            }
+        }
+
+        private void AddRootRoute(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.Routes.Add(new Route
+            {
+                Title = $"App{this.ViewModel.Routes.Count() + 1}",
+
+            });
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -14,10 +15,11 @@ namespace Aurelia.DotNet.Extensions.Models
         }
         public string Title { get; set; }
         public bool CanNavigate { get; set; }
+        public bool DetailRoute { get; set; }
         public string Name { get; set; }
-        public IEnumerable<string> Paths { get; set; }
+        public ICollection<string> Paths { get; set; }
         public string ModuleName { get; set; }
-        public IEnumerable<Route> ChildRoutes { get; set; }
+        public ICollection<Route> ChildRoutes { get; set; }
     }
 }
 
