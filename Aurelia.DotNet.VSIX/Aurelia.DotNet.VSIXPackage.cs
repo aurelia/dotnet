@@ -25,6 +25,7 @@ namespace Aurelia.DotNet.VSIX
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(AVSIXPackage.PackageGuidString)]
+    [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class AVSIXPackage : AsyncPackage
     {
         /// <summary>
@@ -46,6 +47,8 @@ namespace Aurelia.DotNet.VSIX
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await Aurelia.DotNet.VSIX.Commands.UpdateAurelia.UpdateAureliaCommand.InitializeAsync(this);
+            await Aurelia.DotNet.VSIX.Commands.CreateAurelia.Command1.InitializeAsync(this);
         }
 
         #endregion

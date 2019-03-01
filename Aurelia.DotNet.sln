@@ -32,6 +32,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{A971A6
 		Images\aurelia.ico = Images\aurelia.ico
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateConfigs", "TemplateConfigs", "{532048D5-0944-4510-B41C-C2C639B7595E}"
+	ProjectSection(SolutionItems) = preProject
+		Aurelia.DotNet.Spa\.template.config\template.json = Aurelia.DotNet.Spa\.template.config\template.json
+		Aurelia.DotNet.SecureSpa\.template.config\template.json = Aurelia.DotNet.SecureSpa\.template.config\template.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

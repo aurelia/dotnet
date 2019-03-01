@@ -1,4 +1,5 @@
-﻿using Aurelia.DotNet.Extensions.Models;
+﻿using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet.Extensions.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,12 +19,32 @@ namespace Aurelia.Dotnet.Wizard
             Routes = new ObservableCollection<Route>();
             Port = 8080;
         }
+
+
         public bool GenerateRoutes { get; set; }
+        [CliProperty("cssProcessor")]
         public StylesheetLanguage StylesheetLanguage { get; set; }
+        [CliProperty("")]
         public PackageManager PackageManager { get; set; }
+        [CliProperty("transpiler")]
         public Transpiler Transpiler { get; set; }
+        [CliProperty("http")]
         public HttpProtocol HttpProtocol { get; set; }
+        [CliProperty("bundler")]
         public LoaderBundle LoaderBundle { get; set; }
+        [CliProperty("postProcessor")]
+        public PostProcessor PostProcessor { get; set; }
+        [CliProperty("unitTesting")]
+        public UnitTesting UnitTesting { get; set; }
+        [CliProperty("integrationTestingg")]
+        public IntegrationTesting IntegrationTesting { get; set; }
+        [CliProperty("minification")]
+        public Minification Minification { get; set; }
+        [CliProperty("editor")]
+        public Editor Editor { get; set; }
+
+
+        [CliProperty("port")]
         public int Port { get; set; }
         public string Folder { get; set; }
 

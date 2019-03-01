@@ -12,5 +12,260 @@
   },
   "sourceName": "Aurelia.DotNet.Spa", // Will replace the string 'Aurelia.DotNet.Spa' with the value provided via -n.
   "preferNameDirectory": true,
-  "description": "Generates a SPA App with .NET Core backend and Aurelia front end"  
+  "description": "Generates a SPA App with .NET Core backend and Aurelia front end",
+  "primaryOutputs": [
+    { "path": "Aurelia.DotNet.CSharp/Aurelia.DotNet.CSharp.csproj" }
+  ],
+  "symbols": {
+    "bundler": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "webpack"
+        },
+        {
+          "choice": "requirejs"
+        },
+        {
+          "choice": "alameda"
+        },
+        {
+          "choice": "systemjs"
+        }
+      ],
+      "defaultValue": "webpack",
+      "datatype": "choice",
+      "description": "The bundler to use when running",
+      "isRequired": false,
+      "replaces": "%bundler%",
+      "parameters": { "toLower": true }
+    },
+    "http": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "http1",
+          "description": "http1"
+        },
+        {
+          "choice": "http2",
+          "description": "http2"
+        }
+      ],
+      "defaultValue": "http1",
+      "datatype": "choice",
+      "description": "The http protocol to use with outputted webpack bundle.",
+      "isRequired": false,
+      "replaces": "%http%",
+      "parameters": { "toLower": true }
+    },
+    "transpiler": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "typescript",
+          "description": "typescript"
+        },
+        {
+          "choice": "babel",
+          "description": "babel stuff"
+        }
+      ],
+      "defaultValue": "typescript",
+      "datatype": "choice",
+      "description": "The transpiler would you like to use.",
+      "isRequired": false,
+      "replaces": "%transpiler%",
+      "parameters": { "toLower": true }
+    },
+    "minification": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "htmlmin-max"
+        },
+        {
+          "choice": "htmlmin-min"
+        },
+        {
+          "choice": "none"
+        }
+      ],
+      "defaultValue": "htmlmin-max",
+      "datatype": "choice",
+      "description": "The type of minification you would like to use.",
+      "isRequired": false,
+      "replaces": "%minification%",
+      "parameters": { "toLower": true }
+    },
+    "cssProcessor": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "less"
+        },
+        {
+          "choice": "sass"
+        },
+        {
+          "choice": "stylus"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "The type of css processor you would like to use.",
+      "isRequired": false,
+      "replaces": "%cssProcessor%",
+      "parameters": { "toLower": true }
+    },
+    "postProcessor": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "basic"
+        },
+        {
+          "choice": "typical"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "The type of post css processing you would like to use.",
+      "isRequired": false,
+      "replaces": "%postProcessor%",
+      "parameters": { "toLower": true }
+    },
+    "unitTesting": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "karma,jasmine"
+        },
+        {
+          "choice": "jest"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "The type of post unit testing you would like to use.",
+      "isRequired": false,
+      "replaces": "%unitTesting%",
+      "parameters": { "toLower": true }
+    },
+    "integrationTesting": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "protractor"
+        },
+        {
+          "choice": "cypress"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "\"The type of integration testing you would like to use. \"choices\": [ \"none\", \"protractor\", \"cypress\" ]\"",
+      "isRequired": false,
+      "replaces": "%integrationTesting%",
+      "parameters": { "toLower": true }
+    },
+    "editor": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "vscode"
+        }
+      ],
+      "defaultValue": "vscode",
+      "datatype": "choice",
+      "description": "The type of editor you would like to use.",
+      "isRequired": false,
+      "replaces": "%editor%",
+      "parameters": { "toLower": true }
+    },
+    "navigation": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "yes"
+        },
+        {
+          "choice": "no"
+        }
+      ],
+      "defaultValue": "no",
+      "datatype": "choice",
+      "description": "Use this option if you want to generate sample nav",
+      "isRequired": false,
+      "parameters": { "toLower": true }
+    },
+    "UI-None": {
+      "type": "computed",
+      "value": "(navigation == \"yes\") ? \"scaffold-navigation\" : \"\"",
+      "replaces": "%nav%"
+    }
+
+  },
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "powershell",
+        "args": "-f GenerateAureliaCLI.ps1"
+      },
+      "condition": "(OS == \"Windows_NT\")",
+      "continueOnError": true,
+      "redirectStandardOutput": true
+    },
+    {
+      "condition": "(OS != \"Windows_NT\")",
+      "description": "Make scripts executable",
+      "manualInstructions": [ { "text": "Run 'chmod +x *.sh'" } ],
+      "actionId": "cb9a6cf3-4f5c-4860-b9d2-03a574959774",
+      "args": {
+        "+x": "GCCModify.sh"
+      },
+      "continueOnError": true
+    },
+    {
+      "condition": "(OS != \"Windows_NT\")",
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "GCCModify.sh",
+        "args": ""
+      },
+      "manualInstructions": [
+        {
+          "text": "Run 'GCCModify.sh to modify .vcxproj files and copy necessary files into your project directories.'"
+        }
+      ],
+      "continueOnError": false,
+      "redirectStandardOutput": true,
+      "description ": "Modify VcxProjs by running GCCModify.sh"
+    },
+    {
+      "description": "Opens files in the editor",
+      "manualInstructions": [],
+      "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+      "args": {
+        "files": "0"
+      },
+      "continueOnError": true
+    }
+  ]
 }

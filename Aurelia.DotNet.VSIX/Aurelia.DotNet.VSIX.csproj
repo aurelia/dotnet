@@ -51,6 +51,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\CreateAurelia\Command1.cs" />
+    <Compile Include="Commands\UpdateAurelia\UpdateAureliaCommand.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="ItemWizard.cs" />
     <Compile Include="ProjectWizard.cs" />
@@ -61,6 +63,8 @@
     <None Include="key.snk">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Commands\CreateAurelia\Resources\Command1.png" />
+    <Content Include="Commands\UpdateAurelia\Resources\UpdateAureliaCommand.png" />
     <Content Include="Snippets\Aurelia\generateCustomElement.snippet">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -88,11 +92,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +138,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\BuildAurelia\" />
     <Folder Include="Snippets\JavaScript\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

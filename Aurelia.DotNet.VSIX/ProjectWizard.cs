@@ -26,20 +26,22 @@ namespace Aurelia.DotNet.VSIX
             Directory.GetDirectories(this.projectDirectory ?? this.solutionDirectory).ToList().ForEach(y => Directory.Delete(y, true));
             //Remove all non solution files as these will be regenerated using the dotnet aurelia templates
             Directory.GetFiles(this.projectDirectory).Where(y=> !Path.GetExtension(y).ToLower().Equals("sln")).ToList().ForEach(y =>  File.Delete(y));
-            var process = new System.Diagnostics.Process();
-            process.StartInfo = new ProcessStartInfo("dotnet")
+            var process = new System.Diagnostics.Process
             {
-                Arguments = "new aurelia",
-                UseShellExecute = false,
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow= true,
-                WorkingDirectory = this.projectDirectory ?? this.solutionDirectory
+                StartInfo = new ProcessStartInfo("dotnet")
+                {
+                    Arguments = "new aurelia",
+                    UseShellExecute = false,
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    CreateNoWindow = true,
+                    WorkingDirectory = this.projectDirectory ?? this.solutionDirectory
+                }
             };
             process.Start();
             process.WaitForExit();
-            System.Threading.Thread.Sleep(1000); //We do this to make sure template folder won't be loaded on project startup.
+            //System.Threading.Thread.Sleep(1000); //We do this to make sure template folder won't be loaded on project startup.
             //var itemEnumerator = project.ProjectItems.GetEnumerator();
             //while (itemEnumerator.MoveNext())
             //{
@@ -50,7 +52,6 @@ namespace Aurelia.DotNet.VSIX
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)
         {
-
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             if (projectItem.Kind.ToLower() != "folder") { return; }
             if (projectItem.Name != "ClientApp") { return; }
