@@ -12,7 +12,7 @@ namespace Aurelia.Dotnet.Wizard
     {
         public ProjectWizardViewModel()
         {
-            this.StylesheetLanguage = StylesheetLanguage.SCSS;
+            this.StylesheetLanguage = StylesheetLanguage.CSS;
             this.Transpiler = Transpiler.TypeScript;
             this.HttpProtocol = HttpProtocol.HTTP1;
             this.LoaderBundle = LoaderBundle.Webpack;

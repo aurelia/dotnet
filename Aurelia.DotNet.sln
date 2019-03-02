@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateConfigs", "Template
 		Aurelia.DotNet.SecureSpa\.template.config\template.json = Aurelia.DotNet.SecureSpa\.template.config\template.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.RouteGenerator", "Aurelia.RouteGenerator\Aurelia.RouteGenerator.csproj", "{243C1D24-B9F6-4C2A-A862-9EE0557C347E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,10 @@ Global
 		{FB3E01ED-5F59-428A-BD49-059140EC12BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB3E01ED-5F59-428A-BD49-059140EC12BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB3E01ED-5F59-428A-BD49-059140EC12BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

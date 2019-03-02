@@ -127,15 +127,37 @@
                 <ComboBox x:Name="cmbLoader" Text="Loader/Bundler" ItemsSource="{Binding Source={x:Type ext:LoaderBundle}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding LoaderBundle}">
                 </ComboBox>
+                <Label>Minification</Label>
+                <ComboBox x:Name="cmbMinification" Text="Minification" ItemsSource="{Binding Source={x:Type ext:Minification}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding Minification}">
+                </ComboBox>
+                <Label>Editor</Label>
+                <ComboBox x:Name="cmbEditor" Text="Editor" ItemsSource="{Binding Source={x:Type ext:Editor}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding Editor}">
+                </ComboBox>
+
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
                 <Label>Style Sheet Langauge</Label>
                 <ComboBox Text="Style Sheet Langauge" ItemsSource="{Binding Source={x:Type ext:StylesheetLanguage}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding StylesheetLanguage}">
                 </ComboBox>
+                <Label>Post Processor</Label>
+                <ComboBox Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:PostProcessor}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding PostProcessor}">
+                </ComboBox>
+                <Label>Unit Testing</Label>
+                <ComboBox Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:UnitTesting}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding UnitTesting}">
+                </ComboBox>
+                <Label>Integration Testing</Label>
+                <ComboBox Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:IntegrationTesting}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                  SelectedItem="{Binding IntegrationTesting}">
+                </ComboBox>
                 <Label>Port</Label>
                 <TextBox x:Name="txtPort" PreviewTextInput="TxtPort_PreviewTextInput" Text="{Binding Port}" />
             </StackPanel>
-
-            <Grid HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1">
+            <Grid HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -164,8 +186,7 @@
                     </TreeView.ItemTemplate>
                 </TreeView>
             </Grid>
-
-            <StackPanel IsEnabled="{Binding GenerateRoutes}"  DataContext="{Binding Path=CurrentRoute}" Grid.Column="2" Grid.Row="1">
+            <StackPanel IsEnabled="{Binding GenerateRoutes}"  DataContext="{Binding Path=CurrentRoute}" Grid.Column="3" Grid.Row="1">
                 <Label>Title</Label>
                 <TextBox Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <CheckBox IsChecked="{Binding Path=CanNavigate}">Can Navigate?</CheckBox>
