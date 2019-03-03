@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="Commands\CreateAurelia\Command1.cs" />
     <Compile Include="Commands\UpdateAurelia\UpdateAureliaCommand.cs" />
-    <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="ItemWizard.cs" />
     <Compile Include="ProjectWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\BuildAurelia\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Snippets\JavaScript\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

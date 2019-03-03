@@ -10,16 +10,18 @@ namespace Aurelia.DotNet.Extensions.Models
     {
         public Route()
         {
-            this.Paths = new HashSet<string>();
             this.ChildRoutes = new ObservableCollection<Route>();
         }
+
+        public bool DefaultRoute { get; set; }
         public string Title { get; set; }
         public bool CanNavigate { get; set; }
         public bool DetailRoute { get; set; }
         public string Name { get; set; }
-        public ICollection<string> Paths { get; set; }
+        public List<string> Paths { get; set; }
         public string ModuleName { get; set; }
         public ICollection<Route> ChildRoutes { get; set; }
+        public string Href { get; set; }
     }
 }
 

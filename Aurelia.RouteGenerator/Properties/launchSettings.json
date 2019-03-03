@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Aurelia.RouteGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "[{paths:['home'],defaultRoute:true,name:'home',moduleName:'home',childRoutes:[{paths:['home'],defaultRoute:true,name:'home',moduleName:'home'}]},{paths:['users'],name:'users',moduleName:'users',nav:true,title:'Users'},{paths:['users/:id/detail'],name:'userDetail',moduleName:'users'},{paths:['files'],name:'files',moduleName:'files',nav:0,title:'Files',href:'#files'}]"
+    }
+  }
+}

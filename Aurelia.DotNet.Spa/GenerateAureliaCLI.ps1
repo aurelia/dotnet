@@ -11,7 +11,7 @@ param(
     [string]$editor = "%editor%",
     [string]$navigation = "%nav%"
 )
-au new Aurelia.DotNet.CSharp --unattended --select $bundler, $http, $transpiler, $minification, $cssProcessor, $postProcessor, $unitTesting, $integrationTesting, $editor, $navigation
+au new Aurelia.DotNet.CSharp --unattended --select $bundler,$http,$transpiler,$minification,$cssProcessor,$postProcessor,$unitTesting,$integrationTesting,$editor,$navigation
 Rename-Item -path 'Aurelia.DotNet.CSharp' -newName 'ClientApp'
 #$configFiles = Get-ChildItem 'ClientApp' *.* -rec
 #foreach ($file in $configFiles) {

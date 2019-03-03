@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Aurelia.DotNet.VSIX
+namespace Aurelia.DotNet.Extensions
 {
     public static class StringHelpers
     {
