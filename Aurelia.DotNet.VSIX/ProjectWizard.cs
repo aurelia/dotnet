@@ -30,7 +30,7 @@ namespace Aurelia.DotNet.VSIX
             {
                 StartInfo = new ProcessStartInfo("dotnet")
                 {
-                    Arguments = "new aurelia",
+                    Arguments = "new aurelia --allow-scripts yes",
                     UseShellExecute = false,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,

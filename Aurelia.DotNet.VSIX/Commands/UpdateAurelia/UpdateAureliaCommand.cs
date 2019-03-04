@@ -39,7 +39,7 @@ namespace Aurelia.DotNet.VSIX.Commands.UpdateAurelia
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
-            var menuCommandID = new CommandID(CommandSet, CommandId);
+            var menuCommandID = new CommandID(PackageGuids.guidAureliaCommandsSet, PackageIds.cmdUpdateAurelia);
             var menuItem = new MenuCommand(this.Execute, menuCommandID);
             commandService.AddCommand(menuItem);
         }

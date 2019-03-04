@@ -51,19 +51,54 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <VSCTCompile Include="Commands\AureliaCommands.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\AureliaCommands.cs" />
     <Compile Include="Commands\CreateAurelia\Command1.cs" />
+    <Compile Include="Commands\GenerateElement\GenerateElement.cs" />
     <Compile Include="Commands\UpdateAurelia\UpdateAureliaCommand.cs" />
+    <Compile Include="Helpers\Aurelia.cs" />
+    <Compile Include="Helpers\DteHelpers.cs" />
+    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\Template.cs" />
     <Compile Include="ItemWizard.cs" />
     <Compile Include="ProjectWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aurelia.DotNet.VSIXPackage.cs" />
+    <Compile Include="VsixInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Templates\Element\element.both.html.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Element\element.both.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Element\element.html.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Element\element.both.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Element\element.inline.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Element\element.inline.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="key.snk">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Commands\CreateAurelia\Resources\Command1.png" />
+    <Content Include="Commands\GenerateElement\Resources\GenerateElement.png" />
     <Content Include="Commands\UpdateAurelia\Resources\UpdateAureliaCommand.png" />
+    <Content Include="Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Snippets\Aurelia\generateCustomElement.snippet">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -107,6 +142,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="15.9.3" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.0.1230" />
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj">
@@ -138,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\BuildAurelia\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Snippets\JavaScript\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,19 @@
-﻿using System;
+﻿
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Interop;
+using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
-using Task = System.Threading.Tasks.Task;
+using Microsoft.VisualStudio.Text;
 
 namespace Aurelia.DotNet.VSIX
 {
@@ -28,6 +39,7 @@ namespace Aurelia.DotNet.VSIX
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class AVSIXPackage : AsyncPackage
     {
+
         /// <summary>
         /// Aurelia.Tools.DotNet.VSIXPackage GUID string.
         /// </summary>
@@ -42,13 +54,16 @@ namespace Aurelia.DotNet.VSIX
         /// <param name="cancellationToken">A cancellation token to monitor for initialization cancellation, which can occur when VS is shutting down.</param>
         /// <param name="progress">A provider for progress updates.</param>
         /// <returns>A task representing the async work of package initialization, or an already completed task if there is none. Do not return null from this method.</returns>
-        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            Logger.Initialize(this, VsixInfo.Name);
+
             await Aurelia.DotNet.VSIX.Commands.UpdateAurelia.UpdateAureliaCommand.InitializeAsync(this);
             await Aurelia.DotNet.VSIX.Commands.CreateAurelia.Command1.InitializeAsync(this);
+            await Aurelia.DotNet.VSIX.Commands.GenerateElement.GenerateElement.InitializeAsync(this);
         }
 
         #endregion

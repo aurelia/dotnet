@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
-using Aurelia.Dotnet.Wizard;
 using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
+using Aurelia.DotNet.Extensions;
 
 namespace Aurelia.DotNet.VSIX
 {
 
     public class ItemWizard : IWizard
     {
+        private DTE dte;
         public void BeforeOpeningFile(ProjectItem projectItem)
         {
         }
@@ -22,7 +23,7 @@ namespace Aurelia.DotNet.VSIX
             if (projectItem.Kind.ToLower() != "folder") { return; }
             if (projectItem.Name != "ClientApp") { return; }
             //Client folder was generated lets generate aurelia now
-            
+
         }
 
         public void RunFinished()
@@ -31,6 +32,7 @@ namespace Aurelia.DotNet.VSIX
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
+            Helpers.DteHelpers.GetSelectionData(automationObject, out var targetFolderPath, out var projectFolderPath, out var projectFullName);
             var wiz = new Dotnet.Wizard.ItemWizard();
             wiz.ShowDialog();
             string pascal = replacementsDictionary["$safeitemname$"].ToPascalCase();

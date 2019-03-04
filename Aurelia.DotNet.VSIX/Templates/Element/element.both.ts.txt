@@ -1,0 +1,4 @@
+﻿
+export class %elementName%CustomElement {
+	message = 'Hello from %elementName%''
+}

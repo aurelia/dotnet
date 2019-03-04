@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+
+  <Commands package="guidAureliaCommandsPackage">
+    <Groups>
+      <Group guid="guidAureliaCommandsSet" id="MyMenuGroup" />
+      <Group guid="guidAureliaCommandsSet" id="CommandGroup" priority="0x0100">
+        <Parent guid="guidAureliaCommandsSet" id="MyMenu"/>
+      </Group>
+    </Groups>
+
+    <Menus>
+      <Menu guid="guidAureliaCommandsSet" id="MyMenu" priority="0x0200" type="Menu">
+        <Parent guid="guidAureliaCommandsSet" id="MyMenuGroup" />
+        <Strings>
+          <ButtonText>Aurelia</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+    <Buttons>
+      <Button guid="guidAureliaCommandsSet" id="cmdGenerateElement" priority="0x0100" type="Button">
+        <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
+        <Icon guid="ImageCatalogGuid" id="Copy" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>AllowParams</CommandFlag>
+
+        <Strings>
+          <ButtonText>Generate Element</ButtonText>
+          <LocCanonicalName>.Aurelia.GenerateElement</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+
+
+  </Commands>
+
+  <CommandPlacements>
+
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0799">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_WEBPROJECT"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0600">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_WEBITEMNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0999">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_WEBFOLDER"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0799">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0500">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0799">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0899">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_SOLNNODE"/>
+    </CommandPlacement>
+  </CommandPlacements>
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidAureliaCommandsPackage" value="{dae5925d-6027-4259-b6c3-2d268e932b09}" />
+    <GuidSymbol name="guidAureliaContext" value="{9AAB4142-64D7-45A5-87DF-200680CBFF35}" />
+
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidAureliaCommandsSet" value="{115E73A4-99E8-49D0-8867-360FCED1B27E}">
+      <IDSymbol name="MyMenu" value="0x1010" />
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="CommandGroup" value="0x2000" />
+
+      <IDSymbol name="cmdGenerateElement" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

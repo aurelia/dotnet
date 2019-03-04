@@ -38,7 +38,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateConfigs", "Template
 		Aurelia.DotNet.SecureSpa\.template.config\template.json = Aurelia.DotNet.SecureSpa\.template.config\template.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.RouteGenerator", "Aurelia.RouteGenerator\Aurelia.RouteGenerator.csproj", "{243C1D24-B9F6-4C2A-A862-9EE0557C347E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.RouteGenerator", "Aurelia.RouteGenerator\Aurelia.RouteGenerator.csproj", "{243C1D24-B9F6-4C2A-A862-9EE0557C347E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdPartyDlls", "ThirdPartyDlls", "{71A75EEF-32DD-4C2B-8AE1-1DF7A0130962}"
+	ProjectSection(SolutionItems) = preProject
+		Newtonsoft.Json.dll = Newtonsoft.Json.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

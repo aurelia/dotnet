@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aurelia.DotNet.Extensions">
+      <HintPath>..\Aurelia.DotNet.Extensions\bin\Debug\netstandard2.0\Aurelia.DotNet.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.CoreUtility">
       <Private>False</Private>
     </Reference>
@@ -58,9 +61,9 @@
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="Aurelia\TypeScript\Aurelia.DotNet.ItemTemplates.vstemplate">
-	<SubType>Designer</SubType>
-    <OutputSubPath>ASP.NET Core\Web\Aurelia</OutputSubPath>
-	</VSTemplate>
+      <SubType>Designer</SubType>
+      <OutputSubPath>ASP.NET Core\Web\Aurelia</OutputSubPath>
+    </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Aurelia\TypeScript\aurelia.ico">

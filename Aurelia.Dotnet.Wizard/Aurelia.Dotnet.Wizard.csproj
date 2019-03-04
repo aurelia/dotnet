@@ -64,6 +64,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommandWizards\ElementGenerationDialog.xaml.cs">
+      <DependentUpon>ElementGenerationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommandWizards\FileNameDialog.xaml.cs">
+      <DependentUpon>FileNameDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters.cs" />
     <Compile Include="Item\ItemWizard.xaml.cs">
       <DependentUpon>ItemWizard.xaml</DependentUpon>
@@ -107,6 +113,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CommandWizards\ElementGenerationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommandWizards\FileNameDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Item\ItemWizard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
