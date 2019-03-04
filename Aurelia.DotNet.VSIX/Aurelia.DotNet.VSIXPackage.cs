@@ -37,9 +37,9 @@ namespace Aurelia.DotNet.VSIX
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(AVSIXPackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}", PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class AVSIXPackage : AsyncPackage
-    {
-
+    {        
         /// <summary>
         /// Aurelia.Tools.DotNet.VSIXPackage GUID string.
         /// </summary>

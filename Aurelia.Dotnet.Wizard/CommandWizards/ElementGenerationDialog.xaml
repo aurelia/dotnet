@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Icon="../aurelia.ico"
         Title="Add New Aurelia Element" Height="150" Width="431" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" SizeToContent="Width">
     <Grid>
         <Grid.RowDefinitions>

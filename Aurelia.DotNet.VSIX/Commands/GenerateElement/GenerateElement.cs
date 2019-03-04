@@ -40,14 +40,15 @@ namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
 
             var menuCommandID = new CommandID(PackageGuids.guidAureliaCommandsSet, PackageIds.cmdGenerateElement);
             var menuItem = new OleMenuCommand(this.ExecuteAsync, menuCommandID);
-            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
+            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;            
             commandService.AddCommand(menuItem);
         }
-        private async void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
+        private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
             var button = (OleMenuCommand)sender;
+            button.Visible = false;
             Helpers.DteHelpers.GetSelectionData(_dte, out var targetFolderPath, out var projectFolderPath, out var projectFullName);
-            button.Visible = await Helpers.Aurelia.IsInAureliaRoot(targetFolderPath, projectFolderPath);
+            button.Visible = Helpers.Aurelia.IsInAureliaRoot(targetFolderPath, projectFolderPath);
 
         }
 

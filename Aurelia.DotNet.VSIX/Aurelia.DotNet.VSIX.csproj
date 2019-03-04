@@ -60,6 +60,7 @@
     <Compile Include="Commands\CreateAurelia\Command1.cs" />
     <Compile Include="Commands\GenerateElement\GenerateElement.cs" />
     <Compile Include="Commands\UpdateAurelia\UpdateAureliaCommand.cs" />
+    <Compile Include="Date.cs" />
     <Compile Include="Helpers\Aurelia.cs" />
     <Compile Include="Helpers\DteHelpers.cs" />
     <Compile Include="Helpers\Logger.cs" />

@@ -28,7 +28,7 @@
         <CommandFlag>IconIsMoniker</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
-        <CommandFlag>AllowParams</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
 
         <Strings>
           <ButtonText>Generate Element</ButtonText>
