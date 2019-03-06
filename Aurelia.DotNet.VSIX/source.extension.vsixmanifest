@@ -4,7 +4,10 @@
     <Identity Id="Aurelia Tools" Version="1.0" Language="en-US" Publisher="Brandon Seydel" />
     <DisplayName>Aurelia Tools</DisplayName>
     <Description xml:space="preserve">An Official Aurelia Toolset for the Visual Studio Platform</Description>
+    <Icon>aurelia.ico</Icon>
+    <PreviewImage>aurelia.ico</PreviewImage>
     <Tags>aurelia, spa, framework, asp.net, .net, aspnetcore</Tags>
+    <Preview>true</Preview>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />

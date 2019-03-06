@@ -67,6 +67,14 @@ namespace Aurelia.Dotnet.Wizard.CommandWizards
             }
         }
 
+        public bool IsGlobal
+        {
+            get
+            {
+                return chkGlobal.IsChecked ?? false;
+            }
+        }
+
         public string PropertyNamesPreviewText => "Enter the bindable property names delimted by a , (eg. FirstNaame, LastName)";
 
         private void Button_Click(object sender, RoutedEventArgs e)

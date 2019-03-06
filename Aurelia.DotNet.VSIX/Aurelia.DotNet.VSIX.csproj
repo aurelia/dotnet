@@ -61,17 +61,24 @@
     <Compile Include="Commands\GenerateElement\GenerateElement.cs" />
     <Compile Include="Commands\UpdateAurelia\UpdateAureliaCommand.cs" />
     <Compile Include="Date.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\Aurelia.cs" />
     <Compile Include="Helpers\DteHelpers.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\Template.cs" />
+    <Compile Include="Instance.cs" />
     <Compile Include="ItemWizard.cs" />
     <Compile Include="ProjectWizard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aurelia.DotNet.VSIXPackage.cs" />
     <Compile Include="VsixInfo.cs" />
+    <Compile Include="Watcher.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aurelia.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Element\element.both.html.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

@@ -14,6 +14,7 @@ using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
+using Aurelia.DotNet.Extensions;
 
 namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
 {
@@ -40,16 +41,15 @@ namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
 
             var menuCommandID = new CommandID(PackageGuids.guidAureliaCommandsSet, PackageIds.cmdGenerateElement);
             var menuItem = new OleMenuCommand(this.ExecuteAsync, menuCommandID);
-            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;            
+            menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
             commandService.AddCommand(menuItem);
         }
         private void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
         {
             var button = (OleMenuCommand)sender;
             button.Visible = false;
-            Helpers.DteHelpers.GetSelectionData(_dte, out var targetFolderPath, out var projectFolderPath, out var projectFullName);
-            button.Visible = Helpers.Aurelia.IsInAureliaRoot(targetFolderPath, projectFolderPath);
-
+            Helpers.DteHelpers.GetSelectionData(_dte, out var targetFolderPath, out _, out _);
+            button.Visible = targetFolderPath.IsInAureliaSrcFolder();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
 
             var selectedItem = item as ProjectItem;
             var selectedProject = item as Project;
-            Project project = selectedItem?.ContainingProject ?? selectedProject ?? DteHelpers.GetActiveProject(_dte);
+            var project = selectedItem?.ContainingProject ?? selectedProject ?? DteHelpers.GetActiveProject(_dte);
 
 
             var dialog = new ElementGenerationDialog();
@@ -128,12 +128,20 @@ namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
                     var fileName = Path.GetFileName(y);
                     var parts = fileName.Split('.');
                     var extension = parts[parts.Length - 2];
-                    var fullFileName = Path.Combine(targetFolder, $"{elementName}.{extension}");
-
-
+                    var fullFileName = Path.Combine(targetFolder, elementName.ToPascalCase(), $"{elementName.ToPascalCase().PascalToKebabCase()}.{extension}");
                     string templateText = await reader.ReadToEndAsync();
                     templateText = templateText.Replace("%elementName%", elementName);
+
+                    Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
+
                     File.WriteAllText(fullFileName, templateText);
+
+                    if (dialog.IsGlobal && (extension.ToLower() == "js" || extension.ToLower() == "ts"))
+                    {
+                        Helpers.Aurelia.AddGlobalResource(fullFileName);
+                    }
+
+
                     VsShellUtilities.OpenDocument(package, fullFileName);
 
                 }

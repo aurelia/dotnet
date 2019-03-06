@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aurelia.DotNet.VSIX.Templates.Element
-{
-    class element
-    {
-    }
+﻿
+export class %elementName%CustomElement {
+	message = 'Hello from %elementName%';
 }

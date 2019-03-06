@@ -1,4 +1,5 @@
-﻿
+﻿#pragma warning disable VSTHRD010 // Invoke single-threaded types on Main thread
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -10,9 +11,11 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Interop;
+using Aurelia.DotNet.VSIX.Helpers;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Text;
 
 namespace Aurelia.DotNet.VSIX
@@ -37,13 +40,25 @@ namespace Aurelia.DotNet.VSIX
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(AVSIXPackage.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideAutoLoad("{f1536ef8-92ec-443c-9ed7-fdadf150da82}", PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.NoSolution, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionHasMultipleProjects, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionHasSingleProject, PackageAutoLoadFlags.BackgroundLoad)]
     public sealed class AVSIXPackage : AsyncPackage
-    {        
+    {
         /// <summary>
         /// Aurelia.Tools.DotNet.VSIXPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "dae5925d-6027-4259-b6c3-2d268e932b09";
+
+        public AVSIXPackage()
+        {
+            Instance.Package = this;
+            Instance.DTE2 = ServiceProvider.GlobalProvider.GetService(typeof(SDTE)) as EnvDTE80.DTE2;
+            Instance.Shell = ServiceProvider.GlobalProvider.GetService(typeof(SVsShell)) as IVsShell;
+            Instance.Solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution2;
+            Instance.Watcher = new Watcher();
+        }
 
         #region Package Members
 
@@ -65,6 +80,13 @@ namespace Aurelia.DotNet.VSIX
             await Aurelia.DotNet.VSIX.Commands.CreateAurelia.Command1.InitializeAsync(this);
             await Aurelia.DotNet.VSIX.Commands.GenerateElement.GenerateElement.InitializeAsync(this);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            Instance.Watcher.Dispose();
+        }
+
 
         #endregion
     }

@@ -3,8 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
         Icon="../aurelia.ico"
         Title="Add New Aurelia Element" Height="150" Width="431" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" SizeToContent="Width">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowTextKey}}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowTextKey}}"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowTextKey}}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowTextKey}}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}" />            
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ButtonTextKey}}"/>
+        </Style>
+        
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
 
@@ -27,7 +57,7 @@
         <Label Grid.Row="1" Grid.Column="0"  Content="Property Names" HorizontalAlignment="Left" Margin="5 0 0 0" VerticalAlignment="Center" Height="26" FontWeight="SemiBold" />
         <TextBox Grid.Row="1" Grid.Column="1" Name="txtPropertyNames" VerticalContentAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="210" />
 
-        <CheckBox Margin="5 0 0 0" Grid.Column="1" Grid.Row="2">Global?</CheckBox>
+        <CheckBox Name="chkGlobal" Margin="5 0 0 0" Grid.Column="1" Grid.Row="2">Global?</CheckBox>
         <StackPanel Margin="10,10,0,0" Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
             <RadioButton IsChecked="True" Margin="10,0,0,0" Name="rbBoth" GroupName="ElementType">Both</RadioButton>
             <RadioButton Margin="10,0,0,0" Name="rbHtml" GroupName="ElementType">Html Only</RadioButton>
