@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿import {inlineView} from 'aurelia-framework';
 
-namespace Aurelia.DotNet.VSIX.Templates.Element
-{
-    class element
-    {
-    }
+@inlineView('<template>${message}</template>')
+export class %name%CustomElement {
+	%properties%
+	message = 'Hello from %name%';
 }

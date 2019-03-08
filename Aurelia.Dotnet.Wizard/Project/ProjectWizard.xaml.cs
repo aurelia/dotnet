@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace Aurelia.Dotnet.Wizard
+namespace Aurelia.DotNet.Wizard
 {
     /// <summary>
     /// Interaction logic for ProjectWizard.xaml
@@ -20,19 +20,7 @@ namespace Aurelia.Dotnet.Wizard
         public ProjectWizard()
         {
             InitializeComponent();
-            BitmapImage logo = new BitmapImage();
-            logo.BeginInit();
-            logo.UriSource = new Uri("pack://application:,,,/Aurelia.Dotnet.Wizard;component/aurelia-logo.png", UriKind.RelativeOrAbsolute);
-            logo.EndInit();
-            this.imgAurelia.Source = logo;
-            this.MouseDown += ProjectWizard_MouseDown;
             this.DataContext = new ProjectWizardViewModel();
-        }
-
-        private void ProjectWizard_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton != MouseButton.Left) { return; }
-            this.DragMove();
         }
 
 
@@ -72,7 +60,11 @@ namespace Aurelia.Dotnet.Wizard
         private void RouteTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             this.ViewModel.CurrentRoute = (Route)e.NewValue;
+            this.txtRoute.Focus();            
+            this.txtRoute.CaretIndex = 0;
+            this.txtRoute.Select(0, this.txtRoute.Text.Length);
         }
+
 
         private void RemoveRoute(object sender, RoutedEventArgs e)
         {

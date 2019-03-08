@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AureliaCommands.cs" />
-    <Compile Include="Commands\CreateAurelia\Command1.cs" />
-    <Compile Include="Commands\GenerateElement\GenerateElement.cs" />
-    <Compile Include="Commands\UpdateAurelia\UpdateAureliaCommand.cs" />
+    <Compile Include="Commands\GenerateAttribute.cs" />
+    <Compile Include="Commands\GenerateRoute.cs" />
+    <Compile Include="Commands\GenerateElement.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\Aurelia.cs" />
@@ -79,6 +79,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Attribute\attribute.js.txt" />
+    <Content Include="Templates\Attribute\attribute.ts.txt" />
     <Content Include="Templates\Element\element.both.html.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -100,9 +102,6 @@
     <None Include="key.snk">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Commands\CreateAurelia\Resources\Command1.png" />
-    <Content Include="Commands\GenerateElement\Resources\GenerateElement.png" />
-    <Content Include="Commands\UpdateAurelia\Resources\UpdateAureliaCommand.png" />
     <Content Include="Newtonsoft.Json.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -175,15 +174,14 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\Aurelia.Dotnet.Wizard\Aurelia.Dotnet.Wizard.csproj">
+    <ProjectReference Include="..\Aurelia.Dotnet.Wizard\Aurelia.DotNet.Wizard.csproj">
       <Project>{16B94BF4-1F00-4C4C-BDA9-9D074A532D83}</Project>
-      <Name>Aurelia.Dotnet.Wizard</Name>
+      <Name>Aurelia.DotNet.Wizard</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\BuildAurelia\" />
     <Folder Include="Snippets\JavaScript\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

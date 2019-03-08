@@ -1,4 +1,3 @@
-﻿<template>
-
-
+﻿<template bindable="%properties%>
+  Hello from %name%
 </template>

@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Interop;
 
 namespace Aurelia.DotNet.VSIX.Helpers
 {
@@ -49,6 +50,15 @@ namespace Aurelia.DotNet.VSIX.Helpers
                     }
                 }
             }
+        }
+
+        public static T OpenDialog<T>(DTE2 dte) where T : System.Windows.Window, new()
+        {
+            var dialog = new T();
+            var hwnd = new IntPtr(dte.MainWindow.HWnd);
+            var window = (System.Windows.Window)HwndSource.FromHwnd(hwnd).RootVisual;
+            dialog.Owner = window;
+            return dialog;
         }
 
         public static Project GetActiveProject(DTE2 dte)

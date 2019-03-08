@@ -12,15 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Aurelia.Dotnet.Wizard.CommandWizards
+namespace Aurelia.DotNet.Wizard.CommandWizards
 {
     /// <summary>
     /// Interaction logic for FileNameDialog.xaml
     /// </summary>
     public partial class FileNameDialog : Window
     {
-        private string PreviewText { get; set; }
-        public FileNameDialog(string folder)
+        public string PreviewText { get; set; }
+
+        public string FolderLabel
+        {
+            set
+            {
+                this.lblFolder.Content = value;
+            }
+        }
+
+
+        public FileNameDialog() { }
+
+        public FileNameDialog(string folder = null)
         {
             InitializeComponent();
             lblFolder.Content = $"{folder}/";
@@ -29,7 +41,6 @@ namespace Aurelia.Dotnet.Wizard.CommandWizards
 
         private void FileNameDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            Icon = BitmapFrame.Create(new Uri("pack://application:,,,/Aurelia.Dotnet.Wizard;component/aurelia-logo.png", UriKind.RelativeOrAbsolute));
             Title = "Add Aurelia File";
             txtName.Focus();
             txtName.CaretIndex = 0;
@@ -51,6 +62,12 @@ namespace Aurelia.Dotnet.Wizard.CommandWizards
                     btnCreate.IsEnabled = true;
                 }
             };
+        }
+
+        public bool IsGlobal
+        {
+            get => this.chkGlobal.Visibility == Visibility.Visible && (this.chkGlobal.IsChecked ?? false);
+            set => chkGlobal.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public string Input

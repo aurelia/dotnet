@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Aurelia.DotNet.Wizard">
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}"/>
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5 0" />
+    </Style>
+    <Style TargetType="{x:Type ComboBox}" >
+        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.ComboBoxBackgroundKey}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vsfx:VsBrushes.ComboBoxBorderKey}}"/>
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5 0" />
+    </Style>
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowTextKey}}"/>
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5 0" />
+    </Style>
+    <Style TargetType="{x:Type RadioButton}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowTextKey}}"/>
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5 0" />
+    </Style>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="MaxHeight" Value="45" />
+    </Style>
+    <Style TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}"/>
+    </Style>
+    <Style TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
+    </Style>
+</ResourceDictionary>

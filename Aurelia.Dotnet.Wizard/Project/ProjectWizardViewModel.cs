@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Aurelia.Dotnet.Wizard
+namespace Aurelia.DotNet.Wizard
 {
     public class ProjectWizardViewModel : INotifyPropertyChanged
     {

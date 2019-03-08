@@ -1,4 +1,4 @@
-﻿<Window x:Class="Aurelia.Dotnet.Wizard.ProjectWizard"
+﻿<Window x:Class="Aurelia.DotNet.Wizard.ProjectWizard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,93 +7,15 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:ext="clr-namespace:Aurelia.DotNet.Extensions.Models;assembly=Aurelia.DotNet.Extensions"
         xmlns:app="clr-namespace:Aurelia.DotNet.Wizard"
-
+        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
         d:DataContext="{d:DesignInstance app:ProjectWizardViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d" Title="Aurelia Project Scaffolder"
-        WindowStartupLocation="CenterOwner" FontSize="14" Icon="../aurelia.ico"
-                WindowStyle="None"
-        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" FontSize="14" Icon="../aurelia.ico"
+        ShowActivated="False" ResizeMode="CanResizeWithGrip" ShowInTaskbar="False"
         MinWidth="900" MinHeight="500" SizeToContent="WidthAndHeight"
         >
-    <Window.Resources>
-        <!--Stlye stuff like visual studio-->
-        <ResourceDictionary>
-            <Style TargetType="Window">
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelBorderBrushKey}}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Style>
-            <Style TargetType="Border">
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelBorderBrushKey}}"/>
-                <Setter Property="BorderThickness" Value="2"/>
-            </Style>
-            <Style TargetType="CheckBox">
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="Margin" Value="10,5,10,3"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}"/>
-                <Style.Triggers>
-                    <Trigger Property="Grid.Column" Value="1">
-                        <Setter Property="Margin" Value="20,5,10,3"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="Label">
-                <Setter Property="Margin" Value="5,5,10,0"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}"/>
-                <Style.Triggers>
-                    <Trigger Property="Grid.Column" Value="1">
-                        <Setter Property="Margin" Value="15,5,10,0"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="{x:Type ComboBox}">
-                <Setter Property="BorderBrush" Value="{DynamicResource {x:Static vs:EnvironmentColors.ComboBoxBorderBrushKey}}"/>
-
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="Margin" Value="10,0,10,5"/>
-                <Setter Property="Padding" Value="5,5,0,5"/>
-            </Style>
-
-            <Style TargetType="TextBox">
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-                <Setter Property="Margin" Value="10,0,10,5"/>
-                <EventSetter Event="GotFocus" Handler="SelectAllOnFocus"/>
-                <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.SearchBoxBackgroundBrushKey}}"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}"/>
-                <Setter Property="Padding" Value="5,5,0,5"/>
-                <EventSetter Event="GotFocus" Handler="SelectAllOnFocus"/>
-                <Style.Triggers>
-                    <Trigger Property="Grid.Column" Value="1">
-                        <Setter Property="Margin" Value="20,0,10,5"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="10"/>
-                <Setter Property="MinWidth" Value="100"/>
-                <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.ToolWindowButtonInactiveBorderBrushKey}}" />
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.ButtonTextBrushKey}}" />
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{DynamicResource {x:Static vs:EnvironmentColors.StartPageButtonMouseOverBackgroundBrushKey}}"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static vs:EnvironmentColors.PanelTextBrushKey}}" />
-            </Style>
-        </ResourceDictionary>
-    </Window.Resources>
-    <DockPanel LastChildFill="True">
-        <Border BorderThickness="0" Background="Transparent" DockPanel.Dock="Top" Height="25" x:Name="titlebar">
-            <TextBlock Text="{Binding Title, RelativeSource={RelativeSource FindAncestor,AncestorType=Window},FallbackValue=Title}" 
-                       Margin="10,0,0,0"
-                       VerticalAlignment="Center">
-            </TextBlock>
-        </Border>
-        <Grid Margin="10" FocusManager.FocusedElement="{Binding ElementName=compName}">
+    <app:VisualStudioPanel>
+        <Grid FocusManager.FocusedElement="{Binding ElementName=compName}">
             <Grid.Resources>
                 <app:EnumValuesConverter x:Key="EnumValueConverter" />
                 <app:EnumToStringValueConverter x:Key="EnumStringConverter" />
@@ -101,103 +23,120 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width=".4*"/>
+                <ColumnDefinition Width=".4*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
 
 
             <!--Possible wizard goes rt here-->
-            <Image HorizontalAlignment="Left" Width="350" Grid.ColumnSpan="2" x:Name="imgAurelia" ></Image>
+            <Image Source="..\aurelia-logo.png"  HorizontalAlignment="Left" Width="350" Grid.ColumnSpan="2" x:Name="imgAurelia" ></Image>
 
             <StackPanel Grid.Row="1">
                 <Label>Transpiler</Label>
-                <ComboBox x:Name="cmbTranspiler" Text="Transpiler" ItemsSource="{Binding Source={x:Type ext:Transpiler}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}"  Height="30" x:Name="cmbTranspiler" Text="Transpiler" ItemsSource="{Binding Source={x:Type ext:Transpiler}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding Transpiler}">
                 </ComboBox>
                 <Label>Http Protocol</Label>
-                <ComboBox x:Name="cmbHttp" Text="Http Protocol" ItemsSource="{Binding Source={x:Type ext:HttpProtocol}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}"  Height="30" x:Name="cmbHttp" Text="Http Protocol" ItemsSource="{Binding Source={x:Type ext:HttpProtocol}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding HttpProtocol}">
                 </ComboBox>
                 <Label>Loader/Bundler</Label>
-                <ComboBox x:Name="cmbLoader" Text="Loader/Bundler" ItemsSource="{Binding Source={x:Type ext:LoaderBundle}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}"  Height="30" x:Name="cmbLoader" Text="Loader/Bundler" ItemsSource="{Binding Source={x:Type ext:LoaderBundle}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding LoaderBundle}">
                 </ComboBox>
                 <Label>Minification</Label>
-                <ComboBox x:Name="cmbMinification" Text="Minification" ItemsSource="{Binding Source={x:Type ext:Minification}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}"  Height="30" x:Name="cmbMinification" Text="Minification" ItemsSource="{Binding Source={x:Type ext:Minification}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding Minification}">
                 </ComboBox>
                 <Label>Editor</Label>
-                <ComboBox x:Name="cmbEditor" Text="Editor" ItemsSource="{Binding Source={x:Type ext:Editor}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}" Height="30"  x:Name="cmbEditor" Text="Editor" ItemsSource="{Binding Source={x:Type ext:Editor}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding Editor}">
                 </ComboBox>
 
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <Label>Style Sheet Langauge</Label>
-                <ComboBox Text="Style Sheet Langauge" ItemsSource="{Binding Source={x:Type ext:StylesheetLanguage}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}" Height="30"  Text="Style Sheet Langauge" ItemsSource="{Binding Source={x:Type ext:StylesheetLanguage}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding StylesheetLanguage}">
                 </ComboBox>
                 <Label>Post Processor</Label>
-                <ComboBox Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:PostProcessor}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}" Height="30"  Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:PostProcessor}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding PostProcessor}">
                 </ComboBox>
                 <Label>Unit Testing</Label>
-                <ComboBox Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:UnitTesting}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}" Height="30"   Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:UnitTesting}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding UnitTesting}">
                 </ComboBox>
                 <Label>Integration Testing</Label>
-                <ComboBox Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:IntegrationTesting}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
+                <ComboBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ComboBoxStyleKey}}" Height="30" Text="Post Processor" ItemsSource="{Binding Source={x:Type ext:IntegrationTesting}, Mode=OneTime, Converter={StaticResource EnumValueConverter}}"
                   SelectedItem="{Binding IntegrationTesting}">
                 </ComboBox>
                 <Label>Port</Label>
-                <TextBox x:Name="txtPort" PreviewTextInput="TxtPort_PreviewTextInput" Text="{Binding Port}" />
+                <TextBox VerticalContentAlignment="Center" Style="{DynamicResource {x:Static vsfx:VsResourceKeys.TextBoxStyleKey}}" Height="30"   x:Name="txtPort" PreviewTextInput="TxtPort_PreviewTextInput" Text="{Binding Port}" />
             </StackPanel>
             <Grid HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <!--Custom route generation goes here-->
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Margin="0,10,0,5" HorizontalAlignment="Left" IsChecked="{Binding GenerateRoutes}" >Generate Routes
+                <StackPanel Margin="0 -2 0 0" Orientation="Horizontal">
+                    <CheckBox VerticalContentAlignment="Center" VerticalAlignment="Bottom"  Style="{DynamicResource {x:Static vsfx:VsResourceKeys.CheckBoxStyleKey}}" IsChecked="{Binding GenerateRoutes}" >Generate Routes
                     </CheckBox>
-                    <Button Margin="10,0,0,0" Height="25" VerticalAlignment="Center" ToolTip="Add Route" MinWidth="20" Click="AddRootRoute" >+</Button>
+                    <Button Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogButtonStyleKey}}"  VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Padding="0" FontSize="10px" ToolTip="Add Route" Width="20" Height="20" Click="AddRootRoute" >
+                        +
+                    </Button>
 
                 </StackPanel>
-                <TreeView SelectedItemChanged="RouteTreeView_SelectedItemChanged" Grid.Row="1" VerticalAlignment="Stretch" Margin="0,0,0,5" IsEnabled="{Binding GenerateRoutes}" ItemsSource="{Binding Path=Routes}" x:Name="routeTreeView">
-                    <TreeView.ItemContainerStyle>
-                        <Style TargetType="{x:Type TreeViewItem}">
+                <TreeView Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogTreeViewStyleKey}}" SelectedItemChanged="RouteTreeView_SelectedItemChanged" Grid.Row="1" VerticalAlignment="Stretch" IsEnabled="{Binding GenerateRoutes}" ItemsSource="{Binding Path=Routes}" x:Name="routeTreeView">
+                            <TreeView.ItemContainerStyle>
+                                <Style TargetType="{x:Type TreeViewItem}">
                             <Setter Property="IsExpanded" Value="True" />
+                            <Setter Property="FontSize" Value="10px"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}" />
                         </Style>
-                    </TreeView.ItemContainerStyle>
-                    <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate  DataType="{x:Type ext:Route}" ItemsSource="{Binding Path=ChildRoutes}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
-                                <Button Margin="5,0,0,0" MinWidth="20" ToolTip="Add Child Route" Click="AddRoute" >+</Button>
-                                <Button Margin="5,0,0,0" MinWidth="20" ToolTip="Remove Route" Click="RemoveRoute" >-</Button>
-                            </StackPanel>
+                            </TreeView.ItemContainerStyle>
+                            <TreeView.ItemTemplate>
+                                <HierarchicalDataTemplate  DataType="{x:Type ext:Route}" ItemsSource="{Binding Path=ChildRoutes}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width=".1*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock ToolTip="{Binding Title}" VerticalAlignment="Center"  HorizontalAlignment="Right" Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="1" Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogButtonStyleKey}}" Margin="5,0,0,0" VerticalContentAlignment="Center"  Padding="0" ToolTip="Add Child Route" Click="AddRoute"   Height="20" Width="20" >
+                                    +</Button>
+                                <Button  Grid.Column="2" Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogButtonStyleKey}}" Margin="5,0,0,0" VerticalContentAlignment="Center" Padding="0" ToolTip="Remove Route" Click="RemoveRoute"  Height="20" Width="20" >-</Button>
+                            </Grid>
                         </HierarchicalDataTemplate>
-                    </TreeView.ItemTemplate>
+                            </TreeView.ItemTemplate>
                 </TreeView>
+                <StackPanel IsEnabled="{Binding GenerateRoutes}"  DataContext="{Binding Path=CurrentRoute}" Grid.Column="1" Grid.Row="1">
+                    <Label>Route Name</Label>
+                    <TextBox  VerticalContentAlignment="Center" Style="{DynamicResource {x:Static vsfx:VsResourceKeys.TextBoxStyleKey}}" Height="30" x:Name="txtRoute" Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <CheckBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.CheckBoxStyleKey}}" IsChecked="{Binding Path=CanNavigate}">Can Navigate?</CheckBox>
+                    <CheckBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.CheckBoxStyleKey}}" IsChecked="{Binding Path=DetailRoute}">Include Id on Route?</CheckBox>
+                </StackPanel>
             </Grid>
-            <StackPanel IsEnabled="{Binding GenerateRoutes}"  DataContext="{Binding Path=CurrentRoute}" Grid.Column="3" Grid.Row="1">
-                <Label>Title</Label>
-                <TextBox Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                <CheckBox IsChecked="{Binding Path=CanNavigate}">Can Navigate?</CheckBox>
-                <CheckBox IsChecked="{Binding Path=DetailRoute}">Include Id on Route?</CheckBox>
-            </StackPanel>
 
-            <StackPanel Grid.Column="2" Grid.Row="6" Orientation="Horizontal" 
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0">
-                <Button x:Name="addButton" Click="SaveChanges" IsDefault="True">Create</Button>
-                <Button Click="CancelChanges" IsCancel="True">Cancel</Button>
+
+            <StackPanel Margin="20" Grid.Column="2" Grid.Row="6" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Button Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogButtonStyleKey}}"  x:Name="addButton" Click="SaveChanges" IsDefault="True">Create</Button>
+                <Button Margin="10, 0" Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogButtonStyleKey}}"  Click="CancelChanges" IsCancel="True">Cancel</Button>
             </StackPanel>
         </Grid>
-    </DockPanel>
+    </app:VisualStudioPanel>
 </Window>

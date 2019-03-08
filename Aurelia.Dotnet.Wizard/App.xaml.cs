@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aurelia.DotNet.Wizard.CommandWizards;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Aurelia.Dotnet.Wizard
+namespace Aurelia.DotNet.Wizard
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -16,6 +17,7 @@ namespace Aurelia.Dotnet.Wizard
     {
         void App_Startup(object sender, StartupEventArgs e)
         {
+
             var viewModel = Parse(e.Args);
             ProjectWizard mainWindow = new ProjectWizard
             {

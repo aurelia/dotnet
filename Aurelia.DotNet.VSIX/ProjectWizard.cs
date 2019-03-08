@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Aurelia.Dotnet.Wizard;
+using Aurelia.DotNet.Wizard;
 using EnvDTE;
 using Microsoft.AspNetCore.NodeServices;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -76,7 +76,7 @@ namespace Aurelia.DotNet.VSIX
             {
                 replacementsDictionary.TryGetValue("$solutiondirectory$", out this.solutionDirectory);
                 replacementsDictionary.TryGetValue("$destinationdirectory$", out this.projectDirectory);
-                var wiz = new Dotnet.Wizard.ProjectWizard();
+                var wiz = new DotNet.Wizard.ProjectWizard();
                 wiz.ShowDialog();
                 this._viewModel = wiz.ViewModel;
                 if (_viewModel.Cancelled)

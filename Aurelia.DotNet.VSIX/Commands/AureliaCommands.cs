@@ -24,6 +24,9 @@
         public const int CommandGroup = 0x2000;
 
         public const int cmdGenerateElement = 0x0100;
+        public const int cmdGenerateAttribute = 0x0110;
+        public const int cmdGenerateRoute = 0x0120;
+
         public const int cmdUpdateAurelia = 0x0150;
     }
 }

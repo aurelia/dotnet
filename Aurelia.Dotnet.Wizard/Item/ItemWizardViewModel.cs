@@ -1,7 +1,7 @@
 ﻿using Aurelia.DotNet.Extensions.Models;
 using System.Collections.ObjectModel;
 
-namespace Aurelia.Dotnet.Wizard
+namespace Aurelia.DotNet.Wizard
 {
     internal class ItemWizardViewModel
     {

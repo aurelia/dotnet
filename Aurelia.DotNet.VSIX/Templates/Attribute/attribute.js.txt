@@ -1,0 +1,7 @@
+﻿export class %name%CustomAttribute {
+  static inject = [Element];
+
+  constructor(element){
+    this.element = element;
+  }
+}

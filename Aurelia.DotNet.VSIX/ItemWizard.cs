@@ -33,12 +33,12 @@ namespace Aurelia.DotNet.VSIX
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
             Helpers.DteHelpers.GetSelectionData(automationObject, out var targetFolderPath, out var projectFolderPath, out var projectFullName);
-            var wiz = new Dotnet.Wizard.ItemWizard();
+            var wiz = new DotNet.Wizard.ItemWizard();
             wiz.ShowDialog();
             string pascal = replacementsDictionary["$safeitemname$"].ToPascalCase();
             replacementsDictionary["$pascalName$"] = pascal;
             replacementsDictionary["$camelName$"] = pascal.LowerCaseFirstLetter();
-            replacementsDictionary["$snakeName$"] = pascal.PascalToKebabCase();
+            replacementsDictionary["kebabName"] = pascal.PascalToKebabCase();
 
         }
 

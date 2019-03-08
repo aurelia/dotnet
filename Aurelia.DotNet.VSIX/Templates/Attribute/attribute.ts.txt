@@ -1,0 +1,7 @@
+﻿import {autoinject} from 'aurelia-framework';
+
+@autoinject
+export class %name%CustomAttribute {
+  constructor(private element: Element){
+  }
+}

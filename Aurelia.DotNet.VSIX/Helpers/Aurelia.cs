@@ -17,11 +17,14 @@ namespace Aurelia.DotNet.VSIX.Helpers
         public static string RootFolder { get; set; }
         public static bool? IsTypescript { get; set; }
         public const string AureliaFileName = "aurelia.json";
+        public const string AureliaRouterSearchText = "configurerouter";
         public static string ResourceGlobalFile { get; set; }
         public static bool IsWebpack { get; set; }
 
         public static bool IsAureliaCliFile(this string fileName) => fileName.ToLower().Equals(AureliaFileName);
 
+
+        public static bool IsAureliaRouter(this string fileName) => File.ReadAllText(fileName).ToLower().Contains(AureliaRouterSearchText);
 
         public static void LoadAureliaCli(string aureliaFile)
         {
@@ -32,6 +35,7 @@ namespace Aurelia.DotNet.VSIX.Helpers
             var currentPath = Path.Combine(currentDirectory.FullName, AureliaCli.Paths.Root);
             RootFolder = Directory.Exists(currentPath) ? currentPath : Path.Combine(currentDirectory.Parent.FullName, AureliaCli.Paths.Root).ToLower();
             IsTypescript = AureliaCli.Transpiler.Id.ToLower().Equals("typescript");
+            IsWebpack = string.IsNullOrWhiteSpace(AureliaCli.Bundler?.Id ?? string.Empty) || AureliaCli.Bundler.Id == "webpack";
             var resourceDir = Path.Combine(RootFolder, AureliaCli.Paths.Resources);
             ResourceGlobalFile = Directory.EnumerateFiles(resourceDir, "index.*", SearchOption.TopDirectoryOnly).FirstOrDefault();
         }
@@ -72,6 +76,12 @@ namespace Aurelia.DotNet.VSIX.Helpers
             LoadAureliaCli(aureliaFile);
         }
 
+        public static string GetResouceDirectory => Path.Combine(RootFolder, AureliaCli.Paths.Resources);
+        public static string GetElementsDirectory => Path.Combine(RootFolder, AureliaCli.Paths.Elements);
+        public static string GetAttributesDirectory => Path.Combine(RootFolder, AureliaCli.Paths.Attributes);
+        public static string GetBindingBehaviorsDirectory => Path.Combine(RootFolder, AureliaCli.Paths.BindingBehaviors);
+        public static string GetValueConvertersDirectory => Path.Combine(RootFolder, AureliaCli.Paths.ValueConverters);
+
         public static void AddGlobalResource(string fullFileName)
         {
             var resourceDir = Path.Combine(RootFolder, AureliaCli.Paths.Resources);
@@ -103,11 +113,7 @@ namespace Aurelia.DotNet.VSIX.Helpers
                 {
                     resourceFile = @"import { PLATFORM } from 'aurelia-framework';" + Environment.NewLine + resourceFile;
                 }
-                resourceFile = resourceFile.Replace(currentText, currentValue.Replace(string.IsNullOrWhiteSpace(currentPaths) ? "[]" : $"['{currentPaths}']", replaceMentText));
-
-
-
-
+                resourceFile = resourceFile.Replace(currentText, currentValue.Replace(string.IsNullOrWhiteSpace(currentPaths) ? "[]" : $"[{currentPaths}]", replaceMentText));
                 File.WriteAllText(ResourceGlobalFile, resourceFile);
             }
 

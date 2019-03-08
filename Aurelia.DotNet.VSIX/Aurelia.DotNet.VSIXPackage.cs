@@ -76,9 +76,9 @@ namespace Aurelia.DotNet.VSIX
             await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
             Logger.Initialize(this, VsixInfo.Name);
 
-            await Aurelia.DotNet.VSIX.Commands.UpdateAurelia.UpdateAureliaCommand.InitializeAsync(this);
-            await Aurelia.DotNet.VSIX.Commands.CreateAurelia.Command1.InitializeAsync(this);
-            await Aurelia.DotNet.VSIX.Commands.GenerateElement.GenerateElement.InitializeAsync(this);
+            await Aurelia.DotNet.VSIX.Commands.GenerateElement.InitializeAsync(this);
+            await Aurelia.DotNet.VSIX.Commands.GenerateRoute.InitializeAsync(this);
+            await Aurelia.DotNet.VSIX.Commands.GenerateAttribute.InitializeAsync(this);
         }
 
         protected override void Dispose(bool disposing)

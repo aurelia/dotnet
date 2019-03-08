@@ -1,4 +1,4 @@
-﻿
-export class %elementName%CustomElement {
-	message = 'Hello from %elementName%';
+﻿export class %name%CustomElement {
+	%properties%
+	message = 'Hello from %name%';
 }

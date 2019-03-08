@@ -17,26 +17,26 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
     /// <summary>
     /// Interaction logic for FileNameDialog.xaml
     /// </summary>
-    public partial class ElementGenerationDialog : Window
+    public partial class RouteComponentDialog : Window
     {
 
-        public ElementGenerationDialog()
+        public RouteComponentDialog()
         {
             InitializeComponent();
-            this.Loaded += ElementGenerationDialog_Loaded;
+            this.Loaded += RouteComponentDialog_Loaded;
         }
 
-        private void ElementGenerationDialog_Loaded(object sender, RoutedEventArgs e)
+        private void RouteComponentDialog_Loaded(object sender, RoutedEventArgs e)
         {
             txtElementName.Focus();
             txtElementName.CaretIndex = 0;
-            txtPropertyNames.Text = PropertyNamesPreviewText;
+            txtElementName.Text = ElementNamePreviewText;
 
             txtElementName.PreviewKeyDown += (a, b) =>
             {
                 if (b.Key == Key.Escape)
                 {
-                    if (string.IsNullOrWhiteSpace(txtElementName.Text))
+                    if (string.IsNullOrWhiteSpace(txtElementName.Text.Trim()) || txtElementName.Text.Trim().Equals(ElementNamePreviewText))
                         Close();
                     else
                         txtElementName.Text = string.Empty;
@@ -58,23 +58,22 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
             }
         }
 
-        public string PropertyNames
+        public bool IsNav
         {
             get
             {
-                return txtPropertyNames.Text?.ToLower().Equals(PropertyNamesPreviewText.ToLower()) ?? false ? string.Empty : txtPropertyNames.Text?.Trim();
+                return chkIsNav.IsChecked ?? false;
             }
         }
-
-        public bool IsGlobal
+        public bool IsDefault
         {
             get
             {
-                return chkGlobal.IsChecked ?? false;
+                return chkIsNav.IsChecked ?? false;
             }
         }
 
-        public string PropertyNamesPreviewText => "Enter the bindable property names delimted by a , (eg. FirstNaame, LastName)";
+        public string ElementNamePreviewText => "Enter the name of the component you would like to create";
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

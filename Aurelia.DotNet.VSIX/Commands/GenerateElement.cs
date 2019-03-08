@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Interop;
-using Aurelia.Dotnet.Wizard.CommandWizards;
+using Aurelia.DotNet.Wizard.CommandWizards;
 using Aurelia.DotNet.VSIX.Helpers;
 using EnvDTE;
 using EnvDTE80;
@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 using Aurelia.DotNet.Extensions;
 
-namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
+namespace Aurelia.DotNet.VSIX.Commands
 {
     /// <summary>
     /// Command handler
@@ -108,44 +108,17 @@ namespace Aurelia.DotNet.VSIX.Commands.GenerateElement
             var project = selectedItem?.ContainingProject ?? selectedProject ?? DteHelpers.GetActiveProject(_dte);
 
 
-            var dialog = new ElementGenerationDialog();
-            var hwnd = new IntPtr(_dte.MainWindow.HWnd);
-            var window = (System.Windows.Window)HwndSource.FromHwnd(hwnd).RootVisual;
-            dialog.Owner = window;
-
-
+            var dialog = DteHelpers.OpenDialog<ElementGenerationDialog>(_dte);
             if (!(dialog.ShowDialog() ?? false)) { return; }
 
             var type = dialog.Type;
             var elementName = dialog.ElementName;
             var bindablePropertyNames = dialog.PropertyNames;
-            var elementTemplates = Template.GetTemplateFilesByType("element").Where(y => y.Contains(type)).ToList();
+            var templates = Template.GetTemplateFilesByType("element").Where(y => y.Contains(type)).ToList();
+            targetFolder = dialog.IsGlobal ? Helpers.Aurelia.GetElementsDirectory : targetFolder;
 
-            await Task.WhenAll(elementTemplates.Select(async y =>
-            {
-                using (var reader = new StreamReader(y))
-                {
-                    var fileName = Path.GetFileName(y);
-                    var parts = fileName.Split('.');
-                    var extension = parts[parts.Length - 2];
-                    var fullFileName = Path.Combine(targetFolder, elementName.ToPascalCase(), $"{elementName.ToPascalCase().PascalToKebabCase()}.{extension}");
-                    string templateText = await reader.ReadToEndAsync();
-                    templateText = templateText.Replace("%elementName%", elementName);
+            await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(package, templateName, targetFolder, dialog.ElementName, dialog.IsGlobal)));
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(fullFileName));
-
-                    File.WriteAllText(fullFileName, templateText);
-
-                    if (dialog.IsGlobal && (extension.ToLower() == "js" || extension.ToLower() == "ts"))
-                    {
-                        Helpers.Aurelia.AddGlobalResource(fullFileName);
-                    }
-
-
-                    VsShellUtilities.OpenDocument(package, fullFileName);
-
-                }
-            }));
 
         }
     }

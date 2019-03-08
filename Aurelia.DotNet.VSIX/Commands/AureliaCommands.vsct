@@ -24,15 +24,39 @@
     <Buttons>
       <Button guid="guidAureliaCommandsSet" id="cmdGenerateElement" priority="0x0100" type="Button">
         <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
-        <Icon guid="ImageCatalogGuid" id="Copy" />
+        <Icon guid="ImageCatalogGuid" id="NewItem" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Add Element</ButtonText>
+          <LocCanonicalName>.Aurelia.GenerateElement</LocCanonicalName>
+        </Strings>
+      </Button>
+      <Button guid="guidAureliaCommandsSet" id="cmdGenerateAttribute" priority="0x0110" type="Button">
+        <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
+        <Icon guid="ImageCatalogGuid" id="NewAttribute" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Add Attribute</ButtonText>
+          <LocCanonicalName>.Aurelia.GenerateAttribute</LocCanonicalName>
+        </Strings>
+      </Button>
+      <Button guid="guidAureliaCommandsSet" id="cmdGenerateRoute" priority="0x0120" type="Button">
+        <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
+        <Icon guid="ImageCatalogGuid" id="RouteService" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
 
         <Strings>
-          <ButtonText>Generate Element</ButtonText>
-          <LocCanonicalName>.Aurelia.GenerateElement</LocCanonicalName>
+          <ButtonText>Add Route</ButtonText>
+          <LocCanonicalName>.Aurelia.GenerateRoute</LocCanonicalName>
         </Strings>
       </Button>
     </Buttons>
@@ -77,6 +101,8 @@
       <IDSymbol name="CommandGroup" value="0x2000" />
 
       <IDSymbol name="cmdGenerateElement" value="0x0100" />
+      <IDSymbol name="cmdGenerateAttribute" value="0x0110" />
+      <IDSymbol name="cmdGenerateRoute" value="0x0120" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
