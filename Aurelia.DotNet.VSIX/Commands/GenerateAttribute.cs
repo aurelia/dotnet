@@ -110,15 +110,16 @@ namespace Aurelia.DotNet.VSIX.Commands
 
             var dialog = DteHelpers.OpenDialog<FileNameDialog>(_dte);
             dialog.Title = "Generate Attribute";
-            var relativePath = targetFolder.Substring(targetFolder.IndexOf(Aurelia.DotNet.VSIX.Helpers.Aurelia.RootFolder));
+            var relativePath = targetFolder.Substring(targetFolder.IndexOf(AureliaHelper.RootFolder));
             dialog.FolderLabel = relativePath;
             dialog.PreviewText = "Please enter the name of the attribute you would like to create. eg. RedBox";
             if (!(dialog.ShowDialog() ?? false)) { return; }
             var elementName = dialog.Name;
             var templates = Template.GetTemplateFilesByType("attribute").ToList();
-            targetFolder = dialog.IsGlobal ? Helpers.Aurelia.GetElementsDirectory : targetFolder;
+            targetFolder = dialog.IsGlobal ? AureliaHelper.GetElementsDirectory : targetFolder;
 
-            await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(package, templateName, targetFolder, dialog.Input, dialog.IsGlobal)));
+            var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.Input, dialog.IsGlobal)));
+            filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));
 
 
         }

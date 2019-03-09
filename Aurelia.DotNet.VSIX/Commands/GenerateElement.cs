@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Design;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Interop;
 using Aurelia.DotNet.Wizard.CommandWizards;
 using Aurelia.DotNet.VSIX.Helpers;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
 using Aurelia.DotNet.Extensions;
 
@@ -115,11 +109,10 @@ namespace Aurelia.DotNet.VSIX.Commands
             var elementName = dialog.ElementName;
             var bindablePropertyNames = dialog.PropertyNames;
             var templates = Template.GetTemplateFilesByType("element").Where(y => y.Contains(type)).ToList();
-            targetFolder = dialog.IsGlobal ? Helpers.Aurelia.GetElementsDirectory : targetFolder;
+            targetFolder = dialog.IsGlobal ? AureliaHelper.GetElementsDirectory : targetFolder;
 
-            await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(package, templateName, targetFolder, dialog.ElementName, dialog.IsGlobal)));
-
-
+            var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.ElementName, dialog.IsGlobal)));
+            filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));
         }
     }
 }

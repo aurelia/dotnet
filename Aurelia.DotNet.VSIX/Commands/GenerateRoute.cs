@@ -104,11 +104,13 @@ namespace Aurelia.DotNet.VSIX.Commands
             if (string.IsNullOrEmpty(targetFolder) || !Directory.Exists(targetFolder))
                 return;
 
-            var dialog = DteHelpers.OpenDialog<RouteComponentDialog>(_dte);
+            var dialog = DteHelpers.OpenDialog<RouteComponentDialog>(_dte);            
             if (!dialog.DialogResult ?? false) { return; }
             if (string.IsNullOrWhiteSpace(dialog.ElementName)) { return; }
             var templates = Template.GetTemplateFilesByType("route").Where(y => y.Contains(dialog.Type)).ToList();
-            await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(package, templateName, targetFolder, dialog.ElementName)));
+            var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.ElementName)));
+            filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));
+
         }
 
 

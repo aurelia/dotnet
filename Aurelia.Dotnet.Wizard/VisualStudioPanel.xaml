@@ -40,8 +40,4 @@
     <Style TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}"/>
     </Style>
-    <Style TargetType="{x:Type TreeViewItem}">
-        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
-    </Style>
 </ResourceDictionary>

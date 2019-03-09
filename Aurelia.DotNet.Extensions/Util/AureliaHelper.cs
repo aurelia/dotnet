@@ -1,16 +1,13 @@
 ﻿using Aurelia.DotNet.Extensions.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Aurelia.DotNet.VSIX.Helpers
+namespace Aurelia.DotNet.Extensions
 {
-    public static class Aurelia
+    public static class AureliaHelper
     {
         public static DateTime LastModifyDate { get; set; }
         public static AureliaCli AureliaCli { get; set; }

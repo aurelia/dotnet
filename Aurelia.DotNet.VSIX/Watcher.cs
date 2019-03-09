@@ -1,16 +1,11 @@
 ﻿#pragma warning disable VSTHRD010 // Invoke single-threaded types on Main thread
-using Aurelia.DotNet.VSIX.Helpers;
 using EnvDTE;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using Aurelia.DotNet.Extensions;
 
 namespace Aurelia.DotNet.VSIX
 {
@@ -29,9 +24,6 @@ namespace Aurelia.DotNet.VSIX
             {
                 Instance.Solution.AdviseSolutionEvents(this, out mSolutionCookie);
             }
-
-            
-
 
             mDocumentEvents = Instance.DTE2.Events.DocumentEvents;
             mDocumentEvents.DocumentSaved += OnDocumentSaved;
@@ -53,7 +45,7 @@ namespace Aurelia.DotNet.VSIX
         {
             if (Document.Name.IsAureliaCliFile())
             {
-                Helpers.Aurelia.LoadAureliaCli(Document.Path);
+                AureliaHelper.LoadAureliaCli(Document.Path);
             }
         }
 
@@ -61,7 +53,7 @@ namespace Aurelia.DotNet.VSIX
         {
             if (ProjectItem.Name.IsAureliaCliFile())
             {
-                Helpers.Aurelia.AureliaCli = null;
+                AureliaHelper.AureliaCli = null;
             }
         }
 
@@ -70,7 +62,7 @@ namespace Aurelia.DotNet.VSIX
             if (ProjectItem.Name.IsAureliaCliFile())
             {
                 Helpers.DteHelpers.GetSelectionData(ProjectItem, out var targetFolder, out var project, out var target);
-                Helpers.Aurelia.LoadAureliaCli(Path.Combine(targetFolder, ProjectItem.Name));
+                AureliaHelper.LoadAureliaCli(Path.Combine(targetFolder, ProjectItem.Name));
             }
 
         }
@@ -130,7 +122,7 @@ namespace Aurelia.DotNet.VSIX
         {
             var project = getActiveProject();
             var path = project.FullName;
-            Helpers.Aurelia.LoadAureliaCliFromPath(path);
+            AureliaHelper.LoadAureliaCliFromPath(path);
             return VSConstants.S_OK;
         }
 
