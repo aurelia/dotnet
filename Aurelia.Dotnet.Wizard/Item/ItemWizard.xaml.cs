@@ -1,18 +1,7 @@
-﻿using Aurelia.DotNet.Extensions.Models;
-using System;
-using System.Collections.Generic;
+﻿using Aurelia.DotNet.Models;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Aurelia.DotNet.Wizard
 {
@@ -26,7 +15,7 @@ namespace Aurelia.DotNet.Wizard
         {
             InitializeComponent();
             this.DataContext = new ItemWizardViewModel();
-            this.viewModel.Routes.Add(new DotNet.Extensions.Models.Route
+            this.viewModel.Routes.Add(new Route
             {
                 ModuleName = "asdfasdf",
                 Name = "adfsafsd",

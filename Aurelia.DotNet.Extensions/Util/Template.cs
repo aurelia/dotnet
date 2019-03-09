@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet
 {
     public static class Template
     {

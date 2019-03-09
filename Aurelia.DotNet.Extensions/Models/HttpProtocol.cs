@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Aurelia.DotNet.Extensions.Models
+namespace Aurelia.DotNet.Models
 {
     public enum HttpProtocol
     {

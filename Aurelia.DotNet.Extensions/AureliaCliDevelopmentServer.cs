@@ -1,4 +1,4 @@
-﻿using Aurelia.DotNet.Extensions.Models;
+﻿using Aurelia.DotNet.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.NodeServices;
 using Microsoft.AspNetCore.NodeServices.Util;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet
 {
     internal static class AureliaCliDevelopmentServer
     {

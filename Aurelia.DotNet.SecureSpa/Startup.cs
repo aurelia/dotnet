@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet;
 using Aurelia.DotNet.DataAccess;
 using Aurelia.DotNet.DataAccess.Interfaces;
 using Aurelia.DotNet.DataAccess.Models;

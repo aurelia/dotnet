@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Data;
-using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet;
 
 namespace Aurelia.DotNet.Wizard
 { 

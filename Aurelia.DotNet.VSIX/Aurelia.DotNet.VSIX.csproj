@@ -152,9 +152,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj">
+    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj">
       <Project>{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}</Project>
-      <Name>Aurelia.DotNet.Extensions</Name>
+      <Name>Aurelia.DotNet</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>

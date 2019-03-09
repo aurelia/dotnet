@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Models", "Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.DotNet.VSIX", "Aurelia.DotNet.VSIX\Aurelia.DotNet.VSIX.csproj", "{06C95052-337E-4F4D-A9CB-745FD15B9D5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Extensions", "Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj", "{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet", "Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj", "{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.DotNet.Template", "Aurelia.DotNet.Template\Aurelia.DotNet.Template.csproj", "{14BBFAE6-E3B1-49E9-BCCA-1D8A9CF60329}"
 EndProject

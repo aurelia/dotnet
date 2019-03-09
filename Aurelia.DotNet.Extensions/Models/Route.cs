@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace Aurelia.DotNet.Extensions.Models
+namespace Aurelia.DotNet.Models
 {
     public class Route
     {

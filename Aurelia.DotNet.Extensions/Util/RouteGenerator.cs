@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Aurelia.DotNet.Extensions.Models;
+using Aurelia.DotNet.Models;
 
-namespace Aurelia.DotNet.Extensions.Util
+namespace Aurelia.DotNet.Util
 {
     public class RouteGenerator
     {

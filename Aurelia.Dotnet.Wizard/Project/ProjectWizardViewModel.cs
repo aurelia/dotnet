@@ -1,6 +1,4 @@
-﻿using Aurelia.DotNet.Extensions;
-using Aurelia.DotNet.Extensions.Models;
-using System;
+﻿using Aurelia.DotNet.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

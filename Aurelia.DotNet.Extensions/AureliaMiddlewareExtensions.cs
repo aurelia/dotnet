@@ -1,9 +1,9 @@
-﻿using Aurelia.DotNet.Extensions.Models;
+﻿using Aurelia.DotNet.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.SpaServices;
 using System;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet
 {
     public static class AureliaMiddlewareExtensions
     {

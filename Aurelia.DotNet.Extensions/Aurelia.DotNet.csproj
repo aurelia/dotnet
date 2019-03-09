@@ -8,7 +8,7 @@
     <Company>Aurelia</Company>
     <Authors>Aurelia Core Team</Authors>
     <PackageIconUrl>https://aurelia.io/media/aurelia-favicon.ico</PackageIconUrl>
-    <PackageTags>Aurelia, SPA, .NET CORE, MVC</PackageTags>
+    <PackageTags>Aurelia, SPA, .NET CORE, MVC, CLI, vNext, vCurrent</PackageTags>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
     <RepositoryUrl>https://github.com/aurelia/dotnet</RepositoryUrl>
@@ -17,6 +17,9 @@
     <Copyright>Copyright (c) 2010 - 2019 Blue Spire Inc.</Copyright>
     <RepositoryType>git</RepositoryType>
     <PackageId>Aurelia.DotNet</PackageId>
+    <Title>Aurelia DotNet Tools</Title>
+    <AssemblyName>Aurelia.DotNet</AssemblyName>
+    <RootNamespace>Aurelia.DotNet</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

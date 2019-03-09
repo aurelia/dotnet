@@ -1,4 +1,4 @@
-﻿using Aurelia.DotNet.Extensions.Models;
+﻿using Aurelia.DotNet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using Aurelia.DotNet.Extensions.Models;
+﻿using Aurelia.DotNet.Models;
 using System.Collections.ObjectModel;
 
 namespace Aurelia.DotNet.Wizard

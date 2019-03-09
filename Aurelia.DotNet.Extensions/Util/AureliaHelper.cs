@@ -1,11 +1,11 @@
-﻿using Aurelia.DotNet.Extensions.Models;
+﻿using Aurelia.DotNet.Models;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet
 {
     public static class AureliaHelper
     {

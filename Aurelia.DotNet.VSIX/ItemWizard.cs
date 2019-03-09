@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
-using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet;
 
 namespace Aurelia.DotNet.VSIX
 {

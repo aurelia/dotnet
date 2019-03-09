@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet
 {
     public class CliPropertyAttribute : Attribute
     {

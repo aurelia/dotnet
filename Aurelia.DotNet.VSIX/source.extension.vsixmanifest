@@ -24,7 +24,7 @@
         <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="Aurelia.DotNet.ItemTemplates" d:TargetPath="|Aurelia.DotNet.ItemTemplates;TemplateProjectOutputGroup|" Path="ItemTemplates" d:VsixSubPath="ItemTemplates" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="Snippets\snippets.pkgdef" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" AssemblyName="|%CurrentProject%;AssemblyName|" />
-        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Aurelia.DotNet.Extensions" Path="|Aurelia.DotNet.Extensions|" AssemblyName="|Aurelia.DotNet.Extensions;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Aurelia.DotNet" Path="|Aurelia.DotNet|" AssemblyName="|Aurelia.DotNet;AssemblyName|" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="File" Path="Newtonsoft.Json.dll" AssemblyName="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Aurelia.DotNet.Wizard" Path="|Aurelia.DotNet.Wizard|" AssemblyName="|Aurelia.DotNet.Wizard;AssemblyName|" />
     </Assets>

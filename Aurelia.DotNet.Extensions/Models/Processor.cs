@@ -1,4 +1,4 @@
-﻿namespace Aurelia.DotNet.Extensions.Models
+﻿namespace Aurelia.DotNet.Models
 {
     public class Processor
     {

@@ -1,5 +1,5 @@
-﻿using Aurelia.DotNet.Extensions.Models;
-using Aurelia.DotNet.Extensions;
+﻿using Aurelia.DotNet.Models;
+using Aurelia.DotNet;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

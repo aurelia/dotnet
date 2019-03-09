@@ -8,8 +8,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using Aurelia.DotNet.Extensions;
-using Aurelia.DotNet.Extensions.Models;
+using Aurelia.DotNet;
+using Aurelia.DotNet.Models;
 
 // This is under the NodeServices namespace because post 2.1 it will be moved to that package
 namespace Microsoft.AspNetCore.NodeServices

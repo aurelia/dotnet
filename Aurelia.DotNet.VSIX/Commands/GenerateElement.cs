@@ -8,7 +8,7 @@ using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
-using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet;
 
 namespace Aurelia.DotNet.VSIX.Commands
 {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:ext="clr-namespace:Aurelia.DotNet.Extensions.Models;assembly=Aurelia.DotNet.Extensions"
+        xmlns:ext="clr-namespace:Aurelia.DotNet.Models;assembly=Aurelia.DotNet"
         xmlns:app="clr-namespace:Aurelia.DotNet.Wizard"
         xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
         d:DataContext="{d:DesignInstance app:ProjectWizardViewModel, IsDesignTimeCreatable=True}"

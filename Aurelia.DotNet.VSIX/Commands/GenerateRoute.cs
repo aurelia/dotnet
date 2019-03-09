@@ -14,7 +14,7 @@ using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Task = System.Threading.Tasks.Task;
-using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet;
 using Aurelia.DotNet.VSIX.Helpers;
 
 namespace Aurelia.DotNet.VSIX.Commands

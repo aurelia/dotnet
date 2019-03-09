@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 
-namespace Aurelia.DotNet.Extensions
+namespace Aurelia.DotNet
 {
     public static class EnumHelpers
     {

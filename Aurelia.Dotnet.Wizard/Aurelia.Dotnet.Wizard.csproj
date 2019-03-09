@@ -143,13 +143,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj">
-      <Project>{4924b8eb-29a0-4723-8bb9-0c3ab2e3d075}</Project>
-      <Name>Aurelia.DotNet.Extensions</Name>
-    </ProjectReference>
+    <Resource Include="aurelia-logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="aurelia-logo.png" />
+    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj">
+      <Project>{4924b8eb-29a0-4723-8bb9-0c3ab2e3d075}</Project>
+      <Name>Aurelia.DotNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

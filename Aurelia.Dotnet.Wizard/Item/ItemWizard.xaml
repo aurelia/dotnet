@@ -6,7 +6,7 @@
         xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Aurelia.DotNet.Wizard"
-        xmlns:ext="clr-namespace:Aurelia.DotNet.Extensions;assembly=Aurelia.DotNet.Extensions"
+        xmlns:ext="clr-namespace:Aurelia.DotNet;assembly=Aurelia.DotNet"
         xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
         mc:Ignorable="d" Title="Aurelia Project Build"
         WindowStartupLocation="CenterOwner" FontSize="14" Icon="../aurelia.ico"

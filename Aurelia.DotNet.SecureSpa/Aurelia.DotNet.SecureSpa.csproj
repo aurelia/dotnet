@@ -48,8 +48,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.Extensions.csproj" />
     <ProjectReference Include="..\Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj" />
+    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj" />
     <ProjectReference Include="..\Aurelia.DotNet.Logic\Aurelia.DotNet.Logic.csproj" />
     <ProjectReference Include="..\Aurelia.DotNet.Models\Aurelia.DotNet.Models.csproj" />
   </ItemGroup>

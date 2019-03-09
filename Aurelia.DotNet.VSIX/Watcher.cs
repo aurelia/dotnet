@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.IO;
 using System.Threading;
-using Aurelia.DotNet.Extensions;
+using Aurelia.DotNet;
 
 namespace Aurelia.DotNet.VSIX
 {
