@@ -1,5 +1,33 @@
-# dotnet
-Official .NET tooling for Aurelia.
+# Aurelia DotNet Tooling
+*Official .NET tooling for Aurelia.*
+
+# Using the .NET Extension DLL
+
+### Cli generation
+Generate Aurelia CLI project with any options provided and place in the project directory of the .NET Core application
+
+### Place the following in the ConfigureServices Method in startup.cs
+``` c#
+// In production, the Aurelia files will be served from this directory
+services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "%aurelia-root%/dist";
+});
+```
+### Place the following in the configure method in Startup.cs
+``` c#
+app.UseStaticFiles();
+app.UseSpaStaticFiles();
+app.UseSpa(spa => {
+    spa.Options.SourcePath = "%replaceWithAureliaCLIRoot%";
+
+    if (env.IsDevelopment())
+    {
+        spa.UseAureliaCliServer(); // Optional HMR (Hot Module Reload)
+    }
+});
+
+```
 
 # TODOS
 ## Language Service
