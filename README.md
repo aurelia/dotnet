@@ -6,7 +6,7 @@
 ### Cli generation
 Generate Aurelia CLI project with any options provided and place in the project directory of the .NET Core application
 
-### Please the following in the ConfigureServices Method in startup.cs
+### Place the following in the ConfigureServices Method in startup.cs
 ``` c#
 // In production, the Aurelia files will be served from this directory
 services.AddSpaStaticFiles(configuration =>
