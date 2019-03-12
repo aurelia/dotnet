@@ -3,16 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Spa", "Aurelia.DotNet.Spa\Aurelia.DotNet.Spa.csproj", "{3B2584F5-AB37-4B90-BC83-EF8B742127DB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.SecureSpa", "Aurelia.DotNet.SecureSpa\Aurelia.DotNet.SecureSpa.csproj", "{015B7BB0-B634-4281-9A93-1F2739AC12CE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.DataAccess", "Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj", "{B610EA5D-44C4-4291-B1F4-1B5F54E8F38B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Logic", "Aurelia.DotNet.Logic\Aurelia.DotNet.Logic.csproj", "{A7780366-4022-4EDC-9833-1D4123F9E408}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Models", "Aurelia.DotNet.Models\Aurelia.DotNet.Models.csproj", "{DA08A94F-1C9F-4809-A5A4-D12ACE5B22FD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.DotNet.VSIX", "Aurelia.DotNet.VSIX\Aurelia.DotNet.VSIX.csproj", "{06C95052-337E-4F4D-A9CB-745FD15B9D5C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet", "Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj", "{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}"
@@ -35,8 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{A971A6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateConfigs", "TemplateConfigs", "{532048D5-0944-4510-B41C-C2C639B7595E}"
 	ProjectSection(SolutionItems) = preProject
-		Aurelia.DotNet.Spa\.template.config\template.json = Aurelia.DotNet.Spa\.template.config\template.json
-		Aurelia.DotNet.SecureSpa\.template.config\template.json = Aurelia.DotNet.SecureSpa\.template.config\template.json
+		NugetTemplates\Aurelia.DotNet.Spa\content\Dockerfile = NugetTemplates\Aurelia.DotNet.Spa\content\Dockerfile
+		NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.ps1 = NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.ps1
+		NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.sh = NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.sh
+		NugetTemplates\Aurelia.DotNet.Spa\content\.template.config\template.json = NugetTemplates\Aurelia.DotNet.Spa\content\.template.config\template.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.RouteGenerator", "Aurelia.RouteGenerator\Aurelia.RouteGenerator.csproj", "{243C1D24-B9F6-4C2A-A862-9EE0557C347E}"
@@ -46,32 +38,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdPartyDlls", "ThirdPart
 		Newtonsoft.Json.dll = Newtonsoft.Json.dll
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Spa", "NugetTemplates\Aurelia.DotNet.Spa\content\Aurelia.DotNet.Spa\Aurelia.DotNet.Spa.csproj", "{E7DB0BAE-19EE-4ECC-B2A4-880CB7020987}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Logic", "NugetTemplates\Aurelia.DotNet.Spa\content\Aurelia.DotNet.Logic\Aurelia.DotNet.Logic.csproj", "{B0A29678-693E-4670-8D8A-AA18AE0FFD64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Models", "NugetTemplates\Aurelia.DotNet.Spa\content\Aurelia.DotNet.Models\Aurelia.DotNet.Models.csproj", "{5D1B3EF3-7F2B-4ADC-8195-8D2CE911AE94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.DataAccess", "NugetTemplates\Aurelia.DotNet.Spa\content\Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj", "{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3B2584F5-AB37-4B90-BC83-EF8B742127DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B2584F5-AB37-4B90-BC83-EF8B742127DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B2584F5-AB37-4B90-BC83-EF8B742127DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B2584F5-AB37-4B90-BC83-EF8B742127DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{015B7BB0-B634-4281-9A93-1F2739AC12CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{015B7BB0-B634-4281-9A93-1F2739AC12CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{015B7BB0-B634-4281-9A93-1F2739AC12CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{015B7BB0-B634-4281-9A93-1F2739AC12CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B610EA5D-44C4-4291-B1F4-1B5F54E8F38B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B610EA5D-44C4-4291-B1F4-1B5F54E8F38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B610EA5D-44C4-4291-B1F4-1B5F54E8F38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B610EA5D-44C4-4291-B1F4-1B5F54E8F38B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7780366-4022-4EDC-9833-1D4123F9E408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7780366-4022-4EDC-9833-1D4123F9E408}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7780366-4022-4EDC-9833-1D4123F9E408}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7780366-4022-4EDC-9833-1D4123F9E408}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA08A94F-1C9F-4809-A5A4-D12ACE5B22FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA08A94F-1C9F-4809-A5A4-D12ACE5B22FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA08A94F-1C9F-4809-A5A4-D12ACE5B22FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA08A94F-1C9F-4809-A5A4-D12ACE5B22FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06C95052-337E-4F4D-A9CB-745FD15B9D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06C95052-337E-4F4D-A9CB-745FD15B9D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C95052-337E-4F4D-A9CB-745FD15B9D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -96,6 +76,22 @@ Global
 		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243C1D24-B9F6-4C2A-A862-9EE0557C347E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7DB0BAE-19EE-4ECC-B2A4-880CB7020987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7DB0BAE-19EE-4ECC-B2A4-880CB7020987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7DB0BAE-19EE-4ECC-B2A4-880CB7020987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7DB0BAE-19EE-4ECC-B2A4-880CB7020987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A29678-693E-4670-8D8A-AA18AE0FFD64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A29678-693E-4670-8D8A-AA18AE0FFD64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A29678-693E-4670-8D8A-AA18AE0FFD64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A29678-693E-4670-8D8A-AA18AE0FFD64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D1B3EF3-7F2B-4ADC-8195-8D2CE911AE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D1B3EF3-7F2B-4ADC-8195-8D2CE911AE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D1B3EF3-7F2B-4ADC-8195-8D2CE911AE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D1B3EF3-7F2B-4ADC-8195-8D2CE911AE94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

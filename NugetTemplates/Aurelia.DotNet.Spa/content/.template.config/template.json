@@ -1,0 +1,389 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Aurelia Core Team",
+  "classifications": [ "Web", "MVC", "Spa" ],
+  "name": "Aurelia SPA",
+  "identity": "Aurelia.DotNet.Spa",
+  "groupIdentity": "Aurelia.DotNet.Spa",
+  "shortName": "aurelia", // You can create the project using this short name instead of the one above.
+  "tags": {
+    "language": "C#", // Specify that this template is in C#.
+    "type": "project"
+  },
+  "sourceName": "Aurelia.DotNet", // Will replace the string 'Aurelia.DotNet.*' with the value provided via -n.
+  "preferNameDirectory": true,
+  "description": "Generates a SPA App with .NET Core backend and Aurelia front end",
+  "primaryOutputs": [
+    { "path": "Aurelia.DotNet.Spa/Aurelia.DotNet.Spa.csproj" },
+    {
+      "path": "Aurelia.DotNet.Models/Aurelia.DotNet.Models.csproj",
+      "condition": "(secure)"
+    },
+    {
+      "path": "Aurelia.DotNet.DataAccess/Aurelia.DotNet.DataAccess.csproj",
+      "condition": "(secure)"
+    },
+    {
+      "path": "Aurelia.DotNet.Logic/Aurelia.DotNet.Logic.csproj",
+      "condition": "(secure)"
+    }
+  ],
+  "symbols": {
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "If specified, skips the automatic restore of the project on create.",
+      "defaultValue": "false"
+    },
+    "rootFolder": {
+      "type": "parameter",
+      "datatype": "text",
+      "isRequired": false,
+      "replaces": "%aurelia-root%",
+      "defaultValue": "ClientApp",
+      "description": "This will be the default location where the CLI will place the files"
+
+    },
+    "bundler": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "webpack"
+        },
+        {
+          "choice": "requirejs"
+        },
+        {
+          "choice": "alameda"
+        },
+        {
+          "choice": "systemjs"
+        }
+      ],
+      "defaultValue": "webpack",
+      "datatype": "choice",
+      "description": "The bundler to use when running",
+      "isRequired": false,
+      "replaces": "%bundler%",
+      "parameters": { "toLower": true }
+    },
+    "http": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "http1",
+          "description": "http1"
+        },
+        {
+          "choice": "http2",
+          "description": "http2"
+        }
+      ],
+      "defaultValue": "http1",
+      "datatype": "choice",
+      "description": "The http protocol to use with outputted webpack bundle.",
+      "isRequired": false,
+      "replaces": "%http%",
+      "parameters": { "toLower": true }
+    },
+    "transpiler": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "typescript",
+          "description": "typescript"
+        },
+        {
+          "choice": "babel",
+          "description": "babel stuff"
+        }
+      ],
+      "defaultValue": "typescript",
+      "datatype": "choice",
+      "description": "The transpiler would you like to use.",
+      "isRequired": false,
+      "replaces": "%transpiler%",
+      "parameters": { "toLower": true }
+    },
+    "minification": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "htmlmin-max"
+        },
+        {
+          "choice": "htmlmin-min"
+        },
+        {
+          "choice": "none"
+        }
+      ],
+      "defaultValue": "htmlmin-max",
+      "datatype": "choice",
+      "description": "The type of minification you would like to use.",
+      "isRequired": false,
+      "replaces": "%minification%",
+      "parameters": { "toLower": true }
+    },
+    "cssProcessor": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "less"
+        },
+        {
+          "choice": "sass"
+        },
+        {
+          "choice": "stylus"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "The type of css processor you would like to use.",
+      "isRequired": false,
+      "replaces": "%cssProcessor%",
+      "parameters": { "toLower": true }
+    },
+    "postProcessor": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "basic"
+        },
+        {
+          "choice": "typical"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "The type of post css processing you would like to use.",
+      "isRequired": false,
+      "replaces": "%postProcessor%",
+      "parameters": { "toLower": true }
+    },
+    "unitTesting": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "karma,jasmine"
+        },
+        {
+          "choice": "jest"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "The type of post unit testing you would like to use.",
+      "isRequired": false,
+      "replaces": "%unitTesting%",
+      "parameters": { "toLower": true }
+    },
+    "integrationTesting": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "protractor"
+        },
+        {
+          "choice": "cypress"
+        }
+      ],
+      "defaultValue": "none",
+      "datatype": "choice",
+      "description": "\"The type of integration testing you would like to use. \"choices\": [ \"none\", \"protractor\", \"cypress\" ]\"",
+      "isRequired": false,
+      "replaces": "%integrationTesting%",
+      "parameters": { "toLower": true }
+    },
+    "editor": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "none"
+        },
+        {
+          "choice": "vscode"
+        }
+      ],
+      "defaultValue": "vscode",
+      "datatype": "choice",
+      "description": "The type of editor you would like to use.",
+      "isRequired": false,
+      "replaces": "%editor%",
+      "parameters": { "toLower": true }
+    },
+    "navigation": {
+      "type": "parameter",
+      "choices": [
+        {
+          "choice": "yes"
+        },
+        {
+          "choice": "no"
+        }
+      ],
+      "defaultValue": "no",
+      "datatype": "choice",
+      "description": "Use this option if you want to generate sample nav",
+      "replaces": "%nav%",
+      "isRequired": false,
+      "parameters": { "toLower": true }
+    },
+    "secure": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Scaffold out open id with views"
+    },
+    "Secure": {
+      "type": "computed",
+      "value": "(secure)"
+    },
+    "ReplaceAureliaUsingStatement": {
+      "type": "generated",
+      "generator": "constant",
+      "parameters": {
+        "value": "using Aurelia.DotNet"
+      },
+      "replaces": "//using Aurelia.Dotnet"
+    },
+    "ConnectionStrinValue": {
+      "type": "generated",
+      "generator": "switch",
+      "replaces": "%connection-strings%",
+      "parameters": {
+        "evaluator": "C++",
+        "cases": [
+          {
+            "condition": "(secure)",
+            "value": "\"ConnectionStrings\": {\r\n    \"DefaultConnection\": \"Server=(localdb)\\\\mssqllocaldb;Database=AureliaAspNet;Trusted_Connection=True;MultipleActiveResultSets=true\"\r\n  },"
+          }
+        ]
+      }
+    }
+  },
+    "sources": [
+      {
+        "source": "./",
+        "modifiers": [
+          {
+            "condition": "(!secure)",
+            "exclude": [
+              "Aurelia.DotNet.Spa/Helpers/**/*",
+              "Aurelia.DotNet.Spa/Migrations/**/*",
+              "Aurelia.DotNet.Spa/Security/**/*",
+              "Aurelia.DotNet.Spa/Controllers/v1/**/*",
+              "Aurelia.DotNet.Spa/Controllers/Auth*.cs",
+              "Aurelia.DotNet.Logic/**/*",
+              "Aurelia.DotNet.DataAccess/**/*",
+              "Aurelia.DotNet.Models/**/*"
+            ]
+          },
+          {
+            "condition": "(secure)",
+            "exclude": [
+              "Aurelia.DotNet.Spa/Controllers/SampleDataController.cs"
+            ]
+          }
+        ]
+      }
+    ],
+    "postActions": [
+      {
+        "manualInstructions": [ { "text": "Run powershell -f GenerateAureliaCLI.ps1" } ],
+        "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+        "args": {
+          "executable": "powershell",
+          "args": "-f GenerateAureliaCLI.ps1"
+        },
+        "condition": "(OS == \"Windows_NT\")",
+        "continueOnError": true,
+        "redirectStandardOutput": true
+      },
+      {
+        "condition": "(OS != \"Windows_NT\")",
+        "description": "Make scripts executable",
+        "manualInstructions": [ { "text": "Run 'chmod +x *.sh'" } ],
+        "actionId": "cb9a6cf3-4f5c-4860-b9d2-03a574959774",
+        "args": {
+          "+x": "*.sh"
+        },
+        "continueOnError": true
+      },
+      {
+        "condition": "(OS != \"Windows_NT\")",
+        "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+        "args": {
+          "executable": "GenerateAureliaCLI.sh",
+          "args": ""
+        },
+        "manualInstructions": [
+          {
+            "text": "Run 'GenerateAureliaCLI.sh to generate the client side CLI scripts'"
+          }
+        ],
+        "continueOnError": false,
+        "redirectStandardOutput": true,
+        "description ": "Generate Aurelia CLI Folder with GenerateAureliaCLI.sh"
+      },
+      {
+        "description": "Opens files in the editor",
+        "manualInstructions": [],
+        "actionId": "84C0DA21-51C8-4541-9940-6CA19AF04EE6",
+        "args": {
+          "files": "0"
+        },
+        "continueOnError": true
+      },
+      {
+        "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+        "condition": "(secure)",
+        "args": {
+          "primaryOutputIndexes": "0;1;2;3"
+        },
+        "continueOnError": true,
+        "manualInstructions": [
+          {
+            "text": "Add projects to solution."
+          }
+        ]
+      },
+      {
+        "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+        "condition": "(!secure)",
+        "args": {
+          "primaryOutputIndexes": "0;"
+        },
+        "continueOnError": true,
+        "manualInstructions": [
+          {
+            "text": "Add projects to solution."
+          }
+        ]
+      },
+      {
+        "condition": "(!skipRestore)",
+        "description": "Restore NuGet packages required by this project.",
+        "manualInstructions": [
+          {
+            "text": "Run 'dotnet restore'"
+          }
+        ],
+        "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+        "continueOnError": true
+      }
+    ]
+  }
