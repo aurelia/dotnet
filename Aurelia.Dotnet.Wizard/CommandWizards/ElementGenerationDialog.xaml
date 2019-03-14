@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aurelia.DotNet.Wizard"
         Icon="../aurelia.ico"
-        Title="Add New Aurelia Element" Height="150" Width="457.667" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" SizeToContent="Width">
+        Title="Add New Aurelia Element" Height="175" Width="457.667" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" SizeToContent="Width">
 
     <local:VisualStudioPanel>
         <Grid>

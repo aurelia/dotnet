@@ -1,5 +1,4 @@
-﻿#pragma warning disable VSTHRD010 // Invoke single-threaded types on Main thread
-using EnvDTE;
+﻿using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
@@ -120,6 +119,7 @@ namespace Aurelia.DotNet.VSIX
 
         public int OnAfterOpenProject(IVsHierarchy pHierarchy, int fAdded)
         {
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             var project = getActiveProject();
             var path = project.FullName;
             AureliaHelper.LoadAureliaCliFromPath(path);

@@ -146,8 +146,8 @@
     <Resource Include="aurelia-logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj">
-      <Project>{4924b8eb-29a0-4723-8bb9-0c3ab2e3d075}</Project>
+    <ProjectReference Include="..\Aurelia.DotNet\Aurelia.DotNet.csproj">
+      <Project>{faf8527d-af49-4195-b505-9e19a1ee4976}</Project>
       <Name>Aurelia.DotNet</Name>
     </ProjectReference>
   </ItemGroup>

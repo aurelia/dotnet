@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.DotNet.VSIX", "Aurelia.DotNet.VSIX\Aurelia.DotNet.VSIX.csproj", "{06C95052-337E-4F4D-A9CB-745FD15B9D5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet", "Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj", "{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.DotNet.Template", "Aurelia.DotNet.Template\Aurelia.DotNet.Template.csproj", "{14BBFAE6-E3B1-49E9-BCCA-1D8A9CF60329}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurelia.DotNet.Wizard", "Aurelia.Dotnet.Wizard\Aurelia.DotNet.Wizard.csproj", "{16B94BF4-1F00-4C4C-BDA9-9D074A532D83}"
@@ -46,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.Models", "Nu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet.DataAccess", "NugetTemplates\Aurelia.DotNet.Spa\content\Aurelia.DotNet.DataAccess\Aurelia.DotNet.DataAccess.csproj", "{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurelia.DotNet", "Aurelia.DotNet\Aurelia.DotNet.csproj", "{FAF8527D-AF49-4195-B505-9E19A1EE4976}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,10 +56,6 @@ Global
 		{06C95052-337E-4F4D-A9CB-745FD15B9D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C95052-337E-4F4D-A9CB-745FD15B9D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C95052-337E-4F4D-A9CB-745FD15B9D5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}.Release|Any CPU.Build.0 = Release|Any CPU
 		{14BBFAE6-E3B1-49E9-BCCA-1D8A9CF60329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{14BBFAE6-E3B1-49E9-BCCA-1D8A9CF60329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14BBFAE6-E3B1-49E9-BCCA-1D8A9CF60329}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,6 +88,10 @@ Global
 		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BB8BFF1-DFA9-4F32-9B93-19DE957744D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF8527D-AF49-4195-B505-9E19A1EE4976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF8527D-AF49-4195-B505-9E19A1EE4976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF8527D-AF49-4195-B505-9E19A1EE4976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF8527D-AF49-4195-B505-9E19A1EE4976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

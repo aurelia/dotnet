@@ -152,12 +152,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aurelia.DotNet.Extensions\Aurelia.DotNet.csproj">
-      <Project>{4924B8EB-29A0-4723-8BB9-0C3AB2E3D075}</Project>
-      <Name>Aurelia.DotNet</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-    </ProjectReference>
     <ProjectReference Include="..\Aurelia.DotNet.ItemTemplates\Aurelia.DotNet.ItemTemplates.csproj">
       <Project>{FB3E01ED-5F59-428A-BD49-059140EC12BB}</Project>
       <Name>Aurelia.DotNet.ItemTemplates</Name>
@@ -177,6 +171,10 @@
       <Name>Aurelia.DotNet.Wizard</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
+    <ProjectReference Include="..\Aurelia.DotNet\Aurelia.DotNet.csproj">
+      <Project>{faf8527d-af49-4195-b505-9e19a1ee4976}</Project>
+      <Name>Aurelia.DotNet</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

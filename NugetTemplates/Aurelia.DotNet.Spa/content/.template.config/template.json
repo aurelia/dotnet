@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Aurelia Core Team",
-  "classifications": [ "Web", "MVC", "Spa" ],
+  "classifications": [ "Web", "MVC", "SPA" ],
   "name": "Aurelia SPA",
   "identity": "Aurelia.DotNet.Spa",
   "groupIdentity": "Aurelia.DotNet.Spa",
