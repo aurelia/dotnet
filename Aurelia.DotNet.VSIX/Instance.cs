@@ -15,5 +15,6 @@ namespace Aurelia.DotNet.VSIX
         public static DTE2 DTE2 { get; internal set; }
         public static IVsShell Shell { get; internal set; }
         public static Watcher Watcher { get; internal set; }
+        public static IVsSolution4 Solution4 { get; internal set; }
     }
 }

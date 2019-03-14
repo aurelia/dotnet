@@ -1,10 +1,12 @@
-﻿using System;
+﻿#pragma warning disable VSTHRD010 // Invoke single-threaded types on Main thread
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Aurelia.DotNet.Wizard;
 using EnvDTE;
+using EnvDTE80;
 using Microsoft.AspNetCore.NodeServices;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -23,31 +25,28 @@ namespace Aurelia.DotNet.VSIX
         public void ProjectFinishedGenerating(Project project)
         {
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
-            Directory.GetDirectories(this.projectDirectory ?? this.solutionDirectory).ToList().ForEach(y => Directory.Delete(y, true));
-            //Remove all non solution files as these will be regenerated using the dotnet aurelia templates
-            Directory.GetFiles(this.projectDirectory).Where(y=> !Path.GetExtension(y).ToLower().Equals("sln")).ToList().ForEach(y =>  File.Delete(y));
+            var workingDirectory = this.solutionDirectory ?? this.projectDirectory;
+            var parentDirectory = Directory.GetParent(workingDirectory);
+            var directoryInfo = new DirectoryInfo(workingDirectory);
+            var solution = Instance.DTE2.Solution.FullName;
+            Instance.DTE2.Solution.Close(false);
+            RemoveProjectDirectory();
             var process = new System.Diagnostics.Process
             {
                 StartInfo = new ProcessStartInfo("dotnet")
                 {
-                    Arguments = "new aurelia --allow-scripts yes",
+                    Arguments = $"new aurelia -o {directoryInfo.Name} --force --allow-scripts yes {_viewModel.ToString()}",
                     UseShellExecute = false,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     CreateNoWindow = true,
-                    WorkingDirectory = this.projectDirectory ?? this.solutionDirectory
+                    WorkingDirectory = parentDirectory.FullName
                 }
             };
-            process.Start();
+            process.Start();      
             process.WaitForExit();
-            //System.Threading.Thread.Sleep(1000); //We do this to make sure template folder won't be loaded on project startup.
-            //var itemEnumerator = project.ProjectItems.GetEnumerator();
-            //while (itemEnumerator.MoveNext())
-            //{
-            //    var item = itemEnumerator.Current as ProjectItem;
-            //    if (item.Name.ToLower() != "clientapp") { continue; }
-            //};
+            Instance.DTE2.Solution.Open(solution);
         }
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)
@@ -68,6 +67,15 @@ namespace Aurelia.DotNet.VSIX
                 return;
             }
             Directory.Delete(this.solutionDirectory, true);
+        }
+
+        public void RemoveProjectDirectory()
+        {
+            if (!Directory.Exists(this.projectDirectory))
+            {
+                return;
+            }
+            Directory.Delete(this.projectDirectory, true);
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -94,7 +102,7 @@ namespace Aurelia.DotNet.VSIX
 
         public bool ShouldAddProjectItem(string filePath)
         {
-            return true;
+            return false;
         }
     }
 }

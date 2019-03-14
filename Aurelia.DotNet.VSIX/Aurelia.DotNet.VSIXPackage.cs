@@ -57,6 +57,7 @@ namespace Aurelia.DotNet.VSIX
             Instance.DTE2 = ServiceProvider.GlobalProvider.GetService(typeof(SDTE)) as EnvDTE80.DTE2;
             Instance.Shell = ServiceProvider.GlobalProvider.GetService(typeof(SVsShell)) as IVsShell;
             Instance.Solution = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution2;
+            Instance.Solution4 = ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution4;
             Instance.Watcher = new Watcher();
         }
 

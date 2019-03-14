@@ -10,7 +10,7 @@ namespace Aurelia.DotNet.Wizard
     {
         public ProjectWizardViewModel()
         {
-            this.StylesheetLanguage = StylesheetLanguage.CSS;
+            this.StylesheetLanguage = StylesheetLanguage.None;
             this.Transpiler = Transpiler.TypeScript;
             this.HttpProtocol = HttpProtocol.HTTP1;
             this.LoaderBundle = LoaderBundle.Webpack;
@@ -32,7 +32,6 @@ namespace Aurelia.DotNet.Wizard
         public bool GenerateRoutes { get; set; }
         [CliProperty("cssProcessor")]
         public StylesheetLanguage StylesheetLanguage { get; set; }
-        [CliProperty("")]
         public PackageManager PackageManager { get; set; }
         [CliProperty("transpiler")]
         public Transpiler Transpiler { get; set; }
@@ -44,7 +43,7 @@ namespace Aurelia.DotNet.Wizard
         public PostProcessor PostProcessor { get; set; }
         [CliProperty("unitTesting")]
         public UnitTesting UnitTesting { get; set; }
-        [CliProperty("integrationTestingg")]
+        [CliProperty("integrationTesting")]
         public IntegrationTesting IntegrationTesting { get; set; }
         [CliProperty("minification")]
         public Minification Minification { get; set; }
@@ -52,7 +51,6 @@ namespace Aurelia.DotNet.Wizard
         public Editor Editor { get; set; }
 
 
-        [CliProperty("port")]
         public int Port { get; set; }
         public string Folder { get; set; }
         private Route _currentRoute;
@@ -90,5 +88,9 @@ namespace Aurelia.DotNet.Wizard
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public override string ToString()
+        {
+            return string.Join("", this.GetType().GetProperties().Where(y=>y.GetCustomAttributes(typeof(CliPropertyAttribute), false).Any()).ToList().Select(y => $"--{((CliPropertyAttribute)y.GetCustomAttributes(typeof(CliPropertyAttribute), false).FirstOrDefault()).Name} {y.GetValue(this).ToString().ToLower()} "));
+        }
     }
 }

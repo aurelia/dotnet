@@ -2,8 +2,8 @@
 {
     public enum StylesheetLanguage
     {
-        CSS,
-        SCSS,
-        LESS
+        None,
+        Scss,
+        Less
     }
 }
