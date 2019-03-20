@@ -53,10 +53,16 @@
   <ItemGroup>
     <VSCTCompile Include="Commands\AureliaCommands.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>AureliaCommands.cs</LastGenOutput>
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AureliaCommands.cs" />
+    <Compile Include="Commands\AureliaCommands.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AureliaCommands.vsct</DependentUpon>
+    </Compile>
     <Compile Include="Commands\GenerateAttribute.cs" />
     <Compile Include="Commands\GenerateRoute.cs" />
     <Compile Include="Commands\GenerateElement.cs" />

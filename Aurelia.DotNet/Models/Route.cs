@@ -11,6 +11,7 @@ namespace Aurelia.DotNet.Models
         public Route()
         {
             this.ChildRoutes = new ObservableCollection<Route>();
+            this.CanNavigate = true;
         }
 
         public bool DefaultRoute { get; set; }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Aurelia.DotNet.Wizard
@@ -21,6 +22,7 @@ namespace Aurelia.DotNet.Wizard
         {
             InitializeComponent();
             this.DataContext = new ProjectWizardViewModel();
+            this.SetStyle();
         }
 
 
@@ -55,12 +57,13 @@ namespace Aurelia.DotNet.Wizard
                 Title = $"{parentRoute.Title}Child{parentRoute.ChildRoutes.Count() + 1}",
                 CanNavigate = parentRoute.CanNavigate
             });
+            this.routeTreeView.SetStyle();
         }
 
         private void RouteTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             this.ViewModel.CurrentRoute = (Route)e.NewValue;
-            this.txtRoute.Focus();            
+            FocusManager.SetFocusedElement(this, txtRoute);
             this.txtRoute.CaretIndex = 0;
             this.txtRoute.Select(0, this.txtRoute.Text.Length);
         }
@@ -88,6 +91,22 @@ namespace Aurelia.DotNet.Wizard
                 Title = $"App{this.ViewModel.Routes.Count() + 1}",
 
             });
+
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            TAncestor FindAncestor<TAncestor>(UIElement uiElement) where TAncestor : class
+            {
+                while ((uiElement != null) && !(uiElement is TAncestor))
+                    uiElement = VisualTreeHelper.GetParent(uiElement) as UIElement;
+
+                return uiElement as TAncestor;
+            }
+
+            var treeViewItem = FindAncestor<TreeViewItem>(sender as UIElement);
+            treeViewItem.IsSelected = true;
 
         }
     }

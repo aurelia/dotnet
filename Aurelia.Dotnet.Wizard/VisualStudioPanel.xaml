@@ -33,11 +33,5 @@
     <Style TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelTextKey}}"/>
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="MaxHeight" Value="45" />
-    </Style>
-    <Style TargetType="{x:Type Grid}">
-        <Setter Property="Background" Value="{DynamicResource {x:Static vsfx:VsBrushes.PanelBorderKey}}"/>
     </Style>
 </ResourceDictionary>

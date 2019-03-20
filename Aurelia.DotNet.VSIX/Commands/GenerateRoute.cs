@@ -50,6 +50,7 @@ namespace Aurelia.DotNet.VSIX.Commands
             var button = (OleMenuCommand)sender;
             button.Visible = false;
             Helpers.DteHelpers.GetSelectionData(_dte, out var targetFolderPath, out _, out _);
+            return;
             button.Visible = targetFolderPath.IsAureliaRouter();
         }
 

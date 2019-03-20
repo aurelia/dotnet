@@ -1,3 +1,4 @@
+dotnet new -i Aurelia.DotNet.Templates
 aureliaCli = npm info aurelia-cli version
 if(!$aureliaCli){
 npm install aurelia-cli@latest

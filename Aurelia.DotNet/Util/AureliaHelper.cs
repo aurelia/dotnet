@@ -49,7 +49,7 @@ namespace Aurelia.DotNet
                 var jsonFile = File.ReadAllText(aureliaFile);
                 AureliaCli = JsonConvert.DeserializeObject<AureliaCli>(jsonFile);
                 LastModifyDate = lastWriteTime;
-                RootFolder = Path.Combine(Directory.GetParent(aureliaProjectDirectory).FullName, AureliaCli.Paths.Root).ToLower();
+                RootFolder = Path.Combine(Directory.GetParent(aureliaProjectDirectory).FullName, AureliaCli.Paths.Root ?? "").ToLower();
             }
 
             if (AureliaCli.Paths == null) { return false; }
@@ -62,7 +62,7 @@ namespace Aurelia.DotNet
 
         }
 
-        public static bool IsInAureliaSrcFolder(this string targetFileOrFolder) => targetFileOrFolder.ToLower().Contains(RootFolder);
+        public static bool IsInAureliaSrcFolder(this string targetFileOrFolder) => targetFileOrFolder.ToLower().Contains(RootFolder ?? "");
 
         public static void LoadAureliaCliFromPath(string path)
         {
