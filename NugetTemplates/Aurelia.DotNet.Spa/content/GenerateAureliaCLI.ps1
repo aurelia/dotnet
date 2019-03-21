@@ -1,4 +1,3 @@
-
 param(
     [string]$bundler = "%bundler%",
     [string]$http = "%http%",
@@ -11,13 +10,11 @@ param(
     [string]$editor = "%editor%",
     [string]$navigation = "%nav%"
 )
-
-dotnet new -i Aurelia.DotNet.Templates
-$aureliaCli = npm info aurelia-cli version
-if(!$aureliaCli){
-npm install aurelia-cli@latest
+$aureliaCli = npm list  -g --depth=0
+if(!($aureliaCli -match "aurelia-cli@1.0.0-beta.14")){
+npm install aurelia-cli@latest -g
 }
-cd Aurelia.DotNet.Spa
+Set-Location Aurelia.DotNet.Spa
 au new '%aurelia-root%' --unattended --select $bundler,$http,$transpiler,$minification,$cssProcessor,$postProcessor,$unitTesting,$integrationTesting,$editor,$navigation
 #Rename-Item -path 'Aurelia.DotNet.CSharp' -newName 
 #$configFiles = Get-ChildItem 'ClientApp' *.* -rec

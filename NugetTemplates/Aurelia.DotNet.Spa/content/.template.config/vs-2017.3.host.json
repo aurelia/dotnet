@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json.schemastore.org/vs-2017.3.host",
+  "name": {
+    "text": "Aurelia",
+    "package": "{B1BFBEC1-37FB-4D53-A30D-A283D649364D}",
+    "id": "1100"
+  },
+  "description": {
+    "text": "A project template for creating an ASP.NET Core application with Aurelia",
+    "package": "{B1BFBEC1-37FB-4D53-A30D-A283D649364D}",
+    "id": "1101"
+  },
+  "order": 310,
+  "icon": "icon.png",
+  "learnMoreLink": "https://github.com/aurelia/dotnet",
+  "uiFilters": [
+    "oneaspnet"
+  ],
+  "supportedAuthentications": [
+    {
+      "auth": "None",
+      "authenticationType": "NoAuth",
+      "allowUnsecured": true
+    }
+  ],
+  "ports": [
+    {
+      "name": "HttpPort",
+      "useHttps": false
+    },
+    {
+      "name": "HttpsPort",
+      "useHttps": true
+    }
+  ],
+  "excludeLaunchSettings": false,
+  "minFullFrameworkVersion": "4.6.1",
+  "disableHttpsSymbol": "NoHttps"
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Aurelia.DotNet.Templates</id>
+    <version>1.1.0</version>
+    <authors>Aurelia Core Team</authors>
+    <owners>Aurelia Core Team</owners>
+    <projectUrl>https://github.com/aurelia/dotnet</projectUrl>
+    <licenseUrl>https://github.com/aurelia/dotnet/blob/master/LICENSE</licenseUrl>
+	<iconUrl>https://aurelia.io/media/aurelia-icon-256x256.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<copyright>Copyright (c) 2010 - 2019 Blue Spire Inc.</copyright>
+    <title>Aurelia CLI with .NET Core with optional security and scaffolding</title>
+    <description>
+		This release has the ability to scaffold out an entire .NET Core project with Aurelia CLI.  This will help streamline the Aurelia build process 
+		and enable rapid development in an integrated environment.  You can generate a full fledge secure application with the --secure true option on top of all the normal options.
+	
+	
+		$ dotnet new -i Aurelia.DotNet.Templates
+		$ dotnet new aurelia
+		$ dotnet new aurelia --help
+		Generates a SPA App with .NET Core backend and Aurelia front end
+    </description>
+    <summary>This package will scaffold out all the necessary files to get up and running with Aurelia CLI and .NET Core with HMR</summary>
+    <releaseNotes>
+    </releaseNotes>
+    <tags>
+	  aurelia
+	  .net core
+	  aureli cli
+      boilerplate     
+      webapi
+      dotnet-new
+      generator     
+      templating      
+      dotnet-core          
+      typescript
+      rest-client     
+      dotnetcore
+      dotnet     
+      architecture
+	  dotnet-cli
+	  dotnet-template
+    </tags>
+    <language>en-US</language>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+	<dependencies>
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="**" exclude="**\bin\**\*;**\obj\**\*;**\*.user;**\*.log;**\.vscode\**\*;" />
+  </files>
+</package>
