@@ -44,7 +44,7 @@ namespace Aurelia.DotNet.VSIX
                     WorkingDirectory = parentDirectory.FullName
                 }
             };
-            process.Start();      
+            process.Start();
             process.WaitForExit();
             Instance.DTE2.Solution.Open(solution);
         }
@@ -85,9 +85,9 @@ namespace Aurelia.DotNet.VSIX
                 replacementsDictionary.TryGetValue("$solutiondirectory$", out this.solutionDirectory);
                 replacementsDictionary.TryGetValue("$destinationdirectory$", out this.projectDirectory);
                 var wiz = new DotNet.Wizard.ProjectWizard();
-                wiz.ShowDialog();
+                var result = wiz.ShowDialog();
                 this._viewModel = wiz.ViewModel;
-                if (_viewModel.Cancelled)
+                if (!result ?? true)
                 {
                     throw new WizardBackoutException();
                 }
@@ -96,7 +96,7 @@ namespace Aurelia.DotNet.VSIX
             catch (Exception ex)
             {
                 RemoveSolutionDirectory();
-                throw new WizardCancelledException("Wizard failed to create Aurelia Project Succesfully", ex);
+                throw new WizardBackoutException("Wizard failed to create Aurelia Project Succesfully", ex);
             }
         }
 

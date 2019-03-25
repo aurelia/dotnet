@@ -24,6 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateConfigs", "TemplateConfigs", "{532048D5-0944-4510-B41C-C2C639B7595E}"
 	ProjectSection(SolutionItems) = preProject
 		NugetTemplates\Aurelia.DotNet.Spa\content\Dockerfile = NugetTemplates\Aurelia.DotNet.Spa\content\Dockerfile
+		NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.cmd = NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.cmd
 		NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.ps1 = NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.ps1
 		NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.sh = NugetTemplates\Aurelia.DotNet.Spa\content\GenerateAureliaCLI.sh
 		NugetTemplates\Aurelia.DotNet.Spa\content\.template.config\template.json = NugetTemplates\Aurelia.DotNet.Spa\content\.template.config\template.json

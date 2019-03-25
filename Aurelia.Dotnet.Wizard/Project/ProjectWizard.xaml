@@ -10,9 +10,8 @@
         xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
         d:DataContext="{d:DesignInstance app:ProjectWizardViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d" Title="Aurelia Project Scaffolder"
-        WindowStartupLocation="CenterScreen" FontSize="14" Icon="../aurelia.ico" WindowState="Normal"
-        ShowActivated="False" ResizeMode="CanResizeWithGrip" ShowInTaskbar="False"
-        MinWidth="900" MinHeight="500" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Icon="../aurelia.ico" WindowState="Normal"
+        ShowInTaskbar="False" MinWidth="900" MinHeight="500" SizeToContent="WidthAndHeight"
         >
     <app:VisualStudioPanel>
         <Grid FocusManager.FocusedElement="{Binding ElementName=compName}">

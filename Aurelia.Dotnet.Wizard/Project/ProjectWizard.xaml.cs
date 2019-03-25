@@ -25,7 +25,6 @@ namespace Aurelia.DotNet.Wizard
             this.SetStyle();
         }
 
-
         private void SelectAllOnFocus(object sender, RoutedEventArgs e)
         {
             (sender as TextBox)?.SelectAll();
@@ -35,12 +34,14 @@ namespace Aurelia.DotNet.Wizard
         {
             // Emit event to let people gather settings
             this.ChangesSaved?.Invoke(this, this.ViewModel);
+            DialogResult = true;
             this.Close();
         }
 
         private void CancelChanges(object sender, RoutedEventArgs e)
         {
             ViewModel.Cancelled = true;
+            DialogResult = false;
             this.Close();
         }
 

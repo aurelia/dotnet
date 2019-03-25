@@ -18,9 +18,6 @@ namespace Aurelia.DotNet.VSIX.Commands
         public const string guidAureliaContextString = "9aab4142-64d7-45a5-87df-200680cbff35";
         public static Guid guidAureliaContext = new Guid(guidAureliaContextString);
 
-        public const string guidAureliaAddFileCommandSetString = "cace6ee4-975d-4cd4-9742-8f7891b48285";
-        public static Guid guidAureliaAddFileCommandSet = new Guid(guidAureliaAddFileCommandSetString);
-
         public const string guidAureliaCommandsSetString = "115e73a4-99e8-49d0-8867-360fced1b27e";
         public static Guid guidAureliaCommandsSet = new Guid(guidAureliaCommandsSetString);
     }
@@ -29,7 +26,6 @@ namespace Aurelia.DotNet.VSIX.Commands
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int cmdGenerateElementAdd = 0x0100;
         public const int MyMenu = 0x1010;
         public const int MyMenuGroup = 0x1020;
         public const int CommandGroup = 0x2000;

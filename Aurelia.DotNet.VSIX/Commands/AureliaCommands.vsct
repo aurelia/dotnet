@@ -22,13 +22,6 @@
       </Menu>
     </Menus>
     <Buttons>
-      <Button guid="guidAureliaAddFileCommandSet" id="cmdGenerateElementAdd">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD_ITEMS" />
-        <Strings>
-          <ButtonText>Add Element</ButtonText>
-          <LocCanonicalName>.Aurelia.GenerateElement</LocCanonicalName>
-        </Strings>
-      </Button>
       <Button guid="guidAureliaCommandsSet" id="cmdGenerateElement" priority="0x0100" type="Button">
         <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
         <Icon guid="ImageCatalogGuid" id="NewItem" />
@@ -83,10 +76,6 @@
     <GuidSymbol name="guidAureliaContext" value="{9AAB4142-64D7-45A5-87DF-200680CBFF35}" />
 
 
-    <GuidSymbol name="guidAureliaAddFileCommandSet" value="{cace6ee4-975d-4cd4-9742-8f7891b48285}">
-      <IDSymbol name="cmdGenerateElementAdd" value="0x0100"/>
-    </GuidSymbol>
-    
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidAureliaCommandsSet" value="{115E73A4-99E8-49D0-8867-360FCED1B27E}">
       <IDSymbol name="MyMenu" value="0x1010" />
