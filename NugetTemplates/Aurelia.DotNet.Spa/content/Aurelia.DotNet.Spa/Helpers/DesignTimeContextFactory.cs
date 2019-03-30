@@ -24,7 +24,7 @@ namespace Aurelia.DotNet.Spa.Helpers
 
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Aurelia.DotNet.SecureSpa"));
+            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Aurelia.DotNet.Spa"));
             builder.UseOpenIddict();
 
             return new ApplicationDbContext(builder.Options);

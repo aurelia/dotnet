@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+#if signalR
+using Aurelia.DotNet.Spa.Hubs;
+#endif
 //using Aurelia.Dotnet;
 
 namespace Aurelia.DotNet.Spa
@@ -44,9 +47,13 @@ namespace Aurelia.DotNet.Spa
                 configuration.RootPath = "ClientApp/dist";
             });
 
+#if signalR
+            services.AddSignalR();
+#endif
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Aurelia.DotNet.SecureSpa"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Aurelia.DotNet.Spa"));
                 options.UseOpenIddict();
             });
 
@@ -108,10 +115,17 @@ namespace Aurelia.DotNet.Spa
                 {
                     options.SwaggerEndpoint(
                         $"/swagger/{description.GroupName}/swagger.json",
-                        $"Aurelia.DotNet.SecureSpa API {description.GroupName.ToUpperInvariant()}");
+                        $"Aurelia.DotNet.Spa API {description.GroupName.ToUpperInvariant()}");
                 }
 
             });
+
+#if signalR
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<SampleHub>("/sample");
+            });
+#endif
 
             app.UseMvc(routes =>
             {
@@ -131,7 +145,7 @@ namespace Aurelia.DotNet.Spa
             });
         }
     }
-#else 
+#else
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -151,6 +165,10 @@ namespace Aurelia.DotNet.Spa
             {
                 configuration.RootPath = "%aurelia-root%/dist";
             });
+
+#if signalR
+            services.AddSignalR();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -177,7 +195,12 @@ namespace Aurelia.DotNet.Spa
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
+#if signalR
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<SampleHub>("/sample");
+            });
+#endif
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "%aurelia-root%";
@@ -190,7 +213,4 @@ namespace Aurelia.DotNet.Spa
         }
     }
 #endif
-
-
-
 }

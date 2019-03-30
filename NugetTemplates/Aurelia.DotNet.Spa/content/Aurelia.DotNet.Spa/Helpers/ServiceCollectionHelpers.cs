@@ -82,9 +82,9 @@ namespace Aurelia.DotNet.Spa
                 {
                     options.SwaggerDoc(description.GroupName, new Info()
                     {
-                        Title = $"Aurelia.DotNet.SecureSpa API {description.ApiVersion}",
+                        Title = $"Aurelia.DotNet.Spa API {description.ApiVersion}",
                         Version = description.ApiVersion.ToString(),
-                        Description = description.IsDeprecated ? $"Aurelia.DotNet.SecureSpa API - DEPRECATED" : "Aurelia.DotNet.SecureSpa API",
+                        Description = description.IsDeprecated ? $"Aurelia.DotNet.Spa API - DEPRECATED" : "Aurelia.DotNet.Spa API",
 
                     });
                 }

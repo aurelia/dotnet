@@ -7,7 +7,9 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>%aurelia-root%\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>b48a6495-aedf-457a-9e36-0f820cf087f7</UserSecretsId>
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
     <RootNamespace>Aurelia.DotNet.Spa</RootNamespace>
@@ -20,12 +22,20 @@
     <PackageTags>Aurelia, SPA, .NET CORE, MVC</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Documentation\Aurelia.DotNet.Spa.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Documentation\Aurelia.DotNet.Spa.xml" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Aurelia.Dotnet" />
+    <PackageReference Include="Aurelia.Dotnet" Version="1.*" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.4.4" />
   </ItemGroup>
 
   <ItemGroup Condition="$(Secure) == true">
