@@ -79,6 +79,46 @@ namespace Aurelia.DotNet
         public static string GetBindingBehaviorsDirectory => Path.Combine(RootFolder, AureliaCli.Paths.BindingBehaviors);
         public static string GetValueConvertersDirectory => Path.Combine(RootFolder, AureliaCli.Paths.ValueConverters);
 
+        public static void AddRoute(string targetFile, string fullFileName)
+        {
+            var routerFile = File.ReadAllText(targetFile);
+            var configurationSettings = Regex.Match(routerFile, @"(\/{0}|\/{2})(config.map\(\[((.|\n)*)\]\))");
+            if (configurationSettings.Groups.Count > 3)
+            {
+                var currentText = configurationSettings.Groups[0].Value;
+                var currentValue = configurationSettings.Groups[2].Value;
+                var currentPaths = configurationSettings.Groups[3].Value;
+                var replaceMentText = currentPaths;
+                string relativePath = GetRelativePath(targetFile, fullFileName);
+
+                if (IsWebpack)
+                {
+                    relativePath = $"PLATFORM.moduleName({relativePath})";
+                }
+
+                replaceMentText += string.IsNullOrWhiteSpace(currentPaths) || currentPaths.EndsWith(",") ? relativePath : ", " + relativePath;
+
+                replaceMentText = replaceMentText.StartsWith("[") ? replaceMentText : $"[{replaceMentText}]";
+
+                if (!routerFile.Contains("PLATFORM"))
+                {
+                    routerFile = @"import { PLATFORM } from 'aurelia-framework';" + Environment.NewLine + routerFile;
+                }
+                routerFile = routerFile.Replace(currentText, currentValue.Replace(string.IsNullOrWhiteSpace(currentPaths) ? "[]" : $"[{currentPaths}]", replaceMentText));
+                File.WriteAllText(targetFile, routerFile);
+            }
+
+        }
+
+        private static string GetRelativePath(string targetFile, string fullFileName)
+        {
+            Uri folder = new Uri(targetFile);
+            Uri newFile = new Uri(fullFileName);
+            var relativeFileName = folder.MakeRelativeUri(newFile).ToString();
+            var module = relativeFileName.Replace(Path.GetExtension(relativeFileName), "");
+            return $"'./{module}'";
+        }
+
         public static void AddGlobalResource(string fullFileName)
         {
             var resourceDir = Path.Combine(RootFolder, AureliaCli.Paths.Resources);
@@ -87,20 +127,16 @@ namespace Aurelia.DotNet
             var configurationSettings = Regex.Match(resourceFile, @"(\/{0}|\/{2})(config.globalResources\(\[((.|\n)*)\]\))");
             if (configurationSettings.Groups.Count > 3)
             {
-
                 var currentText = configurationSettings.Groups[0].Value;
                 var currentValue = configurationSettings.Groups[2].Value;
                 var currentPaths = configurationSettings.Groups[3].Value;
                 var replaceMentText = currentPaths;
-                Uri folder = new Uri(ResourceGlobalFile);
-                Uri newFile = new Uri(fullFileName);
-                var relativePath = $"'{folder.MakeRelativeUri(newFile).ToString().Replace('/', Path.DirectorySeparatorChar)}'";
+                string relativePath = GetRelativePath(ResourceGlobalFile, fullFileName);
 
                 if (IsWebpack)
                 {
                     relativePath = $"PLATFORM.moduleName({relativePath})";
                 }
-
 
                 replaceMentText += string.IsNullOrWhiteSpace(currentPaths) || currentPaths.EndsWith(",") ? relativePath : ", " + relativePath;
 

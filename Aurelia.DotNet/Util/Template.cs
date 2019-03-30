@@ -21,7 +21,9 @@ namespace Aurelia.DotNet
 
 
         public static string GetTemplateText(string templateName) => TemplateFiles.FirstOrDefault(y => Path.GetFileNameWithoutExtension(y.ToLower()).Equals(templateName.ToLower()));
-        public static IEnumerable<string> GetTemplateFilesByType(string type) => TemplateFiles.Where(y => (y.Contains((AureliaHelper.IsTypescript ?? false ? "ts" : "js")) || y.Contains("html")) && y.Contains(type)).ToList();
+        public static IEnumerable<string> GetTemplateFilesByType(string type) =>
+            TemplateFiles.Where(templatePath => (templatePath.Contains((AureliaHelper.IsTypescript ?? false ? "ts" : "js")) || templatePath.Contains("html")) && 
+            Path.GetFileName(templatePath).Split('.').Any(fileParts => fileParts?.ToLower().Equals(type) ?? false)).ToList();
 
 
         public static async Task<string> GenerateTemplatesAsync(string templateName, string targetFolder, string elementName, bool isGlobal = false)

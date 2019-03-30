@@ -115,10 +115,7 @@ namespace Microsoft.AspNetCore.NodeServices
             try
             {
                 var process = Process.Start(startInfo);
-
-                // See equivalent comment in OutOfProcessNodeInstance.cs for why
                 process.EnableRaisingEvents = true;
-
                 return process;
             }
             catch (Exception ex)

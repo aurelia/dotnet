@@ -11,10 +11,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Aurelia.DotNet
@@ -115,7 +117,8 @@ namespace Aurelia.DotNet
             logger.LogInformation($"Starting aurelia cli server on port {portNumber}...");
 
             var envVars = new Dictionary<string, string> { };
-            var nodeScriptRunner = new ScriptRunner(sourcePath, nodeScriptName, hotModuleReload ? "--hmr" : string.Empty, envVars, packageManager);
+            var nodeScriptRunner = new ScriptRunner(sourcePath, nodeScriptName, hotModuleReload ? $"--hmr --port {portNumber}" : $"--port {portNumber}", envVars, packageManager);
+            nodeScriptRunner.AttachToLogger(logger);
 
             using (var stdErrReader = new EventedStreamStringReader(nodeScriptRunner.StdErr))
             {
@@ -136,7 +139,35 @@ namespace Aurelia.DotNet
                 }
             }
 
+            await WaitForServerToRespond(portNumber);
             return portNumber;
+        }
+
+        private static async Task WaitForServerToRespond(int portNumber)
+        {
+            var timeoutMilliseconds = 1000;
+            using (var client = new HttpClient())
+            {
+                while (true)
+                {
+                    try
+                    {
+                        // If we get any HTTP response, the CLI server is ready
+                        await client.SendAsync(
+                            new HttpRequestMessage(HttpMethod.Head, new Uri($"http://localhost:{portNumber}")),
+                            new CancellationTokenSource(timeoutMilliseconds).Token);
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        await Task.Delay(500);
+                        if (timeoutMilliseconds < 10000)
+                        {
+                            timeoutMilliseconds += 3000;
+                        }
+                    }
+                }
+            }
         }
     }
 }

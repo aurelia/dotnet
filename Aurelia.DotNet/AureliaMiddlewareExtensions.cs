@@ -9,7 +9,7 @@ namespace Aurelia.DotNet
     {
         public static void UseAureliaCliServer (
             this ISpaBuilder spaBuilder,
-            string npmScript = "au run",
+            string npmScript = "start",
             //PackageManager packageManager = PackageManager.Npm
             bool hotModuleReload = true
             )
