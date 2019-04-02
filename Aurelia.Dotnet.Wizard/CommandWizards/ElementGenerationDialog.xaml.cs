@@ -24,6 +24,7 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
         {
             InitializeComponent();
             this.Loaded += ElementGenerationDialog_Loaded;
+            this.SetStyle();
         }
 
         private void ElementGenerationDialog_Loaded(object sender, RoutedEventArgs e)
@@ -31,6 +32,7 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
             txtElementName.Focus();
             txtElementName.CaretIndex = 0;
             txtPropertyNames.Text = PropertyNamesPreviewText;
+            txtElementName.Select(0, txtElementName.Text.Length);
 
             txtElementName.PreviewKeyDown += (a, b) =>
             {
@@ -64,6 +66,11 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
             {
                 return txtPropertyNames.Text?.ToLower().Equals(PropertyNamesPreviewText.ToLower()) ?? false ? string.Empty : txtPropertyNames.Text?.Trim();
             }
+        }
+
+        public void GlobalChecked(bool value)
+        {
+            this.chkGlobal.IsChecked = value;
         }
 
         public bool IsGlobal

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Aurelia.DotNet.Wizard"
         Icon="../aurelia.ico"
-        Title="Add New Route" Height="150" Width="412.778" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" SizeToContent="Width">
+        Title="Add New Route" Height="150" Width="412.778" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" SizeToContent="Width">
 
     <local:VisualStudioPanel >
         <Grid>
@@ -25,11 +25,11 @@
 
 
             <Label  Grid.Column="0"  Content="Name" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" />
-            <TextBox  Grid.Column="1" Name="txtElementName" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="210" />
+            <TextBox  Grid.Column="1" Name="txtRouteName" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="210" MaxWidth="310" />
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                 <CheckBox IsChecked="True" Name="chkIsNav"  Grid.Column="1" Grid.Row="2">Nav?</CheckBox>
-                <CheckBox ToolTip="This will add an empty accessor to the route config for default route"  IsChecked="True" Name="chkDefaultRoute" Grid.Column="1" Grid.Row="2">Default Route?</CheckBox>
+                <!--<CheckBox ToolTip="This will add an empty accessor to the route config for default route" IsChecked="True" Name="chkDefaultRoute" Grid.Column="1" Grid.Row="2">Default Route?</CheckBox>-->
             </StackPanel>
             <GroupBox Grid.Row="2" Grid.ColumnSpan="2">
                 <GroupBox.Header>

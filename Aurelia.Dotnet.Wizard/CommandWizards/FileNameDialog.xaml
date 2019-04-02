@@ -4,11 +4,11 @@
         xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
         xmlns:local="clr-namespace:Aurelia.DotNet.Wizard"
         Icon="../aurelia.ico"
-        Title="Add New Aurelia File" Height="100" Width="431" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" SizeToContent="Width">
-    <local:VisualStudioPanel>
+        Title="Add New Aurelia File" Height="100" Width="431" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+    <local:VisualStudioPanel Padding="5">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -18,9 +18,9 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Name="lblFolder" Content="/" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="SemiBold" />
-            <TextBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.TextBoxStyleKey}}"  Grid.Row="0" Grid.Column="1" Name="txtName" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="210" />
-            <CheckBox Style="{DynamicResource {x:Static vsfx:VsResourceKeys.CheckBoxStyleKey}}" Visibility="Collapsed" IsChecked="False" Name="chkGlobal" Grid.Column="1" Grid.Row="2">Global?</CheckBox>
-            <Button Style="{DynamicResource {x:Static vsfx:VsResourceKeys.ThemedDialogButtonStyleKey}}"  Grid.Row="0" Grid.Column="2" Content="Add file" HorizontalAlignment="Center" VerticalAlignment="Center" IsDefault="True" Name="btnCreate" Click="Button_Click" />
+            <TextBox  Grid.Row="0" Grid.Column="1" Name="txtName" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Stretch" MinWidth="210" MaxWidth="290" />
+            <CheckBox Visibility="Collapsed" IsChecked="False" Name="chkGlobal" Grid.Column="1" Grid.Row="2">Global?</CheckBox>
+            <Button  Grid.Row="0" Grid.Column="2" Content="Add file" HorizontalAlignment="Center" Margin="5 0 0 0" Height="27" Width="100" IsDefault="True" Name="btnCreate" Click="Button_Click" />
         </Grid>
     </local:VisualStudioPanel>
 </Window>

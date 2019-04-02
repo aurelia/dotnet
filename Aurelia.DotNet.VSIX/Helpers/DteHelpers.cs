@@ -61,6 +61,14 @@ namespace Aurelia.DotNet.VSIX.Helpers
             return dialog;
         }
 
+        public static T OpenDialog<T>(this DTE2 dte, T dialog) where T : System.Windows.Window
+        {
+            var hwnd = new IntPtr(dte.MainWindow.HWnd);
+            var window = (System.Windows.Window)HwndSource.FromHwnd(hwnd).RootVisual;
+            dialog.Owner = window;
+            return dialog;
+        }
+
         public static Project GetActiveProject(DTE2 dte)
         {
             try

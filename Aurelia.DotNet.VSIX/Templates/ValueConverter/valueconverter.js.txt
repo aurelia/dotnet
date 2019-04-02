@@ -1,0 +1,10 @@
+﻿export class %name%ValueConverter {
+  toView(value) {
+    return value; // do something here to change what gets displayed
+  }
+  
+  fromView(value) {
+    return value; // do something here to change what gets stored
+  }
+
+}

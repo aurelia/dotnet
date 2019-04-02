@@ -6,56 +6,85 @@
   <Include href="KnownImageIds.vsct"/>
 
   <Commands package="guidAureliaCommandsPackage">
+
     <Groups>
-      <Group guid="guidAureliaCommandsSet" id="MyMenuGroup" />
-      <Group guid="guidAureliaCommandsSet" id="CommandGroup" priority="0x0100">
-        <Parent guid="guidAureliaCommandsSet" id="MyMenu"/>
+      <Group guid="guidAureliaCommandsSet" id="grpAureliaContext" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CSCD_PROJECT_ADD"/>
+      </Group>
+      <Group guid="guidAureliaCommandsSet" id="grpAureliaAdd" priority="0x0100">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
       </Group>
     </Groups>
 
-    <Menus>
-      <Menu guid="guidAureliaCommandsSet" id="MyMenu" priority="0x0200" type="Menu">
-        <Parent guid="guidAureliaCommandsSet" id="MyMenuGroup" />
-        <Strings>
-          <ButtonText>Aurelia</ButtonText>
-        </Strings>
-      </Menu>
-    </Menus>
     <Buttons>
       <Button guid="guidAureliaCommandsSet" id="cmdGenerateElement" priority="0x0100" type="Button">
-        <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
+        <Parent guid="guidAureliaCommandsSet" id="grpAureliaContext" />
+
         <Icon guid="ImageCatalogGuid" id="NewItem" />
         <CommandFlag>IconIsMoniker</CommandFlag>
-        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>TextMenuUseButton</CommandFlag>
+        <CommandFlag>TextContextUseButton</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
-          <ButtonText>Add Element</ButtonText>
+          <ButtonText>Aurelia - Add Element</ButtonText>
           <LocCanonicalName>.Aurelia.GenerateElement</LocCanonicalName>
         </Strings>
       </Button>
-      <Button guid="guidAureliaCommandsSet" id="cmdGenerateAttribute" priority="0x0110" type="Button">
-        <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
-        <Icon guid="ImageCatalogGuid" id="NewAttribute" />
+
+      <Button guid="guidAureliaCommandsSet" id="cmdGenerateAureliaItem" priority="0x001" type="Button">
+        <Parent guid="guidAureliaCommandsSet" id="grpAureliaContext" />
+
+        <Icon guid="ImageCatalogGuid" id="NewItem" />
         <CommandFlag>IconIsMoniker</CommandFlag>
-        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>TextMenuUseButton</CommandFlag>
+        <CommandFlag>TextContextUseButton</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
-          <ButtonText>Add Attribute</ButtonText>
+          <ButtonText>Aurelia - Add Item</ButtonText>
+          <LocCanonicalName>.Aurelia.AddItem</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="guidAureliaCommandsSet" id="cmdGenerateElement" priority="0x0100" type="Button">
+        <Parent guid="guidAureliaCommandsSet" id="grpAureliaContext" />
+
+        <Icon guid="ImageCatalogGuid" id="NewItem" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>TextMenuUseButton</CommandFlag>
+        <CommandFlag>TextContextUseButton</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Aurelia - Add Element</ButtonText>
+          <LocCanonicalName>.Aurelia.GenerateElement</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="guidAureliaCommandsSet" id="cmdGenerateAttribute" priority="0x0110" type="Button">
+        <Parent guid="guidAureliaCommandsSet" id="grpAureliaContext" />
+        <Icon guid="ImageCatalogGuid" id="NewAttribute" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>TextMenuUseButton</CommandFlag>
+        <CommandFlag>TextContextUseButton</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Aurelia - Add Attribute</ButtonText>
           <LocCanonicalName>.Aurelia.GenerateAttribute</LocCanonicalName>
         </Strings>
       </Button>
       <Button guid="guidAureliaCommandsSet" id="cmdGenerateRoute" priority="0x0120" type="Button">
-        <Parent guid="guidAureliaCommandsSet" id="CommandGroup" />
+        <Parent guid="guidAureliaCommandsSet" id="grpAureliaAdd" />
         <Icon guid="ImageCatalogGuid" id="RouteService" />
         <CommandFlag>IconIsMoniker</CommandFlag>
-        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>TextMenuUseButton</CommandFlag>
+        <CommandFlag>TextContextUseButton</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
-
         <Strings>
-          <ButtonText>Add Route</ButtonText>
+          <ButtonText>Aurelia - Add Route</ButtonText>
           <LocCanonicalName>.Aurelia.GenerateRoute</LocCanonicalName>
         </Strings>
       </Button>
@@ -64,12 +93,6 @@
 
   </Commands>
 
-  <CommandPlacements>
-
-    <CommandPlacement guid="guidAureliaCommandsSet" id="MyMenuGroup" priority="0x0799">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD_ITEMS"/>
-    </CommandPlacement>
-  </CommandPlacements>
   <Symbols>
     <!-- This is the package guid. -->
     <GuidSymbol name="guidAureliaCommandsPackage" value="{dae5925d-6027-4259-b6c3-2d268e932b09}" />
@@ -78,13 +101,13 @@
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidAureliaCommandsSet" value="{115E73A4-99E8-49D0-8867-360FCED1B27E}">
-      <IDSymbol name="MyMenu" value="0x1010" />
-      <IDSymbol name="MyMenuGroup" value="0x1020" />
-      <IDSymbol name="CommandGroup" value="0x2000" />
-
       <IDSymbol name="cmdGenerateElement" value="0x0100" />
       <IDSymbol name="cmdGenerateAttribute" value="0x0110" />
       <IDSymbol name="cmdGenerateRoute" value="0x0120" />
+      <IDSymbol name="cmdGenerateAureliaItem" value="0x0130" />
+      <IDSymbol name="grpAureliaContext" value="0x0013" />
+      <IDSymbol name="grpAureliaAdd" value="0x0014" />
+
     </GuidSymbol>
   </Symbols>
 </CommandTable>

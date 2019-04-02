@@ -1,0 +1,11 @@
+﻿export class %name% {
+	message = 'Hello from %name%';
+	canActivate(params, routeConfig, navigationInstruction) {
+	}
+    activate(params, routeConfig, navigationInstruction): {
+	}
+    canDeactivate() {
+	}
+    deactivate(){
+	}
+}

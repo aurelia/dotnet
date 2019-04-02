@@ -1,0 +1,8 @@
+﻿export class %name% {
+	configureRouter(config, router) {
+		this.router = router;
+		config.title = '%title%';
+		config.map([]);
+	}
+}
+  

@@ -1,0 +1,14 @@
+﻿import {inlineView} from 'aurelia-framework';
+
+@inlineView(`<template>${message}</template>`)
+export class %name% {
+	message = 'Hello from %name%';
+	canActivate(params: any, routeConfig: RouteConfig, navigationInstruction: NavigationInstruction): void | Promise<any> | NavigationInstruction {
+	}
+    activate(params: any, routeConfig: RouteConfig, navigationInstruction: NavigationInstruction): void | Promise<any> {
+	}
+    canDeactivate(): void | Promise<any> | NavigationInstruction {
+	}
+    deactivate(): void | Promise<any> {
+	}
+}

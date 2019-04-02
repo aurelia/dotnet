@@ -7,7 +7,6 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>%aurelia-root%\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <UserSecretsId>b48a6495-aedf-457a-9e36-0f820cf087f7</UserSecretsId>
     <!-- Set this to true if you enable server-side prerendering -->

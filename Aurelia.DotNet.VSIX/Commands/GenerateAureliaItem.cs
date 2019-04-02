@@ -22,7 +22,7 @@ namespace Aurelia.DotNet.VSIX.Commands
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class GenerateAttribute
+    internal sealed class GenerateAureliaItem
     {
         private DTE2 _dte;
 
@@ -34,13 +34,13 @@ namespace Aurelia.DotNet.VSIX.Commands
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private GenerateAttribute(AsyncPackage package, OleMenuCommandService commandService, DTE2 dte)
+        private GenerateAureliaItem(AsyncPackage package, OleMenuCommandService commandService, DTE2 dte)
         {
             _dte = dte;
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-            var menuCommandID = new CommandID(PackageGuids.guidAureliaCommandsSet, PackageIds.cmdGenerateAttribute);
+            var menuCommandID = new CommandID(PackageGuids.guidAureliaCommandsSet, PackageIds.cmdGenerateAureliaItem);
             var menuItem = new OleMenuCommand(this.ExecuteAsync, menuCommandID);
             menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
             commandService.AddCommand(menuItem);
@@ -56,7 +56,7 @@ namespace Aurelia.DotNet.VSIX.Commands
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static GenerateAttribute Instance
+        public static GenerateAureliaItem Instance
         {
             get;
             private set;
@@ -85,7 +85,7 @@ namespace Aurelia.DotNet.VSIX.Commands
             var dte = await package.GetServiceAsync(typeof(DTE)) as DTE2;
 
             OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
-            Instance = new GenerateAttribute(package, commandService, dte);
+            Instance = new GenerateAureliaItem(package, commandService, dte);
         }
 
         /// <summary>
@@ -97,38 +97,53 @@ namespace Aurelia.DotNet.VSIX.Commands
         /// <param name="e">Event args.</param>
         private async void ExecuteAsync(object sender, EventArgs e)
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var item = _dte.SelectedItems.Item(1);
-            Helpers.DteHelpers.GetSelectionData(_dte, out var targetFile, out var projectFolderPath, out var projectFullName);
-            var targetFolder = Path.GetDirectoryName(targetFile);
-
-            if (string.IsNullOrEmpty(targetFolder) || !Directory.Exists(targetFolder))
-                return;
-
-            var selectedItem = item as ProjectItem;
-            var selectedProject = item as Project;
-            var project = selectedItem?.ContainingProject ?? selectedProject ?? DteHelpers.GetActiveProject(_dte);
-
-            var root = Directory.GetParent(AureliaHelper.RootFolder).FullName.Replace(@"\", @"\\"); //escape for pregex
-            var relativePath = Regex.Replace(targetFolder, root, "", RegexOptions.IgnoreCase).Substring(1); // remove starting slash
-            var fileNameDialog = new FileNameDialog(relativePath)
+            try
             {
-                Title = "Generate Attribute",
-                IsGlobal = true,
-                PreviewText = "Please enter the name of the attribute you would like to create. eg. RedBox"
-            };
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                var item = _dte.SelectedItems.Item(1);
+                Helpers.DteHelpers.GetSelectionData(_dte, out var targetFile, out var projectFolderPath, out var projectFullName);
+                var targetFolder = Path.GetDirectoryName(targetFile);
 
-            fileNameDialog.GlobalChecked(targetFolder.ToLower() == AureliaHelper.GetResouceDirectory.ToLower() || targetFolder.ToLower() == AureliaHelper.GetAttributesDirectory.ToLower() || targetFile.ToLower().Equals(AureliaHelper.ResourceGlobalFile.ToLower()));
+                if (string.IsNullOrEmpty(targetFolder) || !Directory.Exists(targetFolder))
+                    return;
 
-            var dialog = _dte.OpenDialog(fileNameDialog);
-            if (!(dialog.ShowDialog() ?? false)) { return; }
-            var elementName = dialog.Input;
-            var templates = Template.GetTemplateFilesByType("attribute").ToList();
-            targetFolder = dialog.IsGlobal ? AureliaHelper.GetAttributesDirectory : targetFolder;
+                var selectedItem = item as ProjectItem;
+                var selectedProject = item as Project;
+                var project = selectedItem?.ContainingProject ?? selectedProject ?? DteHelpers.GetActiveProject(_dte);
 
-            var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.Input, dialog.IsGlobal)));
-            filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));
+                var root = Directory.GetParent(AureliaHelper.RootFolder).FullName.Replace(@"\", @"\\"); //escape for pregex
+                var relativePath = Regex.Replace(targetFolder, root, "", RegexOptions.IgnoreCase).Substring(1); // remove starting slash
+                var fileNameDialog = new FileNameDialog(relativePath)
+                {
+                    Title = "Generate Aurelia Item",
+                    IsGlobal = true,
+                    PreviewText = "Please enter the name aurelia item to create using Aurelia Conventions"
+                };
+                var lowerFolder = targetFolder.ToLower();
+                fileNameDialog.GlobalChecked(lowerFolder == AureliaHelper.GetResouceDirectory.ToLower() ||
+                    lowerFolder == AureliaHelper.GetAttributesDirectory.ToLower() ||
+                    lowerFolder == AureliaHelper.GetBindingBehaviorsDirectory.ToLower() ||
+                    lowerFolder == AureliaHelper.GetElementsDirectory.ToLower() ||
+                    lowerFolder == AureliaHelper.GetValueConvertersDirectory.ToLower() ||
+                    targetFile.ToLower().Equals(AureliaHelper.ResourceGlobalFile.ToLower()
 
+                    ));
+
+                var dialog = _dte.OpenDialog(fileNameDialog);
+                if (!(dialog.ShowDialog() ?? false)) { return; }
+                var moduleName = dialog.Input;
+                var aureliaType = AureliaHelper.ParseModuleName(moduleName);
+                var templates = Template.GetTemplateFilesByType(aureliaType.ToString().ToLower()).ToList();
+                var globalFolder = AureliaHelper.GetDirectory(aureliaType);
+                targetFolder = dialog.IsGlobal && !string.IsNullOrWhiteSpace(globalFolder) ? globalFolder : targetFolder;
+
+                var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.Input, dialog.IsGlobal)));
+                filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
+            }
 
         }
     }

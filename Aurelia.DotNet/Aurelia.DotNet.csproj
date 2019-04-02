@@ -20,6 +20,10 @@
     <Title>Aurelia DotNet Tools</Title>
     <AssemblyName>Aurelia.DotNet</AssemblyName>
     <RootNamespace>Aurelia.DotNet</RootNamespace>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>Allow port scanning
+Wait for CLI to be running to stop false positives
+Update aurelia helper functions</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

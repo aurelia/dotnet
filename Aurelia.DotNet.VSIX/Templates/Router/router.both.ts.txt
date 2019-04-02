@@ -1,0 +1,11 @@
+﻿import {RouterConfiguration, Router} from 'aurelia-router';
+
+export class %name% {
+    router: Router;
+
+    configureRouter(config: RouterConfiguration, router: Router): void {
+		this.router = router;
+		config.title = '%title%';
+		config.map([]);
+	}
+}

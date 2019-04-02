@@ -26,11 +26,11 @@ namespace Aurelia.DotNet.VSIX.Commands
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int MyMenu = 0x1010;
-        public const int MyMenuGroup = 0x1020;
-        public const int CommandGroup = 0x2000;
         public const int cmdGenerateElement = 0x0100;
         public const int cmdGenerateAttribute = 0x0110;
         public const int cmdGenerateRoute = 0x0120;
+        public const int cmdGenerateAureliaItem = 0x0130;
+        public const int grpAureliaContext = 0x0013;
+        public const int grpAureliaAdd = 0x0014;
     }
 }

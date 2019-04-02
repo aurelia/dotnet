@@ -80,6 +80,7 @@ namespace Aurelia.DotNet.VSIX
             await Aurelia.DotNet.VSIX.Commands.GenerateElement.InitializeAsync(this);
             await Aurelia.DotNet.VSIX.Commands.GenerateRoute.InitializeAsync(this);
             await Aurelia.DotNet.VSIX.Commands.GenerateAttribute.InitializeAsync(this);
+            await Aurelia.DotNet.VSIX.Commands.GenerateAureliaItem.InitializeAsync(this);
         }
 
         protected override void Dispose(bool disposing)

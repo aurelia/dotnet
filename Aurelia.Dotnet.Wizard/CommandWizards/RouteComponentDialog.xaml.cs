@@ -24,22 +24,24 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
         {
             InitializeComponent();
             this.Loaded += RouteComponentDialog_Loaded;
+            this.SetStyle();
         }
 
         private void RouteComponentDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            txtElementName.Focus();
-            txtElementName.CaretIndex = 0;
-            txtElementName.Text = ElementNamePreviewText;
+            txtRouteName.Focus();
+            txtRouteName.CaretIndex = 0;
+            txtRouteName.Text = PreviewText;
+            txtRouteName.Select(0, txtRouteName.Text.Length);
 
-            txtElementName.PreviewKeyDown += (a, b) =>
+            txtRouteName.PreviewKeyDown += (a, b) =>
             {
                 if (b.Key == Key.Escape)
                 {
-                    if (string.IsNullOrWhiteSpace(txtElementName.Text.Trim()) || txtElementName.Text.Trim().Equals(ElementNamePreviewText))
+                    if (string.IsNullOrWhiteSpace(txtRouteName.Text.Trim()) || txtRouteName.Text.Trim().Equals(PreviewText))
                         Close();
                     else
-                        txtElementName.Text = string.Empty;
+                        txtRouteName.Text = string.Empty;
                 }
 
             };
@@ -47,7 +49,7 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
 
         public string ElementName
         {
-            get { return txtElementName.Text?.Trim(); }
+            get { return txtRouteName.Text?.Trim(); }
         }
 
         public string Type
@@ -73,7 +75,7 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
             }
         }
 
-        public string ElementNamePreviewText => "Enter the name of the component you would like to create";
+        public string PreviewText => "Enter the name of the component you would like to create";
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

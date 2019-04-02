@@ -50,6 +50,12 @@ namespace Aurelia.DotNet.Wizard
         [CliProperty("editor")]
         public Editor Editor { get; set; }
 
+        [CliProperty("secure")]
+        public bool Secure { get; set; }
+
+        [CliProperty("signalR")]
+        public bool SignalR { get; set; }
+
 
         public int Port { get; set; }
         public string Folder { get; set; }

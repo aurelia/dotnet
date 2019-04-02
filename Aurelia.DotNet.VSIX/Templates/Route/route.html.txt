@@ -1,0 +1,3 @@
+﻿<template>
+  Hello from %name%
+</template>

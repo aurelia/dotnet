@@ -101,15 +101,17 @@ namespace Aurelia.DotNet.VSIX.Commands
             var selectedProject = item as Project;
             var project = selectedItem?.ContainingProject ?? selectedProject ?? DteHelpers.GetActiveProject(_dte);
 
-
-            var dialog = DteHelpers.OpenDialog<ElementGenerationDialog>(_dte);
+            var elementDialog = new ElementGenerationDialog();
+            // If this is in the default directory for elements or resources then default to checked
+            elementDialog.GlobalChecked(targetFolder.ToLower() == AureliaHelper.GetResouceDirectory.ToLower() || targetFolder.ToLower() == AureliaHelper.GetElementsDirectory.ToLower() || targetFile.ToLower().Equals(AureliaHelper.ResourceGlobalFile.ToLower()));
+            var dialog = DteHelpers.OpenDialog(_dte, elementDialog);
             if (!(dialog.ShowDialog() ?? false)) { return; }
 
             var type = dialog.Type;
             var elementName = dialog.ElementName;
             var bindablePropertyNames = dialog.PropertyNames;
             var templates = Template.GetTemplateFilesByType("element").Where(y => y.Contains(type)).ToList();
-            targetFolder = dialog.IsGlobal ? AureliaHelper.GetElementsDirectory : targetFolder;
+            //targetFolder = dialog.IsGlobal ? AureliaHelper.GetElementsDirectory : targetFolder;
 
             var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.ElementName, dialog.IsGlobal)));
             filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));

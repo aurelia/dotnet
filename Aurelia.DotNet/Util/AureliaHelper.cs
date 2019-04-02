@@ -62,6 +62,11 @@ namespace Aurelia.DotNet
 
         }
 
+        internal static void AddFeatureToConfigure(string targetFolder)
+        {
+
+        }
+
         public static bool IsInAureliaSrcFolder(this string targetFileOrFolder) => targetFileOrFolder.ToLower().Contains(RootFolder ?? "");
 
         public static void LoadAureliaCliFromPath(string path)
@@ -108,6 +113,59 @@ namespace Aurelia.DotNet
                 File.WriteAllText(targetFile, routerFile);
             }
 
+        }
+
+        public static AureliaItemType ParseModuleName(string moduleName)
+        {
+            var moduleNameTrimmed = moduleName?.Trim();
+            if (string.IsNullOrWhiteSpace(moduleNameTrimmed)) { return AureliaItemType.Component; }
+
+            if (moduleNameTrimmed.Contains("CustomElement"))
+            {
+                return AureliaItemType.Element;
+            }
+
+            if (moduleNameTrimmed.Contains("CustomAttribute"))
+            {
+                return AureliaItemType.Attribute;
+            }
+            if (moduleNameTrimmed.Contains("ValueConverter"))
+            {
+                return AureliaItemType.ValueConverter;
+            }
+            if (moduleNameTrimmed.Contains("BindingBehavior"))
+            {
+                return AureliaItemType.BindingBehavior;
+            }
+            if (moduleNameTrimmed.Contains("Feature"))
+            {
+                return AureliaItemType.Feature;
+            }
+            if (moduleNameTrimmed.Contains("Route"))
+            {
+                return AureliaItemType.Route;
+            }
+            return AureliaItemType.Component;
+        }
+
+        public static string GetDirectory(AureliaItemType aureliaType)
+        {
+            switch (aureliaType)
+            {
+                case AureliaItemType.Attribute:
+                    return GetAttributesDirectory;
+                case AureliaItemType.Element:
+                    return GetElementsDirectory;
+                case AureliaItemType.ValueConverter:
+                    return GetValueConvertersDirectory;
+                case AureliaItemType.BindingBehavior:
+                    return GetBindingBehaviorsDirectory;
+                case AureliaItemType.Route:
+                case AureliaItemType.Component:
+                case AureliaItemType.Feature:
+                default:
+                    return null;
+            }
         }
 
         private static string GetRelativePath(string targetFile, string fullFileName)

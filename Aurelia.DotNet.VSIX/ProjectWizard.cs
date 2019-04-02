@@ -8,6 +8,7 @@ using Aurelia.DotNet.Wizard;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.AspNetCore.NodeServices;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Aurelia.DotNet.VSIX
@@ -26,27 +27,28 @@ namespace Aurelia.DotNet.VSIX
         {
             Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             var workingDirectory = this.solutionDirectory ?? this.projectDirectory;
-            var parentDirectory = Directory.GetParent(workingDirectory);
-            var directoryInfo = new DirectoryInfo(workingDirectory);
             var solution = Instance.DTE2.Solution.FullName;
             Instance.DTE2.Solution.Close(false);
             RemoveProjectDirectory();
+            Directory.CreateDirectory(workingDirectory);
+
             var process = new System.Diagnostics.Process
             {
                 StartInfo = new ProcessStartInfo("dotnet")
                 {
-                    Arguments = $"new aurelia -o {directoryInfo.Name} --force --allow-scripts yes {_viewModel.ToString()}",
+                    Arguments = $"new aurelia --force --allow-scripts yes {(_viewModel.Secure ? "--secure" : "")} --skipRestore {_viewModel.ToString()}",
                     UseShellExecute = false,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     CreateNoWindow = true,
-                    WorkingDirectory = parentDirectory.FullName
+                    WorkingDirectory = workingDirectory
                 }
             };
             process.Start();
             process.WaitForExit();
             Instance.DTE2.Solution.Open(solution);
+            Directory.GetFiles(workingDirectory, "app.*", SearchOption.AllDirectories).ToList().ForEach(file =>  VsShellUtilities.OpenDocument(Instance.Package, file));
         }
 
         public void ProjectItemFinishedGenerating(ProjectItem projectItem)

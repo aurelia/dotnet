@@ -50,7 +50,6 @@ namespace Aurelia.DotNet.VSIX.Commands
             var button = (OleMenuCommand)sender;
             button.Visible = false;
             Helpers.DteHelpers.GetSelectionData(_dte, out var targetFolderPath, out _, out _);
-            return;
             button.Visible = targetFolderPath.IsAureliaRouter();
         }
 
@@ -105,11 +104,12 @@ namespace Aurelia.DotNet.VSIX.Commands
             if (string.IsNullOrEmpty(targetFolder) || !Directory.Exists(targetFolder))
                 return;
 
-            var dialog = DteHelpers.OpenDialog<RouteComponentDialog>(_dte);            
-            if (!dialog.DialogResult ?? false) { return; }
+            var dialog = DteHelpers.OpenDialog<RouteComponentDialog>(_dte);
+            if (!(dialog.ShowDialog() ?? false)) { return; }
             if (string.IsNullOrWhiteSpace(dialog.ElementName)) { return; }
             var templates = Template.GetTemplateFilesByType("route").Where(y => y.Contains(dialog.Type)).ToList();
             var filesToOpen = await Task.WhenAll(templates.Select(templateName => Template.GenerateTemplatesAsync(templateName, targetFolder, dialog.ElementName)));
+            AureliaHelper.AddRoute(targetFile, filesToOpen.FirstOrDefault(y => y.ToLower().EndsWith("ts") || y.ToLower().EndsWith("js")));
             filesToOpen.ToList().ForEach(fullFileName => VsShellUtilities.OpenDocument(package, fullFileName));
 
         }

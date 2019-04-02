@@ -35,13 +35,13 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
         public FileNameDialog(string folder = null)
         {
             InitializeComponent();
-            lblFolder.Content = $"{folder}/";
+            lblFolder.Content = $"{folder}\\";
             this.Loaded += FileNameDialog_Loaded;
+            this.SetStyle();
         }
 
         private void FileNameDialog_Loaded(object sender, RoutedEventArgs e)
         {
-            Title = "Add Aurelia File";
             txtName.Focus();
             txtName.CaretIndex = 0;
             txtName.Text = PreviewText;
@@ -79,6 +79,11 @@ namespace Aurelia.DotNet.Wizard.CommandWizards
         {
             DialogResult = true;
             Close();
+        }
+
+        public void GlobalChecked(bool value)
+        {
+            this.chkGlobal.IsChecked = value;
         }
     }
 }

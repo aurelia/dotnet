@@ -63,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AureliaCommands.vsct</DependentUpon>
     </Compile>
+    <Compile Include="Commands\GenerateAureliaItem.cs" />
     <Compile Include="Commands\GenerateAttribute.cs" />
     <Compile Include="Commands\GenerateRoute.cs" />
     <Compile Include="Commands\GenerateElement.cs" />
@@ -83,8 +84,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Attribute\attribute.js.txt" />
-    <Content Include="Templates\Attribute\attribute.ts.txt" />
+    <Content Include="Templates\Attribute\attribute.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Attribute\attribute.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\BindingBehavior\bindingbehavior.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\BindingBehavior\bindingbehavior.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Element\element.both.html.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -101,6 +112,51 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Element\element.inline.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Feature\feature.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Feature\feature.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Router\router.both.html.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Router\router.inline.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Router\router.both.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Router\router.inline.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Router\router.both.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Route\route.both.html.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Route\route.both.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Route\route.both.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Route\route.html.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Route\route.inline.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Route\route.inline.ts.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\ValueConverter\valueconverter.js.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\ValueConverter\valueconverter.ts.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="key.snk">
@@ -185,7 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Snippets\JavaScript\" />
-    <Folder Include="Templates\Route\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
