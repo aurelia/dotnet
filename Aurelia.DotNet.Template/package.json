@@ -17,7 +17,7 @@
   "peerDependencies": {},
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",
-    "aurelia-cli": "^1.0.0-beta.13",
+    "aurelia-cli": "^1.3.1",
     "aurelia-testing": "^1.0.0",
     "aurelia-tools": "^2.0.0",
     "gulp": "^4.0.0",
